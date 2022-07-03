@@ -1,24 +1,28 @@
+body{
+    background-color: black;
+}
 .element-container{
-    /* transform: rotate(60deg); */
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-#element-container{
-    width: 100%;
-    /* height: 100%; */
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    height: 1px;
+    position: absolute;
 }
 
-.item{
+.orb{
     position: absolute;
-    width: 50%;
-    height: 2px;
-    background-color: red;
-    /* border: solid rebeccapurple 10px; */
+    width: 5%;
+    height: 7%;
+    background: rgb(251,145,63);
+    background: radial-gradient(circle, rgba(251,145,63,0.75) 5%, rgba(252,70,107,0) 75%); 
+    border-radius: 100%;
+}
+.fadeOut{
+    /* position: absolute;
+    width: 5%;
+    height: 7%;
+    background: rgb(251,145,63);
+    background: radial-gradient(circle, rgba(251,145,63,0.75) 5%, rgba(252,70,107,0) 75%); 
+    border-radius: 100%; */
+    opacity: 0;
+    /* transition: background 2s ease; */
+    transition: opacity 2s;
 }
