@@ -1,0 +1,243 @@
+{
+	"file" : "background.html",
+	"general" : 
+	{
+		"properties" : 
+		{
+			"audiobarcolor" : 
+			{
+				"condition" : "audiovisualizer.value",
+				"index" : 7,
+				"order" : 107,
+				"text" : "Audio bar color",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+			"audiovisualizer" : 
+			{
+				"index" : 1,
+				"order" : 101,
+				"text" : "Audiovisualizer",
+				"type" : "bool",
+				"value" : true
+			},
+			"audiovisualizeroffsetx" : 
+			{
+				"condition" : "audiovisualizer.value",
+				"fraction" : true,
+				"index" : 3,
+				"max" : 50,
+				"min" : -50,
+				"order" : 103,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Audiovisualizer offset X",
+				"type" : "slider",
+				"value" : 0
+			},
+			"audiovisualizeroffsety" : 
+			{
+				"condition" : "audiovisualizer.value",
+				"fraction" : true,
+				"index" : 4,
+				"max" : 50,
+				"min" : -50,
+				"order" : 104,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Audiovisualizer offset Y",
+				"type" : "slider",
+				"value" : 20
+			},
+			"audiovisualizerwidth" : 
+			{
+				"condition" : "audiovisualizer.value",
+				"fraction" : true,
+				"index" : 2,
+				"max" : 100,
+				"min" : 0,
+				"order" : 102,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Audiovisualizer width",
+				"type" : "slider",
+				"value" : 50
+			},
+			"backgroundimg" : 
+			{
+				"index" : 0,
+				"order" : 100,
+				"text" : "Background Image",
+				"type" : "file",
+				"value" : ""
+			},
+			"bargap" : 
+			{
+				"condition" : "audiovisualizer.value",
+				"fraction" : true,
+				"index" : 8,
+				"max" : 8,
+				"min" : 0,
+				"order" : 108,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Bar gap",
+				"type" : "slider",
+				"value" : 7.5
+			},
+			"border" : 
+			{
+				"condition" : "audiovisualizer.value",
+				"index" : 10,
+				"order" : 110,
+				"text" : "border",
+				"type" : "bool",
+				"value" : false
+			},
+			"bordercolor" : 
+			{
+				"condition" : "border.value  && audiovisualizer.value",
+				"index" : 12,
+				"order" : 112,
+				"text" : "Border color",
+				"type" : "color",
+				"value" : "0 0 0"
+			},
+			"bordersize" : 
+			{
+				"condition" : "border.value && audiovisualizer.value",
+				"fraction" : true,
+				"index" : 11,
+				"max" : 5,
+				"min" : 0,
+				"order" : 111,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Border size",
+				"type" : "slider",
+				"value" : 1
+			},
+			"circluaraudiovisualizer" : 
+			{
+				"condition" : "audiovisualizer.value",
+				"index" : 5,
+				"order" : 105,
+				"text" : "Circluar audiovisualizer",
+				"type" : "bool",
+				"value" : false
+			},
+			"curved" : 
+			{
+				"condition" : "audiovisualizer.value",
+				"index" : 9,
+				"order" : 109,
+				"text" : "Curved bars",
+				"type" : "bool",
+				"value" : false
+			},
+			"date" : 
+			{
+				"index" : 16,
+				"order" : 116,
+				"text" : "Date",
+				"type" : "bool",
+				"value" : true
+			},
+			"dateoffsetx" : 
+			{
+				"condition" : "date.value",
+				"fraction" : true,
+				"index" : 17,
+				"max" : 50,
+				"min" : -50,
+				"order" : 117,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Date offset X",
+				"type" : "slider",
+				"value" : 0
+			},
+			"dateoffsety" : 
+			{
+				"condition" : "date.value",
+				"fraction" : true,
+				"index" : 18,
+				"max" : 50,
+				"min" : -50,
+				"order" : 118,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Date offset Y",
+				"type" : "slider",
+				"value" : -25
+			},
+			"datesize" : 
+			{
+				"condition" : "date.value",
+				"fraction" : true,
+				"index" : 19,
+				"max" : 100,
+				"min" : 0,
+				"order" : 119,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Date size",
+				"type" : "slider",
+				"value" : 40
+			},
+			"schemecolor" : 
+			{
+				"order" : 0,
+				"text" : "ui_browse_properties_scheme_color",
+				"type" : "color",
+				"value" : "0 0 0"
+			},
+			"shadow" : 
+			{
+				"condition" : "audiovisualizer.value",
+				"index" : 13,
+				"order" : 113,
+				"text" : "Shadow",
+				"type" : "bool",
+				"value" : true
+			},
+			"shadowcolor" : 
+			{
+				"condition" : "shadow.value  && audiovisualizer.value",
+				"index" : 14,
+				"order" : 114,
+				"text" : "Shadow color",
+				"type" : "color",
+				"value" : "0 0 0"
+			},
+			"shadowspread" : 
+			{
+				"condition" : "shadow.value  && audiovisualizer.value",
+				"fraction" : true,
+				"index" : 15,
+				"max" : 5,
+				"min" : 0,
+				"order" : 115,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Shadow spread",
+				"type" : "slider",
+				"value" : 0
+			},
+			"timebasedcircularaudiovisualizer" : 
+			{
+				"condition" : "audiovisualizer.value && circluaraudiovisualizer.value",
+				"index" : 6,
+				"order" : 106,
+				"text" : "Time based circular audiovisualizer",
+				"type" : "bool",
+				"value" : true
+			}
+		},
+		"supportsaudioprocessing" : true
+	},
+	"preview" : "preview.gif",
+	"title" : "AudioVisualizer background",
+	"type" : "web",
+	"version" : 0
+}

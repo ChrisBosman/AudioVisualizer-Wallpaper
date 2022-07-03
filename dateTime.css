@@ -1,0 +1,80 @@
+.timeCenterContainer{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    position: absolute;
+    top: -25%;
+}
+
+.dateTimeContainer{
+    /* center horizontal */
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    /* change this for the size of the clock */
+    height: 20vw;
+    width: 65%;
+    
+    position: absolute;
+}
+
+#day{
+    position: absolute;
+    color: white;
+    font-size: 14vw;
+    text-align: right;
+    width: 39%;
+    /* width:  100%;
+    left: -62%; */
+    overflow: hidden;
+    /* transition-duration: 1000ms; */
+
+    left: 0;
+}
+/* #day:hover{
+    width:  100%;
+    left: -62%;
+} */
+
+.divImage{
+    position: absolute;
+    width: 66%;
+    /* height: 100%; */
+    left: 37%;
+}
+
+
+#dateAndTimeContainer{
+    position: absolute;
+    display: flex;
+    /* height: 63%; */
+    height: 100%;
+    width: 52.5%;
+    left: 47%;
+    overflow: hidden;
+    flex-direction: column;
+    overflow: hidden;
+}
+#time{
+    /* position: absolute; */
+    color: black;
+    font-size: 7vw;
+
+    /* center horizontal */
+    /* left: 0;
+    right: 0; */
+    margin: auto;
+}
+#date{
+    /* position: absolute; */
+    color: white;
+    font-size: 3vw;
+
+    /* center horizontal */
+    /* left: 0;
+    right: 0; */
+    margin: auto;
+}
