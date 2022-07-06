@@ -1,8 +1,8 @@
 const frameRate = 1000/60;
+const maxOrbs = 100;
 let container = document.getElementById('element-container');
 let orbs = []
-
-console.log("iets");
+let oldAudio = [];
 
 function createOrb(sizeMult, colorMult){
     let size = sizeMult * 10;
@@ -14,38 +14,50 @@ function createOrb(sizeMult, colorMult){
     element.style.height = `${size}vw`;
     element.style.left = `${pos[0]}vw`;
     element.style.top = `${pos[1]}vh`;
-    element.style.background = `radial-gradient(circle, hsl(${colorMult*360},${80}%,${10}%) 5%, rgba(0,0,0,0) 75%)`;
+    element.style.background = `radial-gradient(circle, hsl(${colorMult*360},${80}%,${50}%) 5%, rgba(0,0,0,0) 75%)`;
 
     let orb = {
         element: element,
         size: size,
         pos: pos,
         speed: [Math.random() - 0.5, Math.random() - 0.5],
-        lifetime: 100
+        lifetime: Math.max(20 * Math.min(25/orbs.length, 1.5), 5)
     }
     orbs[orbs.length] = orb;
     container.appendChild(element);
 }
 
-console.log("hoi");
 // update loop
 let loop = setInterval(loopFunc, frameRate);
 function loopFunc(){
     for (let i = orbs.length-1; i >= 0; i--) {
         const orb = orbs[i];
 
-        if (orb.lifetime > -1000/frameRate){
+        if (orb.lifetime > -5000/frameRate){
             orb.pos = [orb.pos[0] + orb.speed[0], orb.pos[1] + orb.speed[1]]
 
             orb.element.style.left = `${orb.pos[0]}vw`;
             orb.element.style.top = `${orb.pos[1]}vh`;
+            
+            
             orb.lifetime--;
             if(orb.lifetime < 0 && !orb.element.classList.contains("fadeOut")){
                 orb.element.classList.add("fadeOut");
             }
+            if(orb.pos[0] > 100 + orb.size || orb.pos[0] < -orb.size || orb.pos[1] > 100 + orb.size || orb.pos[1] < -orb.size){
+                container.removeChild(orb.element);
+                orbs.splice(i, 1);
+            }
         } else {
+            container.removeChild(orb.element);
             orbs.splice(i, 1);
         }
+    }
+
+    // limit the orbs
+    if (orbs.length > maxOrbs){
+        container.removeChild(orbs[0].element);
+        orbs.shift();
     }
 
     // respawn
@@ -55,18 +67,38 @@ function loopFunc(){
 }
 
 function wallpaperAudioListener(audioArray) {
-    let audioList = []
+    let filteredAudioList = [];
     for (let i = 0; i < audioArray.length/2; i++) {
-        audioList[i] = (audioArray[i] + audioArray[i + audioArray.length/2]) / 2;
+        filteredAudioList[i] = (audioArray[i] + audioArray[i + audioArray.length/2]) / 2;
     }
+    oldAudio[oldAudio.length] = filteredAudioList;
+    // console.log(oldAudio.length);
 
-    for (let i = 0; i < audioList.length; i++) {
-        const audio = min(audioList[i], 1);
-        if (audio > 0.2){
-            createOrb(audio, i/audioList.length);
+    if(oldAudio.length > 5){
+        let audioList = []
+        
+        for(let i = 0; i < audioArray.length; i++){
+            let value = 0;
+            // oldAudio.forEach(dataPoint => value += dataPoint);
+            for (let j = 0; j < oldAudio.length; j++){
+                value += oldAudio[j][i];
+            }
+
+            audioList[i] = value / oldAudio.length;
         }
         
+        for (let i = 0; i < audioList.length; i++) {
+            const audio = Math.min(audioList[i], 1);
+            if (audio > 0.2){
+                createOrb((audio-0.2)*1.2, i/audioList.length);
+            }
+            
+        }
+
+        oldAudio = [];
+        // console.log(oldAudio);
     }
+
 }
 // Register the audio listener provided by Wallpaper Engine.
 window.wallpaperRegisterAudioListener(wallpaperAudioListener);
