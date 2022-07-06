@@ -1,6 +1,6 @@
 // const amountOfBars = 128;
 let amountOfBars = 20;
-const freqBands = 64;
+let freqBands = 32;
 const averageAmount = 2;
 let timedAudioVis = true;
 let circularBar = false;
@@ -35,14 +35,30 @@ function wallpaperAudioListener(audioArray) {
     for (let i = 0; i <= audioArray.length; i++) {
         audioList[i] = audioArray[i >= audioArray.length / 2 ? i : audioArray.length - i - 1];
     }
+
+    // get lower the amount of freq bands if needed
+    if (freqBands < 64 && circularBar){
+        let filteredAudioList = []
+        for (let i = 0; i < freqBands; i++){
+            let value = 0;
+            let value2 = 0;
+
+            for (let j = 0; j < audioList.length / freqBands; j++){
+                value += audioList[i + j];
+            }
+            
+            filteredAudioList[i] = value / (audioList.length / freqBands)
+        }
+        audioList = filteredAudioList;
+    }
+
     // remember last audio's
     oldAudioArray.push(audioList);
     if (oldAudioArray.length > averageAmount) {
         oldAudioArray.shift();
     }
-    // idem, but then for other purpose
 
-    if (!circularBar){
+    if (!circularBar){ // vertical bars visual
         for (let i = 0; i < bars.length; i++) {
             let heightValue = 0
             oldAudioArray.forEach(oldAudio => {
@@ -51,7 +67,7 @@ function wallpaperAudioListener(audioArray) {
             heightValue /= oldAudioArray.length;
             bars[i].style.height = `${heightValue * 100}%`;
         }
-    } else {
+    } else { // circular visual
         // remember last audio's, but then for other purpose
         timedAudioArray.push(audioList);
         if (timedAudioArray.length > amountOfBars) {
@@ -59,21 +75,23 @@ function wallpaperAudioListener(audioArray) {
         }
         for (let i = 0; i < freqBands; i ++) {
             let heightValue = 0
-            if (!timedAudioVis){
+            if (!timedAudioVis){ // if time based audio vis
                 oldAudioArray.forEach(oldAudio => {
                     heightValue += Math.min(oldAudio[i], 1);
                 });
                 heightValue /= oldAudioArray.length;
                 heightValue = Math.sqrt(heightValue);
-                heightValue /= 2;
+                // heightValue /= 2;
+                heightValue *= (parseFloat(audiovisualizerStyle.width.replace('%', '')) - 15 ) / 100;
             }
             for(let j = 0; j < amountOfBars; j++){
                 if (timedAudioVis){
                 heightValue = 0
                 heightValue = timedAudioArray[j][i];
                 heightValue = Math.sqrt(heightValue);
-                heightValue /= 2
-                ;}
+                // heightValue /= 2;
+                heightValue *= (parseFloat(audiovisualizerStyle.width.replace('%', '')) - 15 ) / 100;
+            }
                 bars[i + j * freqBands].style.width = `${heightValue * 100}%`;
             }
         }
@@ -213,6 +231,10 @@ window.wallpaperPropertyListener = {
         if (properties.timebasedcircularaudiovisualizer){
             timedAudioVis = properties.timebasedcircularaudiovisualizer.value;
         }
+        if (properties.circularvisfreqbands){
+            freqBands = properties.circularvisfreqbands.value;
+            setup();
+        }
         // ---------- Bars ----------
         if (properties.audiobarcolor) { // the color of the audio bars
             $('.bar').css("background-color", `rgb(${toCSSrgb(properties.audiobarcolor.value)})`);
@@ -254,22 +276,6 @@ window.wallpaperPropertyListener = {
             audiovisualizerStyle.shadowSpread = properties.shadowspread.value;
             changeShadow(audiovisualizerStyle.shadowActive);
         }
-
-        //     // ------------------------------ Date and Time ------------------------------\\
-
-        //    if(properties.date != null){
-        //         $('.timeCenterContainer').css('display', `${properties.date.value ? 'flex' : 'none'}`);
-        //     }
-        //     if(properties.dateoffsetx){
-        //         $('.timeCenterContainer').css('left', `${properties.dateoffsetx.value}%`);
-        //     }
-        //     if(properties.dateoffsety){
-        //         $('.timeCenterContainer').css('top', `${properties.dateoffsety.value}%`);
-        //     }
-        //     if(properties.datesize){
-        //         changeSizeDateTime(properties.datesize.value);
-        //         // $('.dateTimeContainer').css('width', `${65 + properties.size.value - 50}%`);
-        //     }
     },
 };
 
