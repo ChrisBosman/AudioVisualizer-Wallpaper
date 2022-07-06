@@ -83,7 +83,7 @@ function wallpaperAudioListener(audioArray) {
 /* ---------------- SETUP ---------------- */
 let bars = []
 let barFreqs = [];
-function setup(pos, size){
+function setup(){
     //delete the old container
     $('#container').remove();
     //setup the bars:
@@ -112,7 +112,7 @@ function setup(pos, size){
 
                 bar.className = 'circular-bar';
                 bar.style.transform = `rotate(${i / amountOfBars * 360 + (1 / amountOfBars * 360 )/ freqBands * j}deg)` //Math.round(Math.random() * 360)}deg)`;
-                bar.style.width = `${j * 1.5 + 10}%`;//`${Math.floor(Math.random() * 50 + 10)}%`;
+                bar.style.width = `${0}%`; //j * 1.5 + 10}%`;//`${Math.floor(Math.random() * 50 + 10)}%`;
                 bar.style.backgroundColor = `hsl(${j / freqBands * 360}, 80%, 50%)`;
 
                 barsContainer.appendChild(bar);
@@ -144,7 +144,6 @@ function setup(pos, size){
     if (audiovisualizerStyle.shadowActive)
         $('.bar').css("box-shadow", `0px 0px 6px ${audiovisualizerStyle.shadowSpread}px rgb(${audiovisualizerStyle.shadowColor})`);
 }
-// setup(null);
 
 // Register the audio listener provided by Wallpaper Engine.
 window.wallpaperRegisterAudioListener(wallpaperAudioListener);
@@ -178,6 +177,7 @@ let audiovisualizerStyle = {
     shadowSpread: 0,
     shadowColor: "0,0,0",
 }
+setup();
 
 // Register the propertyListener
 window.wallpaperPropertyListener = {
@@ -193,7 +193,7 @@ window.wallpaperPropertyListener = {
         // ------------------------------ AudioVis ------------------------------\\
         if (properties.circluaraudiovisualizer){
             circularBar = properties.circluaraudiovisualizer.value;
-            setup(audiovisualizerStyle);
+            setup();
         }
         if (properties.audiovisualizer) {
             $('#barsContainer').css('display', `${properties.audiovisualizer.value ? 'flex' : 'none'}`);
