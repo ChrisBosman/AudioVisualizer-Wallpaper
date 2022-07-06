@@ -6,9 +6,9 @@
 		{
 			"audiobarcolor" : 
 			{
-				"condition" : "audiovisualizer.value",
-				"index" : 7,
-				"order" : 107,
+				"condition" : "audiovisualizer.value && !circluaraudiovisualizer.value",
+				"index" : 11,
+				"order" : 111,
 				"text" : "Audio bar color",
 				"type" : "color",
 				"value" : "1 1 1"
@@ -73,12 +73,12 @@
 			},
 			"bargap" : 
 			{
-				"condition" : "audiovisualizer.value",
+				"condition" : "audiovisualizer.value && !circluaraudiovisualizer.value",
 				"fraction" : true,
-				"index" : 8,
+				"index" : 12,
 				"max" : 8,
 				"min" : 0,
-				"order" : 108,
+				"order" : 112,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Bar gap",
@@ -87,30 +87,30 @@
 			},
 			"border" : 
 			{
-				"condition" : "audiovisualizer.value",
-				"index" : 10,
-				"order" : 110,
+				"condition" : "audiovisualizer.value && !circluaraudiovisualizer.value",
+				"index" : 14,
+				"order" : 114,
 				"text" : "border",
 				"type" : "bool",
 				"value" : false
 			},
 			"bordercolor" : 
 			{
-				"condition" : "border.value  && audiovisualizer.value",
-				"index" : 12,
-				"order" : 112,
+				"condition" : "border.value  && audiovisualizer.value && !circluaraudiovisualizer.value",
+				"index" : 16,
+				"order" : 116,
 				"text" : "Border color",
 				"type" : "color",
 				"value" : "0 0 0"
 			},
 			"bordersize" : 
 			{
-				"condition" : "border.value && audiovisualizer.value",
+				"condition" : "border.value && audiovisualizer.value && !circluaraudiovisualizer.value",
 				"fraction" : true,
-				"index" : 11,
+				"index" : 15,
 				"max" : 5,
 				"min" : 0,
-				"order" : 111,
+				"order" : 115,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Border size",
@@ -126,19 +126,58 @@
 				"type" : "bool",
 				"value" : false
 			},
-			"curved" : 
+			"circularaudiovisualizercolor1" : 
 			{
-				"condition" : "audiovisualizer.value",
+				"condition" : "audiovisualizer.value && circluaraudiovisualizer.value && !circularaudiovisualizerrainbow.value",
 				"index" : 9,
 				"order" : 109,
+				"text" : "Circular audiovisualizer color 1",
+				"type" : "color",
+				"value" : "0.4235294117647059 0.9137254901960784 1"
+			},
+			"circularaudiovisualizercolor2" : 
+			{
+				"condition" : "audiovisualizer.value && circluaraudiovisualizer.value && !circularaudiovisualizerrainbow.value",
+				"index" : 10,
+				"order" : 110,
+				"text" : "Circular audiovisualizer color 2",
+				"type" : "color",
+				"value" : "0.7764705882352941 1 0.996078431372549"
+			},
+			"circularaudiovisualizerrainbow" : 
+			{
+				"condition" : "audiovisualizer.value && circluaraudiovisualizer.value",
+				"index" : 8,
+				"order" : 108,
+				"text" : "Circular audiovisualizer rainbow",
+				"type" : "bool",
+				"value" : true
+			},
+			"circularvisfreqbands" : 
+			{
+				"condition" : "audiovisualizer.value && circluaraudiovisualizer.value",
+				"fraction" : false,
+				"index" : 7,
+				"max" : 64,
+				"min" : 0,
+				"order" : 107,
+				"text" : "Circular audiovisualizer frequency bands",
+				"type" : "slider",
+				"value" : 32
+			},
+			"curved" : 
+			{
+				"condition" : "audiovisualizer.value && !circluaraudiovisualizer.value",
+				"index" : 13,
+				"order" : 113,
 				"text" : "Curved bars",
 				"type" : "bool",
 				"value" : false
 			},
 			"date" : 
 			{
-				"index" : 16,
-				"order" : 116,
+				"index" : 20,
+				"order" : 120,
 				"text" : "Date",
 				"type" : "bool",
 				"value" : true
@@ -147,10 +186,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 17,
+				"index" : 21,
 				"max" : 50,
 				"min" : -50,
-				"order" : 117,
+				"order" : 121,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date offset X",
@@ -161,10 +200,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 18,
+				"index" : 22,
 				"max" : 50,
 				"min" : -50,
-				"order" : 118,
+				"order" : 122,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date offset Y",
@@ -175,10 +214,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 19,
+				"index" : 23,
 				"max" : 100,
 				"min" : 0,
-				"order" : 119,
+				"order" : 123,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date size",
@@ -194,30 +233,30 @@
 			},
 			"shadow" : 
 			{
-				"condition" : "audiovisualizer.value",
-				"index" : 13,
-				"order" : 113,
+				"condition" : "audiovisualizer.value && !circluaraudiovisualizer.value",
+				"index" : 17,
+				"order" : 117,
 				"text" : "Shadow",
 				"type" : "bool",
 				"value" : true
 			},
 			"shadowcolor" : 
 			{
-				"condition" : "shadow.value  && audiovisualizer.value",
-				"index" : 14,
-				"order" : 114,
+				"condition" : "shadow.value  && audiovisualizer.value && !circluaraudiovisualizer.value",
+				"index" : 18,
+				"order" : 118,
 				"text" : "Shadow color",
 				"type" : "color",
 				"value" : "0 0 0"
 			},
 			"shadowspread" : 
 			{
-				"condition" : "shadow.value  && audiovisualizer.value",
+				"condition" : "shadow.value  && audiovisualizer.value && !circluaraudiovisualizer.value",
 				"fraction" : true,
-				"index" : 15,
+				"index" : 19,
 				"max" : 5,
 				"min" : 0,
-				"order" : 115,
+				"order" : 119,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Shadow spread",
