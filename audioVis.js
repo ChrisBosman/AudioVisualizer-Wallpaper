@@ -176,6 +176,9 @@ let audiovisualizerStyle = {
     shadowActive: true,
     shadowSpread: 0,
     shadowColor: "0,0,0",
+
+    circularBarRainbow: true,
+    circularBarColors: [],
 }
 setup();
 
