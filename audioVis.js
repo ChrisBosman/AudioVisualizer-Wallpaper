@@ -139,6 +139,7 @@ function setup(){
                     let color = lerpColor(audiovisualizerStyle.circularBarColors[0], audiovisualizerStyle.circularBarColors[1], j / freqBands);
                     bar.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
                 }
+                bar.style.opacity = `${audiovisualizerStyle.circularaudiovisualizerOpacity}%`;
                 bar.id = `${i},${j}`;
 
                 barsContainer.appendChild(bar);
