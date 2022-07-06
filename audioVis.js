@@ -82,7 +82,7 @@ function wallpaperAudioListener(audioArray) {
                 heightValue /= oldAudioArray.length;
                 heightValue = Math.sqrt(heightValue);
                 // heightValue /= 2;
-                heightValue *= (parseFloat(audiovisualizerStyle.width.replace('%', '')) - 15 ) / 100;
+                heightValue *= (parseFloat(audiovisualizerStyle.width.slice(0, -1)) - 15 ) / 100;
             }
             for(let j = 0; j < amountOfBars; j++){
                 if (timedAudioVis){
@@ -90,7 +90,7 @@ function wallpaperAudioListener(audioArray) {
                 heightValue = timedAudioArray[j][i];
                 heightValue = Math.sqrt(heightValue);
                 // heightValue /= 2;
-                heightValue *= (parseFloat(audiovisualizerStyle.width.replace('%', '')) - 15 ) / 100;
+                heightValue *= (parseFloat(audiovisualizerStyle.width.slice(0, -1)) - 15 ) / 100;
             }
                 bars[i + j * freqBands].style.width = `${heightValue * 100}%`;
             }
@@ -131,7 +131,15 @@ function setup(){
                 bar.className = 'circular-bar';
                 bar.style.transform = `rotate(${i / amountOfBars * 360 + (1 / amountOfBars * 360 )/ freqBands * j}deg)` //Math.round(Math.random() * 360)}deg)`;
                 bar.style.width = `${0}%`; //j * 1.5 + 10}%`;//`${Math.floor(Math.random() * 50 + 10)}%`;
-                bar.style.backgroundColor = `hsl(${j / freqBands * 360}, 80%, 50%)`;
+                
+                if (audiovisualizerStyle.circularBarRainbow){
+                    bar.style.backgroundColor = `hsl(${j / freqBands * 360}, 80%, 50%)`;
+                }
+                else{
+                    let color = lerpColor(audiovisualizerStyle.circularBarColors[0], audiovisualizerStyle.circularBarColors[1], j / freqBands);
+                    bar.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+                }
+                bar.id = `${i},${j}`;
 
                 barsContainer.appendChild(bar);
                 barFreqs[i * freqBands + j] = j;
@@ -139,7 +147,6 @@ function setup(){
             }
         }
     }
-    console.log(bars.length);
     container.appendChild(barsContainer)
     document.body.appendChild(container);
 
@@ -184,7 +191,7 @@ window.wallpaperRegisterAudioListener(wallpaperAudioListener);
 let audiovisualizerStyle = {
     x: 0,
     y: 0,
-    width: 0,
+    width: "0%",
     color: null,
     bargap: null,
     curved: null,
@@ -194,6 +201,9 @@ let audiovisualizerStyle = {
     shadowActive: true,
     shadowSpread: 0,
     shadowColor: "0,0,0",
+
+    circularBarRainbow: false,
+    circularBarColors: [[255, 0, 0], [100, 0, 0]],
 }
 setup();
 
@@ -234,6 +244,19 @@ window.wallpaperPropertyListener = {
         if (properties.circularvisfreqbands){
             freqBands = properties.circularvisfreqbands.value;
             setup();
+        }
+        if (properties.circularaudiovisualizerrainbow){
+            audiovisualizerStyle.circularBarRainbow = properties.circularaudiovisualizerrainbow.value;
+            console.log(audiovisualizerStyle);
+            updateCircularAudioVisColors();
+        }
+        if (properties.circularaudiovisualizercolor1){
+            audiovisualizerStyle.circularBarColors[0] = toCSSrgb(properties.circularaudiovisualizercolor1.value);
+            updateCircularAudioVisColors();
+        }
+        if (properties.circularaudiovisualizercolor2){
+            audiovisualizerStyle.circularBarColors[1] = toCSSrgb(properties.circularaudiovisualizercolor2.value);
+            updateCircularAudioVisColors();
         }
         // ---------- Bars ----------
         if (properties.audiobarcolor) { // the color of the audio bars
@@ -293,6 +316,23 @@ function dateTimeProperties(prop) {
     if (prop.datesize) {
         changeSizeDateTime(prop.datesize.value);
         // $('.dateTimeContainer').css('width', `${65 + properties.size.value - 50}%`);
+    }
+}
+
+function updateCircularAudioVisColors(){
+    if(audiovisualizerStyle.circularBarRainbow){
+        for (let i = 0; i < amountOfBars; i++) {
+            for (j = freqBands-1; j >= 0; j--) {
+                document.getElementById(`${i},${j}`).style.backgroundColor = `hsl(${j / freqBands * 360}, 80%, 50%)`;
+            }
+        }
+    } else {
+        for (let i = 0; i < amountOfBars; i++) {
+            for (j = freqBands-1; j >= 0; j--) {
+                let color = lerpColor(audiovisualizerStyle.circularBarColors[0], audiovisualizerStyle.circularBarColors[1], j / freqBands);
+                document.getElementById(`${i},${j}`).style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+            }
+        }
     }
 }
 
