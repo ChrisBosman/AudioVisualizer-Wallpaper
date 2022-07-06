@@ -7,8 +7,8 @@
 			"audiobarcolor" : 
 			{
 				"condition" : "audiovisualizer.value && !circluaraudiovisualizer.value",
-				"index" : 11,
-				"order" : 111,
+				"index" : 12,
+				"order" : 112,
 				"text" : "Audio bar color",
 				"type" : "color",
 				"value" : "1 1 1"
@@ -75,10 +75,10 @@
 			{
 				"condition" : "audiovisualizer.value && !circluaraudiovisualizer.value",
 				"fraction" : true,
-				"index" : 12,
+				"index" : 13,
 				"max" : 8,
 				"min" : 0,
-				"order" : 112,
+				"order" : 113,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Bar gap",
@@ -88,8 +88,8 @@
 			"border" : 
 			{
 				"condition" : "audiovisualizer.value && !circluaraudiovisualizer.value",
-				"index" : 14,
-				"order" : 114,
+				"index" : 15,
+				"order" : 115,
 				"text" : "border",
 				"type" : "bool",
 				"value" : false
@@ -97,8 +97,8 @@
 			"bordercolor" : 
 			{
 				"condition" : "border.value  && audiovisualizer.value && !circluaraudiovisualizer.value",
-				"index" : 16,
-				"order" : 116,
+				"index" : 17,
+				"order" : 117,
 				"text" : "Border color",
 				"type" : "color",
 				"value" : "0 0 0"
@@ -107,10 +107,10 @@
 			{
 				"condition" : "border.value && audiovisualizer.value && !circluaraudiovisualizer.value",
 				"fraction" : true,
-				"index" : 15,
+				"index" : 16,
 				"max" : 5,
 				"min" : 0,
-				"order" : 115,
+				"order" : 116,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Border size",
@@ -144,6 +144,18 @@
 				"type" : "color",
 				"value" : "0.7764705882352941 1 0.996078431372549"
 			},
+			"circularaudiovisualizeropacity" : 
+			{
+				"condition" : "audiovisualizer.value && circluaraudiovisualizer.value",
+				"fraction" : false,
+				"index" : 11,
+				"max" : 100,
+				"min" : 0,
+				"order" : 111,
+				"text" : "Circular audiovisualizer opacity",
+				"type" : "slider",
+				"value" : 50
+			},
 			"circularaudiovisualizerrainbow" : 
 			{
 				"condition" : "audiovisualizer.value && circluaraudiovisualizer.value",
@@ -168,16 +180,16 @@
 			"curved" : 
 			{
 				"condition" : "audiovisualizer.value && !circluaraudiovisualizer.value",
-				"index" : 13,
-				"order" : 113,
+				"index" : 14,
+				"order" : 114,
 				"text" : "Curved bars",
 				"type" : "bool",
 				"value" : false
 			},
 			"date" : 
 			{
-				"index" : 20,
-				"order" : 120,
+				"index" : 21,
+				"order" : 121,
 				"text" : "Date",
 				"type" : "bool",
 				"value" : true
@@ -186,10 +198,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 21,
+				"index" : 22,
 				"max" : 50,
 				"min" : -50,
-				"order" : 121,
+				"order" : 122,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date offset X",
@@ -200,10 +212,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 22,
+				"index" : 23,
 				"max" : 50,
 				"min" : -50,
-				"order" : 122,
+				"order" : 123,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date offset Y",
@@ -214,10 +226,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 23,
+				"index" : 24,
 				"max" : 100,
 				"min" : 0,
-				"order" : 123,
+				"order" : 124,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date size",
@@ -234,8 +246,8 @@
 			"shadow" : 
 			{
 				"condition" : "audiovisualizer.value && !circluaraudiovisualizer.value",
-				"index" : 17,
-				"order" : 117,
+				"index" : 18,
+				"order" : 118,
 				"text" : "Shadow",
 				"type" : "bool",
 				"value" : true
@@ -243,8 +255,8 @@
 			"shadowcolor" : 
 			{
 				"condition" : "shadow.value  && audiovisualizer.value && !circluaraudiovisualizer.value",
-				"index" : 18,
-				"order" : 118,
+				"index" : 19,
+				"order" : 119,
 				"text" : "Shadow color",
 				"type" : "color",
 				"value" : "0 0 0"
@@ -253,10 +265,10 @@
 			{
 				"condition" : "shadow.value  && audiovisualizer.value && !circluaraudiovisualizer.value",
 				"fraction" : true,
-				"index" : 19,
+				"index" : 20,
 				"max" : 5,
 				"min" : 0,
-				"order" : 119,
+				"order" : 120,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Shadow spread",

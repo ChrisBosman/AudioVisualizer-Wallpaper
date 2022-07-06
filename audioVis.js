@@ -139,6 +139,7 @@ function setup(){
                     let color = lerpColor(audiovisualizerStyle.circularBarColors[0], audiovisualizerStyle.circularBarColors[1], j / freqBands);
                     bar.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
                 }
+                bar.style.opacity = `${audiovisualizerStyle.circularaudiovisualizerOpacity}%`;
                 bar.id = `${i},${j}`;
 
                 barsContainer.appendChild(bar);
@@ -204,6 +205,7 @@ let audiovisualizerStyle = {
 
     circularBarRainbow: false,
     circularBarColors: [[255, 0, 0], [100, 0, 0]],
+    circularaudiovisualizerOpacity: 100,
 }
 setup();
 
@@ -245,6 +247,7 @@ window.wallpaperPropertyListener = {
             freqBands = properties.circularvisfreqbands.value;
             setup();
         }
+        // circular audio visualizer
         if (properties.circularaudiovisualizerrainbow){
             audiovisualizerStyle.circularBarRainbow = properties.circularaudiovisualizerrainbow.value;
             console.log(audiovisualizerStyle);
@@ -256,6 +259,10 @@ window.wallpaperPropertyListener = {
         }
         if (properties.circularaudiovisualizercolor2){
             audiovisualizerStyle.circularBarColors[1] = toCSSrgb(properties.circularaudiovisualizercolor2.value);
+            updateCircularAudioVisColors();
+        }
+        if (properties.circularaudiovisualizeropacity){
+            audiovisualizerStyle.circularaudiovisualizerOpacity = properties.circularaudiovisualizeropacity.value;
             updateCircularAudioVisColors();
         }
         // ---------- Bars ----------
@@ -324,6 +331,7 @@ function updateCircularAudioVisColors(){
         for (let i = 0; i < amountOfBars; i++) {
             for (j = freqBands-1; j >= 0; j--) {
                 document.getElementById(`${i},${j}`).style.backgroundColor = `hsl(${j / freqBands * 360}, 80%, 50%)`;
+                document.getElementById(`${i},${j}`).style.opacity = `${audiovisualizerStyle.circularaudiovisualizerOpacity}%`;
             }
         }
     } else {
@@ -331,6 +339,7 @@ function updateCircularAudioVisColors(){
             for (j = freqBands-1; j >= 0; j--) {
                 let color = lerpColor(audiovisualizerStyle.circularBarColors[0], audiovisualizerStyle.circularBarColors[1], j / freqBands);
                 document.getElementById(`${i},${j}`).style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+                document.getElementById(`${i},${j}`).style.opacity = `${audiovisualizerStyle.circularaudiovisualizerOpacity}%`;
             }
         }
     }
