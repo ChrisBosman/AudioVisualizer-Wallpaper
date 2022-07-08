@@ -1,9 +1,9 @@
-// const amountOfBars = 128;
-let amountOfBars = 20;
+let amountOfBars = 128;
+// let amountOfBars = 20;
 // let amountOfCircularBars = 20
-let freqBands = 32;
 const averageAmount = 2;
-let timedAudioVis = true;
+let bars = []
+
 let circularBar = false;
 let oldAudioArray = [];
 // let timedAudioArray = [];
@@ -47,8 +47,6 @@ function wallpaperAudioListener(audioArray) {
 }
 
 /* ---------------- SETUP ---------------- */
-let bars = []
-let barFreqs = [];
 function setup(){
     //delete the old container
     $('#container').remove();
@@ -60,10 +58,10 @@ function setup(){
     barsContainer.id = "barsContainer"
     barsContainer.className = circularBar ? "circular-bar-container2" : "bars-container";
 
-    amountOfBars = circularBar ? 20 : 128;
+    // amountOfBars = circularBar ? 20 : 128;
 
-    for (let i = 0; i < amountOfBars; i++) {
-        if (!circularBar) {
+    if (!circularBar) {
+        for (let i = 0; i < amountOfBars; i++) {
             let bar = document.createElement('div');
             bar.className = "bar";
 
@@ -71,31 +69,11 @@ function setup(){
 
             barsContainer.appendChild(bar);
             bars[i] = bar;
-        } else {
-            for (j = freqBands-1; j >= 0; j--) {
-                let bar = document.createElement('div');
-                bar.className = "circular-bar";
-
-                bar.className = 'circular-bar';
-                bar.style.transform = `rotate(${i / amountOfBars * 360 + (1 / amountOfBars * 360 )/ freqBands * j}deg)` //Math.round(Math.random() * 360)}deg)`;
-                bar.style.width = `${0}%`; //j * 1.5 + 10}%`;//`${Math.floor(Math.random() * 50 + 10)}%`;
-                
-                if (audiovisualizerStyle.circularBarRainbow){
-                    bar.style.backgroundColor = `hsl(${j / freqBands * 360}, 80%, 50%)`;
-                }
-                else{
-                    let color = lerpColor(audiovisualizerStyle.circularBarColors[0], audiovisualizerStyle.circularBarColors[1], j / freqBands);
-                    bar.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
-                }
-                bar.style.opacity = `${audiovisualizerStyle.circularaudiovisualizerOpacity}%`;
-                bar.id = `${i},${j}`;
-
-                barsContainer.appendChild(bar);
-                barFreqs[i * freqBands + j] = j;
-                bars[i * freqBands + (freqBands-1 - j)] = bar;
-            }
         }
+    } else {
+        setupCircularAudioVisualizer(barsContainer);
     }
+    
     container.appendChild(barsContainer)
     document.body.appendChild(container);
 
@@ -163,7 +141,6 @@ window.wallpaperPropertyListener = {
         let prop = properties;
         dateTimeProperties(prop);
 
-
         if (properties.backgroundimg) { // the background image
             let imageElement = document.getElementById('backgroundImg');
             imageElement.src = 'file:///' + properties.backgroundimg.value;
@@ -188,31 +165,9 @@ window.wallpaperPropertyListener = {
             $('#container').css('top', `${properties.audiovisualizeroffsety.value}%`);
             audiovisualizerStyle.y = `${properties.audiovisualizeroffsety.value}%`;
         }
-        if (properties.timebasedcircularaudiovisualizer){
-            timedAudioVis = properties.timebasedcircularaudiovisualizer.value;
-        }
-        if (properties.circularvisfreqbands){
-            freqBands = properties.circularvisfreqbands.value;
-            setup();
-        }
         // circular audio visualizer
-        if (properties.circularaudiovisualizerrainbow){
-            audiovisualizerStyle.circularBarRainbow = properties.circularaudiovisualizerrainbow.value;
-            // console.log(audiovisualizerStyle);
-            updateCircularAudioVisColors();
-        }
-        if (properties.circularaudiovisualizercolor1){
-            audiovisualizerStyle.circularBarColors[0] = toCSSrgb(properties.circularaudiovisualizercolor1.value);
-            updateCircularAudioVisColors();
-        }
-        if (properties.circularaudiovisualizercolor2){
-            audiovisualizerStyle.circularBarColors[1] = toCSSrgb(properties.circularaudiovisualizercolor2.value);
-            updateCircularAudioVisColors();
-        }
-        if (properties.circularaudiovisualizeropacity){
-            audiovisualizerStyle.circularaudiovisualizerOpacity = properties.circularaudiovisualizeropacity.value;
-            updateCircularAudioVisColors();
-        }
+        circularAudioVisualizerProperties(prop);
+
         // ---------- Bars ----------
         if (properties.audiobarcolor) { // the color of the audio bars
             $('.bar').css("background-color", `rgb(${toCSSrgb(properties.audiobarcolor.value)})`);
@@ -256,33 +211,6 @@ window.wallpaperPropertyListener = {
         }
     },
 };
-
-function updateCircularAudioVisColors(){
-    if(audiovisualizerStyle.circularBarRainbow){
-        for (let i = 0; i < amountOfBars; i++) {
-            for (j = freqBands-1; j >= 0; j--) {
-                document.getElementById(`${i},${j}`).style.backgroundColor = `hsl(${j / freqBands * 360}, 80%, 50%)`;
-                document.getElementById(`${i},${j}`).style.opacity = `${audiovisualizerStyle.circularaudiovisualizerOpacity}%`;
-            }
-        }
-    } else {
-        for (let i = 0; i < amountOfBars; i++) {
-            for (j = freqBands-1; j >= 0; j--) {
-                let color = lerpColor(audiovisualizerStyle.circularBarColors[0], audiovisualizerStyle.circularBarColors[1], j / freqBands);
-                document.getElementById(`${i},${j}`).style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
-                document.getElementById(`${i},${j}`).style.opacity = `${audiovisualizerStyle.circularaudiovisualizerOpacity}%`;
-            }
-        }
-    }
-}
-
-function changeSizeDateTime(newWidth) {
-    $('.dateTimeContainer').css('width', `${newWidth}%`);
-    $('.dateTimeContainer').css('height', `${newWidth / 65.0 * 20.0}vw`);
-    $('#day').css('font-size', `${newWidth / 65.0 * 14.0}vw`);
-    $('#time').css('font-size', `${newWidth / 65.0 * 7.0}vw`);
-    $('#date').css('font-size', `${newWidth / 65.0 * 3.0}vw`);
-}
 
 function changeShadow(on) {
     if (on) $('.bar').css("box-shadow", `0px 0px 6px ${audiovisualizerStyle.shadowSpread}px rgb(${audiovisualizerStyle.shadowColor})`);

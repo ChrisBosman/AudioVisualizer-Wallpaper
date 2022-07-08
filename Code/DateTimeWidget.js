@@ -40,3 +40,11 @@ function dateTimeProperties(prop) {
         // $('.dateTimeContainer').css('width', `${65 + properties.size.value - 50}%`);
     }
 }
+
+function changeSizeDateTime(newWidth) {
+    $('.dateTimeContainer').css('width', `${newWidth}%`);
+    $('.dateTimeContainer').css('height', `${newWidth / 65.0 * 20.0}vw`);
+    $('#day').css('font-size', `${newWidth / 65.0 * 14.0}vw`);
+    $('#time').css('font-size', `${newWidth / 65.0 * 7.0}vw`);
+    $('#date').css('font-size', `${newWidth / 65.0 * 3.0}vw`);
+}
