@@ -45,7 +45,7 @@ function circularAudioVisualizer(audioList){//, bars, oldAudioArray, AudioVisDat
             } else if (AudioVisData.timedAudioVis){
                 heightValue = 0;
             }
-            bars[i + j * AudioVisData.freqBands].style.width = `${heightValue * 100}%`;
+            bars[i + (AudioVisData.circularbars - j -1) * AudioVisData.freqBands].style.width = `${heightValue * 100}%`;
         }
     }
 }
