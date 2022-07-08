@@ -1,21 +1,13 @@
-const audioVisualizers = {
+let audioVisualizers = {
+    None: -1,
     Horizontal: 0,
     Circular: 1,
     Orbs: 2,
 }
-
 let selectedAudioVis = audioVisualizers.Horizontal;
 
 let bars = []
 let oldAudioArray = [];
-
-//to delete
-let amountOfBars = 128;
-// let amountOfBars = 20;
-// let amountOfCircularBars = 20
-// const averageAmount = 2;
-let circularBar = false;
-// let timedAudioArray = [];
 
 
 let AudioVisData = {
@@ -49,21 +41,6 @@ function wallpaperAudioListener(audioArray) {
             circularAudioVisualizer(audioList);
             break;
     }
-
-    // if (!circularBar){ // vertical bars visual
-    //     // horizontalAudioVisualizer();
-    //     for (let i = 0; i < bars.length; i++) {
-    //         let heightValue = 0
-    //         oldAudioArray.forEach(oldAudio => {
-    //             heightValue += Math.min(oldAudio[i], 1);
-    //         });
-    //         heightValue /= oldAudioArray.length;
-    //         bars[i].style.height = `${heightValue * 100}%`;
-    //     }
-    // } else { 
-    //     // circular visual
-    //     circularAudioVisualizer(audioList);
-    // }
 }
 
 /* ---------------- SETUP ---------------- */
@@ -76,22 +53,9 @@ function setup(){
     let barsContainer = document.createElement('div');
     barsContainer.id = "barsContainer"
     
-    // amountOfBars = circularBar ? 20 : 128;
-    
     switch (selectedAudioVis) {
         case audioVisualizers.Horizontal:
-            // horizontalAudioVisualizer(oldAudioArray);
-                container.className = "container";
-                barsContainer.className = "bars-container";
-                for (let i = 0; i < amountOfBars; i++) {
-                    let bar = document.createElement('div');
-                    bar.className = "bar";
-            
-                    bar.style.height = `${Math.round(Math.random() * 100)}%`
-            
-                    barsContainer.appendChild(bar);
-                    bars[i] = bar;
-                }
+            setupHorizontalAudioVisualizer(container, barsContainer);
             break;
         case audioVisualizers.Circular:
             setupCircularAudioVisualizer(container, barsContainer);
@@ -101,8 +65,7 @@ function setup(){
     container.appendChild(barsContainer)
     document.body.appendChild(container);
 
-    // properties:
-
+    // properties audioVis:
     if (audiovisualizerStyle.x != null)
         $('#container').css('left', audiovisualizerStyle.x);
     if (audiovisualizerStyle.y != null)
@@ -123,20 +86,6 @@ function setup(){
 
 // Register the audio listener provided by Wallpaper Engine.
 window.wallpaperRegisterAudioListener(wallpaperAudioListener);
-
-// setup the date time box thingy:
-// hover(document.getElementById('day'), e => {
-//     showFullDay = true;
-//     updateTime();
-//     console.log("mouse enter");
-// }, e => {
-//     setTimeout(() =>{
-//         showFullDay = false;
-//         updateTime();
-//     }, 1000);
-
-// })
-
 
 /* ---------------- PROPERTIES ---------------- */
 let audiovisualizerStyle = {
@@ -162,16 +111,25 @@ let audiovisualizerStyle = {
 window.wallpaperPropertyListener = {
     applyUserProperties: function (properties) {
         let prop = properties;
-        dateTimeProperties(prop);
-        console.log(properties);
 
+        // ----------------------------- DateTime -----------------------------\\
+        dateTimeProperties(prop);
+
+        // ---------------------------- Background -----------------------------\\
         if (properties.backgroundimg) { // the background image
             let imageElement = document.getElementById('backgroundImg');
             imageElement.src = 'file:///' + properties.backgroundimg.value;
         }
         // ------------------------------ AudioVis ------------------------------\\
-        if (properties.circluaraudiovisualizer){
-            circularBar = properties.circluaraudiovisualizer.value;
+        if (properties.audiovisualizertype){
+            if (properties.audiovisualizertype.value == -1)
+                selectedAudioVis = audioVisualizers.None;
+            else if (properties.audiovisualizertype.value == 0)
+                selectedAudioVis = audioVisualizers.Horizontal;
+            else if (properties.audiovisualizertype.value == 1)                
+                selectedAudioVis = audioVisualizers.Circular;
+            else if (properties.audiovisualizertype.value == 2)
+                selectedAudioVis = audioVisualizers.Orbs;   
             setup();
         }
         if (properties.audiovisualizer) {
@@ -191,63 +149,11 @@ window.wallpaperPropertyListener = {
         }
         // circular audio visualizer
         circularAudioVisualizerProperties(prop);
-
-        console.log("hey");
-        // ---------- Bars ----------
-        if (properties.audiobarcolor) { // the color of the audio bars
-            $('.bar').css("background-color", `rgb(${toCSSrgb(properties.audiobarcolor.value)})`);
-            audiovisualizerStyle.color =`rgb(${toCSSrgb(properties.audiobarcolor.value)})`
-        }
-        if (properties.bargap) {
-            $('#barsContainer').css("gap", `${properties.bargap.value / 10}%`);
-            audiovisualizerStyle.bargap = `${properties.bargap.value / 10}%`
-        }
-        if (properties.curved) {
-            $('.bar').css("border-radius", `${properties.curved.value ? '100%' : '0%'}`);
-            audiovisualizerStyle.curved = `${properties.curved.value ? '100%' : '0%'}`;
-        }
-
-        // ---------- Border ----------
-        if (properties.border) {
-            audiovisualizerStyle.borderActive = properties.border.value
-            changeBorder(audiovisualizerStyle.borderActive);
-        }
-        if (properties.bordersize) {
-            audiovisualizerStyle.borderSize = properties.bordersize.value;
-            changeBorder(audiovisualizerStyle.borderActive);
-        }
-        if (properties.bordercolor) {
-            audiovisualizerStyle.borderColor = toCSSrgb(properties.borderColor.value);
-            changeBorder(audiovisualizerStyle.borderActive);
-        }
-
-        // ---------- Shadow ----------
-        if (properties.shadow) {
-            audiovisualizerStyle.shadowActive = properties.shadow.value
-            changeShadow(audiovisualizerStyle.shadowActive);
-        }
-        if (properties.shadowcolor) {
-            audiovisualizerStyle.shadowColor = toCSSrgb(properties.shadowcolor.value);
-            changeShadow(audiovisualizerStyle.shadowActive);
-        }
-        if (properties.shadowspread) {
-            audiovisualizerStyle.shadowSpread = properties.shadowspread.value;
-            changeShadow(audiovisualizerStyle.shadowActive);
-        }
+        horizontalAudioVisualizerProperties(prop);       
     },
 };
 
 setup();
-
-function changeShadow(on) {
-    if (on) $('.bar').css("box-shadow", `0px 0px 6px ${audiovisualizerStyle.shadowSpread}px rgb(${audiovisualizerStyle.shadowColor})`);
-    else $('.bar').css("box-shadow", `none`);
-}
-
-function changeBorder(on) {
-    if (on) $('.bar').css("border", `solid rgb(${audiovisualizerStyle.borderColor}) ${audiovisualizerStyle.borderSize}px`);
-    else $('.bar').css("border", `none`);
-}
 
 function lerpColor(c1, c2, factor) {
     factor = Math.min(1, factor);
@@ -268,7 +174,7 @@ function toCSSrgb(variable) {
     return customColor;
 }
 
-function hover(element, enter, leave) {
-    element.addEventListener('mouseenter', enter)
-    element.addEventListener('mouseleave', leave)
-}
+// function hover(element, enter, leave) {
+//     element.addEventListener('mouseenter', enter)
+//     element.addEventListener('mouseleave', leave)
+// }

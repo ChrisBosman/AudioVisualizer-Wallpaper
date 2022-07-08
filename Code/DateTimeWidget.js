@@ -37,7 +37,6 @@ function dateTimeProperties(prop) {
     }
     if (prop.datesize) {
         changeSizeDateTime(prop.datesize.value);
-        // $('.dateTimeContainer').css('width', `${65 + properties.size.value - 50}%`);
     }
 }
 
