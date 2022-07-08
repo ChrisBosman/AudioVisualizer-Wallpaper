@@ -4,31 +4,51 @@
 	{
 		"properties" : 
 		{
+			"Intro" : 
+			{
+				"index" : 0,
+				"order" : 100,
+				"text" : "Hey, deze wallpaper is gemaakt door Frank Bosman. <br>Als je <strong>feature requests</strong> of <strong>bug report</strong> hebt kan je een issue open op me github. Als je de source code wilt zien kan je daar natuurlijk ook terecht. als je mijn code ergens anders gebruikt geliefd wel te crediten. GITHUB: <a href='https://github.com/FrankBosman/AudioVisualizer-Wallpaper/'>https://github.com/FrankBosman/AudioVisualizer-Wallpaper/</a> ",
+				"type" : "text"
+			},
+			"TextLine_AudioVis" : 
+			{
+				"index" : 3,
+				"order" : 103,
+				"text" : "<hr><h4>● Audiovisualizerㅤㅤㅤㅤㅤㅤ</h4><small class=\"text-muted\">select and configure the audio visualizer here, you can change almost everything about it</small>",
+				"type" : "text"
+			},
+			"TextLine_Background" : 
+			{
+				"index" : 1,
+				"order" : 101,
+				"text" : "<hr><h4>● Backgroundㅤㅤㅤㅤㅤㅤㅤㅤㅤ</h4><small class=\"text-muted\">select here your background</small>",
+				"type" : "text"
+			},
+			"TextLine_Date" : 
+			{
+				"index" : 21,
+				"order" : 121,
+				"text" : "<hr><h4>● DateTime widgetㅤㅤㅤㅤㅤㅤㅤ</h4>",
+				"type" : "text"
+			},
 			"audiobarcolor" : 
 			{
-				"condition" : "audiovisualizer.value && !circluaraudiovisualizer.value",
-				"index" : 11,
-				"order" : 111,
+				"condition" : "audiovisualizertype.value == 0",
+				"index" : 15,
+				"order" : 115,
 				"text" : "Audio bar color",
 				"type" : "color",
 				"value" : "1 1 1"
 			},
-			"audiovisualizer" : 
-			{
-				"index" : 1,
-				"order" : 101,
-				"text" : "Audiovisualizer",
-				"type" : "bool",
-				"value" : true
-			},
 			"audiovisualizeroffsetx" : 
 			{
-				"condition" : "audiovisualizer.value",
+				"condition" : "audiovisualizertype.value >= 0 && audiovisualizertype.value < 2",
 				"fraction" : true,
-				"index" : 3,
+				"index" : 6,
 				"max" : 50,
 				"min" : -50,
-				"order" : 103,
+				"order" : 106,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Audiovisualizer offset X",
@@ -37,26 +57,54 @@
 			},
 			"audiovisualizeroffsety" : 
 			{
-				"condition" : "audiovisualizer.value",
+				"condition" : "audiovisualizertype.value >= 0 && audiovisualizertype.value < 2",
 				"fraction" : true,
-				"index" : 4,
+				"index" : 7,
 				"max" : 50,
 				"min" : -50,
-				"order" : 104,
+				"order" : 107,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Audiovisualizer offset Y",
 				"type" : "slider",
 				"value" : 20
 			},
+			"audiovisualizertype" : 
+			{
+				"condition" : "",
+				"index" : 4,
+				"options" : 
+				[
+					{
+						"label" : "None",
+						"value" : "-1"
+					},
+					{
+						"label" : "Horizontal",
+						"value" : "0"
+					},
+					{
+						"label" : "Circular",
+						"value" : "1"
+					},
+					{
+						"label" : "Orbs",
+						"value" : "2"
+					}
+				],
+				"order" : 104,
+				"text" : "Audiovisualizer type",
+				"type" : "combo",
+				"value" : "0"
+			},
 			"audiovisualizerwidth" : 
 			{
-				"condition" : "audiovisualizer.value",
+				"condition" : "audiovisualizertype.value >= 0 && audiovisualizertype.value < 2",
 				"fraction" : true,
-				"index" : 2,
+				"index" : 5,
 				"max" : 100,
 				"min" : 0,
-				"order" : 102,
+				"order" : 105,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Audiovisualizer width",
@@ -65,119 +113,90 @@
 			},
 			"backgroundimg" : 
 			{
-				"index" : 0,
-				"order" : 100,
+				"index" : 2,
+				"order" : 102,
 				"text" : "Background Image",
 				"type" : "file",
 				"value" : ""
 			},
 			"bargap" : 
 			{
-				"condition" : "audiovisualizer.value && !circluaraudiovisualizer.value",
+				"condition" : "audiovisualizertype.value == 0",
 				"fraction" : true,
-				"index" : 12,
+				"index" : 16,
 				"max" : 8,
 				"min" : 0,
-				"order" : 112,
+				"order" : 116,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Bar gap",
 				"type" : "slider",
 				"value" : 7.5
 			},
-			"border" : 
-			{
-				"condition" : "audiovisualizer.value && !circluaraudiovisualizer.value",
-				"index" : 14,
-				"order" : 114,
-				"text" : "border",
-				"type" : "bool",
-				"value" : false
-			},
-			"bordercolor" : 
-			{
-				"condition" : "border.value  && audiovisualizer.value && !circluaraudiovisualizer.value",
-				"index" : 16,
-				"order" : 116,
-				"text" : "Border color",
-				"type" : "color",
-				"value" : "0 0 0"
-			},
-			"bordersize" : 
-			{
-				"condition" : "border.value && audiovisualizer.value && !circluaraudiovisualizer.value",
-				"fraction" : true,
-				"index" : 15,
-				"max" : 5,
-				"min" : 0,
-				"order" : 115,
-				"precision" : 2,
-				"step" : 0.1,
-				"text" : "Border size",
-				"type" : "slider",
-				"value" : 1
-			},
-			"circluaraudiovisualizer" : 
-			{
-				"condition" : "audiovisualizer.value",
-				"index" : 5,
-				"order" : 105,
-				"text" : "Circluar audiovisualizer",
-				"type" : "bool",
-				"value" : false
-			},
 			"circularaudiovisualizercolor1" : 
 			{
-				"condition" : "audiovisualizer.value && circluaraudiovisualizer.value && !circularaudiovisualizerrainbow.value",
-				"index" : 9,
-				"order" : 109,
+				"condition" : "audiovisualizertype.value == 1",
+				"index" : 12,
+				"order" : 112,
 				"text" : "Circular audiovisualizer color 1",
 				"type" : "color",
-				"value" : "0.4235294117647059 0.9137254901960784 1"
+				"value" : "0.34509803921568627 0.7529411764705882 1"
 			},
 			"circularaudiovisualizercolor2" : 
 			{
-				"condition" : "audiovisualizer.value && circluaraudiovisualizer.value && !circularaudiovisualizerrainbow.value",
-				"index" : 10,
-				"order" : 110,
+				"condition" : "audiovisualizertype.value == 1",
+				"index" : 13,
+				"order" : 113,
 				"text" : "Circular audiovisualizer color 2",
 				"type" : "color",
-				"value" : "0.7764705882352941 1 0.996078431372549"
+				"value" : "0.8666666666666667 0.9921568627450981 0.9882352941176471"
+			},
+			"circularaudiovisualizeropacity" : 
+			{
+				"condition" : "audiovisualizertype.value == 1",
+				"fraction" : false,
+				"index" : 14,
+				"max" : 100,
+				"min" : 0,
+				"order" : 114,
+				"text" : "Circular audiovisualizer opacity",
+				"type" : "slider",
+				"value" : 50
 			},
 			"circularaudiovisualizerrainbow" : 
 			{
-				"condition" : "audiovisualizer.value && circluaraudiovisualizer.value",
-				"index" : 8,
-				"order" : 108,
+				"condition" : "audiovisualizertype.value == 1",
+				"index" : 10,
+				"order" : 110,
 				"text" : "Circular audiovisualizer rainbow",
 				"type" : "bool",
-				"value" : true
+				"value" : false
 			},
 			"circularvisfreqbands" : 
 			{
-				"condition" : "audiovisualizer.value && circluaraudiovisualizer.value",
+				"condition" : "audiovisualizertype.value == 1",
 				"fraction" : false,
-				"index" : 7,
+				"index" : 9,
 				"max" : 64,
 				"min" : 0,
-				"order" : 107,
+				"order" : 109,
 				"text" : "Circular audiovisualizer frequency bands",
 				"type" : "slider",
 				"value" : 32
 			},
 			"curved" : 
 			{
-				"condition" : "audiovisualizer.value && !circluaraudiovisualizer.value",
-				"index" : 13,
-				"order" : 113,
+				"condition" : "audiovisualizertype.value == 0",
+				"index" : 17,
+				"order" : 117,
 				"text" : "Curved bars",
 				"type" : "bool",
 				"value" : false
 			},
 			"date" : 
 			{
-				"index" : 20,
-				"order" : 120,
+				"index" : 22,
+				"order" : 122,
 				"text" : "Date",
 				"type" : "bool",
 				"value" : true
@@ -186,10 +205,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 21,
+				"index" : 23,
 				"max" : 50,
 				"min" : -50,
-				"order" : 121,
+				"order" : 123,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date offset X",
@@ -200,10 +219,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 22,
+				"index" : 24,
 				"max" : 50,
 				"min" : -50,
-				"order" : 122,
+				"order" : 124,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date offset Y",
@@ -214,10 +233,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 23,
+				"index" : 25,
 				"max" : 100,
 				"min" : 0,
-				"order" : 123,
+				"order" : 125,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date size",
@@ -233,41 +252,49 @@
 			},
 			"shadow" : 
 			{
-				"condition" : "audiovisualizer.value && !circluaraudiovisualizer.value",
-				"index" : 17,
-				"order" : 117,
+				"condition" : "audiovisualizertype.value == 0",
+				"index" : 18,
+				"order" : 118,
 				"text" : "Shadow",
 				"type" : "bool",
 				"value" : true
 			},
 			"shadowcolor" : 
 			{
-				"condition" : "shadow.value  && audiovisualizer.value && !circluaraudiovisualizer.value",
-				"index" : 18,
-				"order" : 118,
+				"condition" : "shadow.value  && audiovisualizertype.value == 0",
+				"index" : 19,
+				"order" : 119,
 				"text" : "Shadow color",
 				"type" : "color",
-				"value" : "0 0 0"
+				"value" : "0.17647058823529413 0.8588235294117647 1"
 			},
 			"shadowspread" : 
 			{
-				"condition" : "shadow.value  && audiovisualizer.value && !circluaraudiovisualizer.value",
+				"condition" : "shadow.value  && audiovisualizertype.value == 0",
 				"fraction" : true,
-				"index" : 19,
+				"index" : 20,
 				"max" : 5,
 				"min" : 0,
-				"order" : 119,
+				"order" : 120,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Shadow spread",
 				"type" : "slider",
-				"value" : 0
+				"value" : 1
+			},
+			"subText_cirAudioVis_color" : 
+			{
+				"condition" : "false && audiovisualizertype.value == 1",
+				"index" : 11,
+				"order" : 111,
+				"text" : "<img src='https://i.ibb.co/sWVKp5n/color-Divider.png' width='80' height='16'/>",
+				"type" : "text"
 			},
 			"timebasedcircularaudiovisualizer" : 
 			{
-				"condition" : "audiovisualizer.value && circluaraudiovisualizer.value",
-				"index" : 6,
-				"order" : 106,
+				"condition" : "audiovisualizertype.value == 1",
+				"index" : 8,
+				"order" : 108,
 				"text" : "Time based circular audiovisualizer",
 				"type" : "bool",
 				"value" : true
