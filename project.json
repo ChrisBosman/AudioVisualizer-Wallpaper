@@ -4,9 +4,27 @@
 	{
 		"properties" : 
 		{
+			"Intro" : 
+			{
+				"order" : 0,
+				"text" : "Hey, deze wallpaper is gemaakt door Frank Bosman. <br>Als je <strong>feature requests</strong> of <strong>bug report</strong> hebt kan je een issue open op me github. Als je de source code wilt zien kan je daar natuurlijk ook terecht. als je mijn code ergens anders gebruikt geliefd wel te crediten. GITHUB: <a href='https://github.com/FrankBosman/AudioVisualizer-Wallpaper/'>https://github.com/FrankBosman/AudioVisualizer-Wallpaper/</a> ",
+				"type" : "text"
+			},
+			"TextLine_Background" : 
+			{
+				"order" : 1,
+				"text" : "<br/>_______________________________<br/><h4>● Background</h4><small>select here your background</small>",
+				"type" : "text"
+			},
+			"TextLine_AudioVis" : 
+			{
+				"order" : 100,
+				"text" : "<br/>_______________________________<br/><h4>● Audiovisualizer</h4><small>select and configure the audio visualizer here, you can change almost everything about it</small>",
+				"type" : "text"
+			},
 			"audiobarcolor" : 
 			{
-				"condition" : "audiovisualizer.value && !circluaraudiovisualizer.value",
+				"condition" : "audiovisualizertype.value == 0",
 				"index" : 12,
 				"order" : 112,
 				"text" : "Audio bar color",
@@ -23,12 +41,12 @@
 			},
 			"audiovisualizeroffsetx" : 
 			{
-				"condition" : "audiovisualizer.value",
+				"condition" : "audiovisualizertype.value >= 0 && audiovisualizertype.value < 2",
 				"fraction" : true,
-				"index" : 3,
+				"index" : 4,
 				"max" : 50,
 				"min" : -50,
-				"order" : 103,
+				"order" : 104,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Audiovisualizer offset X",
@@ -37,26 +55,54 @@
 			},
 			"audiovisualizeroffsety" : 
 			{
-				"condition" : "audiovisualizer.value",
+				"condition" : "audiovisualizertype.value >= 0 && audiovisualizertype.value < 2",
 				"fraction" : true,
-				"index" : 4,
+				"index" : 5,
 				"max" : 50,
 				"min" : -50,
-				"order" : 104,
+				"order" : 105,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Audiovisualizer offset Y",
 				"type" : "slider",
 				"value" : 20
 			},
+			"audiovisualizertype" : 
+			{
+				"condition" : "",
+				"index" : 2,
+				"options" : 
+				[
+					{
+						"label" : "None",
+						"value" : "-1"
+					},
+					{
+						"label" : "Horizontal",
+						"value" : "0"
+					},
+					{
+						"label" : "Circular",
+						"value" : "1"
+					},
+					{
+						"label" : "Orbs",
+						"value" : "2"
+					}
+				],
+				"order" : 102,
+				"text" : "Audiovisualizer type",
+				"type" : "combo",
+				"value" : "0"
+			},
 			"audiovisualizerwidth" : 
 			{
-				"condition" : "audiovisualizer.value",
+				"condition" : "audiovisualizertype.value >= 0 && audiovisualizertype.value < 2",
 				"fraction" : true,
-				"index" : 2,
+				"index" : 3,
 				"max" : 100,
 				"min" : 0,
-				"order" : 102,
+				"order" : 103,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Audiovisualizer width",
@@ -73,7 +119,7 @@
 			},
 			"bargap" : 
 			{
-				"condition" : "audiovisualizer.value && !circluaraudiovisualizer.value",
+				"condition" : "audiovisualizertype.value == 0",
 				"fraction" : true,
 				"index" : 13,
 				"max" : 8,
@@ -87,7 +133,7 @@
 			},
 			"border" : 
 			{
-				"condition" : "audiovisualizer.value && !circluaraudiovisualizer.value",
+				"condition" : "audiovisualizertype.value == 0",
 				"index" : 15,
 				"order" : 115,
 				"text" : "border",
@@ -96,7 +142,7 @@
 			},
 			"bordercolor" : 
 			{
-				"condition" : "border.value  && audiovisualizer.value && !circluaraudiovisualizer.value",
+				"condition" : "audiovisualizertype.value == 0 && border.value",
 				"index" : 17,
 				"order" : 117,
 				"text" : "Border color",
@@ -105,7 +151,7 @@
 			},
 			"bordersize" : 
 			{
-				"condition" : "border.value && audiovisualizer.value && !circluaraudiovisualizer.value",
+				"condition" : "audiovisualizertype.value == 0 && border.value",
 				"fraction" : true,
 				"index" : 16,
 				"max" : 5,
@@ -117,18 +163,9 @@
 				"type" : "slider",
 				"value" : 1
 			},
-			"circluaraudiovisualizer" : 
-			{
-				"condition" : "audiovisualizer.value",
-				"index" : 5,
-				"order" : 105,
-				"text" : "Circluar audiovisualizer",
-				"type" : "bool",
-				"value" : false
-			},
 			"circularaudiovisualizercolor1" : 
 			{
-				"condition" : "audiovisualizer.value && circluaraudiovisualizer.value && !circularaudiovisualizerrainbow.value",
+				"condition" : "audiovisualizertype.value == 1",
 				"index" : 9,
 				"order" : 109,
 				"text" : "Circular audiovisualizer color 1",
@@ -137,7 +174,7 @@
 			},
 			"circularaudiovisualizercolor2" : 
 			{
-				"condition" : "audiovisualizer.value && circluaraudiovisualizer.value && !circularaudiovisualizerrainbow.value",
+				"condition" : "audiovisualizertype.value == 1",
 				"index" : 10,
 				"order" : 110,
 				"text" : "Circular audiovisualizer color 2",
@@ -146,7 +183,7 @@
 			},
 			"circularaudiovisualizeropacity" : 
 			{
-				"condition" : "audiovisualizer.value && circluaraudiovisualizer.value",
+				"condition" : "audiovisualizertype.value == 1",
 				"fraction" : false,
 				"index" : 11,
 				"max" : 100,
@@ -158,7 +195,7 @@
 			},
 			"circularaudiovisualizerrainbow" : 
 			{
-				"condition" : "audiovisualizer.value && circluaraudiovisualizer.value",
+				"condition" : "audiovisualizertype.value == 1",
 				"index" : 8,
 				"order" : 108,
 				"text" : "Circular audiovisualizer rainbow",
@@ -167,7 +204,7 @@
 			},
 			"circularvisfreqbands" : 
 			{
-				"condition" : "audiovisualizer.value && circluaraudiovisualizer.value",
+				"condition" : "audiovisualizertype.value == 1",
 				"fraction" : false,
 				"index" : 7,
 				"max" : 64,
@@ -179,12 +216,18 @@
 			},
 			"curved" : 
 			{
-				"condition" : "audiovisualizer.value && !circluaraudiovisualizer.value",
+				"condition" : "audiovisualizertype.value == 0",
 				"index" : 14,
 				"order" : 114,
 				"text" : "Curved bars",
 				"type" : "bool",
 				"value" : false
+			},
+			"TextLine_Date" : 
+			{
+				"order" : 120,
+				"text" : "<br/>_______________________________<br/><h4>● DateTime widget</h4>",
+				"type" : "text"
 			},
 			"date" : 
 			{
@@ -245,7 +288,7 @@
 			},
 			"shadow" : 
 			{
-				"condition" : "audiovisualizer.value && !circluaraudiovisualizer.value",
+				"condition" : "audiovisualizertype.value == 0",
 				"index" : 18,
 				"order" : 118,
 				"text" : "Shadow",
@@ -254,7 +297,7 @@
 			},
 			"shadowcolor" : 
 			{
-				"condition" : "shadow.value  && audiovisualizer.value && !circluaraudiovisualizer.value",
+				"condition" : "shadow.value  && audiovisualizertype.value == 0",
 				"index" : 19,
 				"order" : 119,
 				"text" : "Shadow color",
@@ -263,7 +306,7 @@
 			},
 			"shadowspread" : 
 			{
-				"condition" : "shadow.value  && audiovisualizer.value && !circluaraudiovisualizer.value",
+				"condition" : "shadow.value  && audiovisualizertype.value == 0",
 				"fraction" : true,
 				"index" : 20,
 				"max" : 5,
@@ -277,7 +320,7 @@
 			},
 			"timebasedcircularaudiovisualizer" : 
 			{
-				"condition" : "audiovisualizer.value && circluaraudiovisualizer.value",
+				"condition" : "audiovisualizertype.value == 1",
 				"index" : 6,
 				"order" : 106,
 				"text" : "Time based circular audiovisualizer",
