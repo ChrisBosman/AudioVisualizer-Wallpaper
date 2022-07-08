@@ -2,42 +2,23 @@
 <html>
 
 <head>
-
-</head>
-
-<body>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../Styles/styles.css">
     <link rel="stylesheet" href="../Styles/dateTime.css">
     <link rel="stylesheet" href="../Styles/newAudioVis.css">
-
-
+    
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <!-- <script src="audioVis.js" defer></script> -->
+    <script src="OrbsAudioVis.js" defer></script>
     </style>
-</body>
+    
+</head>
 
-<div class="element-container">
-    <div id="element-container">
+<body>
+    <div class="element-container" id="element-container">
     </div>
-</div>
-
-<script defer>
-    let container = document.getElementById('element-container');
-    for (let i = 0; i < 14; i++) {
-        for (j = 36; j > 0; j-=2){
-            let element = document.createElement('div');
-
-            element.className = 'item';
-            element.style.transform = `rotate(${i*10}deg)` //Math.round(Math.random() * 360)}deg)`;
-            element.style.width = `${j*1.5 + 10}%`;//`${Math.floor(Math.random() * 50 + 10)}%`;
-            element.style.backgroundColor = `hsl(${j*10}, 100%, 50%)`;
-
-            container.appendChild(element);
-        }
-    }
-
-</script>
+</body>
 
 </html>
