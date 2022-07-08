@@ -1,32 +1,23 @@
-// const amountOfBars = 128;
-let amountOfBars = 20;
-let freqBands = 32;
-const averageAmount = 2;
-let timedAudioVis = true;
-let circularBar = false;
+let audioVisualizers = {
+    None: -1,
+    Horizontal: 0,
+    Circular: 1,
+    Orbs: 2,
+}
+let selectedAudioVis = audioVisualizers.Horizontal;
+
+let bars = []
 let oldAudioArray = [];
-let timedAudioArray = [];
-let showFullDay = false;
 
-// update time and date
-updateTime();
-setInterval(updateTime, 10000);
-function updateTime() {
-    let currentDate = new Date();
-    // currentDate.setDate(7);
 
-    let cDay = currentDate.getDate();
-    let cMonth = currentDate.toLocaleString("en-US", { month: "short" });//.getMonth() + 1;
-    let cYear = currentDate.getFullYear();
+let AudioVisData = {
+    rolingAverageAmount: 2, // need to be implemented.
 
-    let time = `${currentDate.getHours() < 10 ? '0' + currentDate.getHours() : currentDate.getHours()}:${currentDate.getMinutes() < 10 ? '0' + currentDate.getMinutes() : currentDate.getMinutes()}`;
+    horizontalBars: 128, // needs to be implemented
 
-    var dt = moment(currentDate, "YYYY-MM-DD HH:mm:ss");
-
-    $('#time').text(time);
-    $('#date').text(`${cDay} ${cMonth} ${cYear}`);
-    if (showFullDay) $('#day').text(`${dt.format('dddd')}`);
-    else $('#day').text(`${dt.format('dddd')}`.substring(0, 3));
+    circularbars: 20,
+    freqBands: 32,
+    timedAudioVis: true,
 }
 
 function wallpaperAudioListener(audioArray) {
@@ -36,123 +27,45 @@ function wallpaperAudioListener(audioArray) {
         audioList[i] = audioArray[i >= audioArray.length / 2 ? i : audioArray.length - i - 1];
     }
 
-    // get lower the amount of freq bands if needed
-    if (freqBands < 64 && circularBar){
-        let filteredAudioList = []
-        for (let i = 0; i < freqBands; i++){
-            let value = 0;
-            let value2 = 0;
-
-            for (let j = 0; j < audioList.length / freqBands; j++){
-                value += audioList[i + j];
-            }
-            
-            filteredAudioList[i] = value / (audioList.length / freqBands)
-        }
-        audioList = filteredAudioList;
-    }
-
     // remember last audio's
     oldAudioArray.push(audioList);
-    if (oldAudioArray.length > averageAmount) {
+    if (oldAudioArray.length > AudioVisData.rolingAverageAmount) {
         oldAudioArray.shift();
     }
 
-    if (!circularBar){ // vertical bars visual
-        for (let i = 0; i < bars.length; i++) {
-            let heightValue = 0
-            oldAudioArray.forEach(oldAudio => {
-                heightValue += Math.min(oldAudio[i], 1);
-            });
-            heightValue /= oldAudioArray.length;
-            bars[i].style.height = `${heightValue * 100}%`;
-        }
-    } else { // circular visual
-        // remember last audio's, but then for other purpose
-        timedAudioArray.push(audioList);
-        if (timedAudioArray.length > amountOfBars) {
-            timedAudioArray.shift();
-        }
-        for (let i = 0; i < freqBands; i ++) {
-            let heightValue = 0
-            if (!timedAudioVis){ // if time based audio vis
-                oldAudioArray.forEach(oldAudio => {
-                    heightValue += Math.min(oldAudio[i], 1);
-                });
-                heightValue /= oldAudioArray.length;
-                heightValue = Math.sqrt(heightValue);
-                // heightValue /= 2;
-                heightValue *= (parseFloat(audiovisualizerStyle.width.slice(0, -1)) - 15 ) / 100;
-            }
-            for(let j = 0; j < amountOfBars; j++){
-                if (timedAudioVis){
-                heightValue = 0
-                heightValue = timedAudioArray[j][i];
-                heightValue = Math.sqrt(heightValue);
-                // heightValue /= 2;
-                heightValue *= (parseFloat(audiovisualizerStyle.width.slice(0, -1)) - 15 ) / 100;
-            }
-                bars[i + j * freqBands].style.width = `${heightValue * 100}%`;
-            }
-        }
+    switch (selectedAudioVis) {
+        case audioVisualizers.Horizontal:
+            horizontalAudioVisualizer(oldAudioArray);
+            break;
+        case audioVisualizers.Circular:
+            circularAudioVisualizer(audioList);
+            break;
     }
 }
 
 /* ---------------- SETUP ---------------- */
-let bars = []
-let barFreqs = [];
 function setup(){
     //delete the old container
     $('#container').remove();
     //setup the bars:
     let container = document.createElement('div');
     container.id = "container"
-    container.className = circularBar ? "circular-bar-container" : "container";
     let barsContainer = document.createElement('div');
     barsContainer.id = "barsContainer"
-    barsContainer.className = circularBar ? "circular-bar-container2" : "bars-container";
-
-    amountOfBars = circularBar ? 20 : 128;
-
-    for (let i = 0; i < amountOfBars; i++) {
-        if (!circularBar) {
-            let bar = document.createElement('div');
-            bar.className = "bar";
-
-            bar.style.height = `${Math.round(Math.random() * 100)}%`
-
-            barsContainer.appendChild(bar);
-            bars[i] = bar;
-        } else {
-            for (j = freqBands-1; j >= 0; j--) {
-                let bar = document.createElement('div');
-                bar.className = "circular-bar";
-
-                bar.className = 'circular-bar';
-                bar.style.transform = `rotate(${i / amountOfBars * 360 + (1 / amountOfBars * 360 )/ freqBands * j}deg)` //Math.round(Math.random() * 360)}deg)`;
-                bar.style.width = `${0}%`; //j * 1.5 + 10}%`;//`${Math.floor(Math.random() * 50 + 10)}%`;
-                
-                if (audiovisualizerStyle.circularBarRainbow){
-                    bar.style.backgroundColor = `hsl(${j / freqBands * 360}, 80%, 50%)`;
-                }
-                else{
-                    let color = lerpColor(audiovisualizerStyle.circularBarColors[0], audiovisualizerStyle.circularBarColors[1], j / freqBands);
-                    bar.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
-                }
-                bar.style.opacity = `${audiovisualizerStyle.circularaudiovisualizerOpacity}%`;
-                bar.id = `${i},${j}`;
-
-                barsContainer.appendChild(bar);
-                barFreqs[i * freqBands + j] = j;
-                bars[i * freqBands + j] = bar;
-            }
-        }
+    
+    switch (selectedAudioVis) {
+        case audioVisualizers.Horizontal:
+            setupHorizontalAudioVisualizer(container, barsContainer);
+            break;
+        case audioVisualizers.Circular:
+            setupCircularAudioVisualizer(container, barsContainer);
+            break;
     }
+
     container.appendChild(barsContainer)
     document.body.appendChild(container);
 
-    // properties:
-
+    // properties audioVis:
     if (audiovisualizerStyle.x != null)
         $('#container').css('left', audiovisualizerStyle.x);
     if (audiovisualizerStyle.y != null)
@@ -174,20 +87,6 @@ function setup(){
 // Register the audio listener provided by Wallpaper Engine.
 window.wallpaperRegisterAudioListener(wallpaperAudioListener);
 
-// setup the date time box thingy:
-// hover(document.getElementById('day'), e => {
-//     showFullDay = true;
-//     updateTime();
-//     console.log("mouse enter");
-// }, e => {
-//     setTimeout(() =>{
-//         showFullDay = false;
-//         updateTime();
-//     }, 1000);
-
-// })
-
-
 /* ---------------- PROPERTIES ---------------- */
 let audiovisualizerStyle = {
     x: 0,
@@ -207,22 +106,30 @@ let audiovisualizerStyle = {
     circularBarColors: [[255, 0, 0], [100, 0, 0]],
     circularaudiovisualizerOpacity: 100,
 }
-setup();
 
 // Register the propertyListener
 window.wallpaperPropertyListener = {
     applyUserProperties: function (properties) {
         let prop = properties;
+
+        // ----------------------------- DateTime -----------------------------\\
         dateTimeProperties(prop);
 
-
+        // ---------------------------- Background -----------------------------\\
         if (properties.backgroundimg) { // the background image
             let imageElement = document.getElementById('backgroundImg');
             imageElement.src = 'file:///' + properties.backgroundimg.value;
         }
         // ------------------------------ AudioVis ------------------------------\\
-        if (properties.circluaraudiovisualizer){
-            circularBar = properties.circluaraudiovisualizer.value;
+        if (properties.audiovisualizertype){
+            if (properties.audiovisualizertype.value == -1)
+                selectedAudioVis = audioVisualizers.None;
+            else if (properties.audiovisualizertype.value == 0)
+                selectedAudioVis = audioVisualizers.Horizontal;
+            else if (properties.audiovisualizertype.value == 1)                
+                selectedAudioVis = audioVisualizers.Circular;
+            else if (properties.audiovisualizertype.value == 2)
+                selectedAudioVis = audioVisualizers.Orbs;   
             setup();
         }
         if (properties.audiovisualizer) {
@@ -240,128 +147,13 @@ window.wallpaperPropertyListener = {
             $('#container').css('top', `${properties.audiovisualizeroffsety.value}%`);
             audiovisualizerStyle.y = `${properties.audiovisualizeroffsety.value}%`;
         }
-        if (properties.timebasedcircularaudiovisualizer){
-            timedAudioVis = properties.timebasedcircularaudiovisualizer.value;
-        }
-        if (properties.circularvisfreqbands){
-            freqBands = properties.circularvisfreqbands.value;
-            setup();
-        }
         // circular audio visualizer
-        if (properties.circularaudiovisualizerrainbow){
-            audiovisualizerStyle.circularBarRainbow = properties.circularaudiovisualizerrainbow.value;
-            console.log(audiovisualizerStyle);
-            updateCircularAudioVisColors();
-        }
-        if (properties.circularaudiovisualizercolor1){
-            audiovisualizerStyle.circularBarColors[0] = toCSSrgb(properties.circularaudiovisualizercolor1.value);
-            updateCircularAudioVisColors();
-        }
-        if (properties.circularaudiovisualizercolor2){
-            audiovisualizerStyle.circularBarColors[1] = toCSSrgb(properties.circularaudiovisualizercolor2.value);
-            updateCircularAudioVisColors();
-        }
-        if (properties.circularaudiovisualizeropacity){
-            audiovisualizerStyle.circularaudiovisualizerOpacity = properties.circularaudiovisualizeropacity.value;
-            updateCircularAudioVisColors();
-        }
-        // ---------- Bars ----------
-        if (properties.audiobarcolor) { // the color of the audio bars
-            $('.bar').css("background-color", `rgb(${toCSSrgb(properties.audiobarcolor.value)})`);
-            audiovisualizerStyle.color =`rgb(${toCSSrgb(properties.audiobarcolor.value)})`
-        }
-        if (properties.bargap) {
-            $('#barsContainer').css("gap", `${properties.bargap.value / 10}%`);
-            audiovisualizerStyle.bargap = `${properties.bargap.value / 10}%`
-        }
-        if (properties.curved) {
-            $('.bar').css("border-radius", `${properties.curved.value ? '100%' : '0%'}`);
-            audiovisualizerStyle.curved = `${properties.curved.value ? '100%' : '0%'}`;
-        }
-
-        // ---------- Border ----------
-        if (properties.border) {
-            audiovisualizerStyle.borderActive = properties.border.value
-            changeBorder(audiovisualizerStyle.borderActive);
-        }
-        if (properties.bordersize) {
-            audiovisualizerStyle.borderSize = properties.bordersize.value;
-            changeBorder(audiovisualizerStyle.borderActive);
-        }
-        if (properties.bordercolor) {
-            audiovisualizerStyle.borderColor = toCSSrgb(properties.borderColor.value);
-            changeBorder(audiovisualizerStyle.borderActive);
-        }
-
-        // ---------- Shadow ----------
-        if (properties.shadow) {
-            audiovisualizerStyle.shadowActive = properties.shadow.value
-            changeShadow(audiovisualizerStyle.shadowActive);
-        }
-        if (properties.shadowcolor) {
-            audiovisualizerStyle.shadowColor = toCSSrgb(properties.shadowcolor.value);
-            changeShadow(audiovisualizerStyle.shadowActive);
-        }
-        if (properties.shadowspread) {
-            audiovisualizerStyle.shadowSpread = properties.shadowspread.value;
-            changeShadow(audiovisualizerStyle.shadowActive);
-        }
+        circularAudioVisualizerProperties(prop);
+        horizontalAudioVisualizerProperties(prop);       
     },
 };
 
-function dateTimeProperties(prop) {
-    // ------------------------------ Date and Time ------------------------------\\
-    if (prop.date != null) {
-        $('.timeCenterContainer').css('display', `${prop.date.value ? 'flex' : 'none'}`);
-    }
-    if (prop.dateoffsetx) {
-        $('.timeCenterContainer').css('left', `${prop.dateoffsetx.value}%`);
-    }
-    if (prop.dateoffsety) {
-        $('.timeCenterContainer').css('top', `${prop.dateoffsety.value}%`);
-    }
-    if (prop.datesize) {
-        changeSizeDateTime(prop.datesize.value);
-        // $('.dateTimeContainer').css('width', `${65 + properties.size.value - 50}%`);
-    }
-}
-
-function updateCircularAudioVisColors(){
-    if(audiovisualizerStyle.circularBarRainbow){
-        for (let i = 0; i < amountOfBars; i++) {
-            for (j = freqBands-1; j >= 0; j--) {
-                document.getElementById(`${i},${j}`).style.backgroundColor = `hsl(${j / freqBands * 360}, 80%, 50%)`;
-                document.getElementById(`${i},${j}`).style.opacity = `${audiovisualizerStyle.circularaudiovisualizerOpacity}%`;
-            }
-        }
-    } else {
-        for (let i = 0; i < amountOfBars; i++) {
-            for (j = freqBands-1; j >= 0; j--) {
-                let color = lerpColor(audiovisualizerStyle.circularBarColors[0], audiovisualizerStyle.circularBarColors[1], j / freqBands);
-                document.getElementById(`${i},${j}`).style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
-                document.getElementById(`${i},${j}`).style.opacity = `${audiovisualizerStyle.circularaudiovisualizerOpacity}%`;
-            }
-        }
-    }
-}
-
-function changeSizeDateTime(newWidth) {
-    $('.dateTimeContainer').css('width', `${newWidth}%`);
-    $('.dateTimeContainer').css('height', `${newWidth / 65.0 * 20.0}vw`);
-    $('#day').css('font-size', `${newWidth / 65.0 * 14.0}vw`);
-    $('#time').css('font-size', `${newWidth / 65.0 * 7.0}vw`);
-    $('#date').css('font-size', `${newWidth / 65.0 * 3.0}vw`);
-}
-
-function changeShadow(on) {
-    if (on) $('.bar').css("box-shadow", `0px 0px 6px ${audiovisualizerStyle.shadowSpread}px rgb(${audiovisualizerStyle.shadowColor})`);
-    else $('.bar').css("box-shadow", `none`);
-}
-
-function changeBorder(on) {
-    if (on) $('.bar').css("border", `solid rgb(${audiovisualizerStyle.borderColor}) ${audiovisualizerStyle.borderSize}px`);
-    else $('.bar').css("border", `none`);
-}
+setup();
 
 function lerpColor(c1, c2, factor) {
     factor = Math.min(1, factor);
@@ -382,7 +174,7 @@ function toCSSrgb(variable) {
     return customColor;
 }
 
-function hover(element, enter, leave) {
-    element.addEventListener('mouseenter', enter)
-    element.addEventListener('mouseleave', leave)
-}
+// function hover(element, enter, leave) {
+//     element.addEventListener('mouseenter', enter)
+//     element.addEventListener('mouseleave', leave)
+// }
