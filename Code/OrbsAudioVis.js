@@ -1,8 +1,21 @@
 const frameRate = 1000/60;
 const maxOrbs = 100;
-let container = document.getElementById('element-container');
+let orbsContainer;// = document.getElementById('element-container');
 let orbs = []
-let oldAudio = [];
+let orbsOldAudio = [];
+let loop;
+
+function setupOrbs(container){
+    orbsContainer = container;
+    loop = setInterval(loopFunc, frameRate);
+    orbs = []
+    orbsOldAudio = [];
+}
+function stopLoopOrbs(){
+    clearInterval(loop);
+    console.log("stopped");
+    
+}
 
 function createOrb(sizeMult, colorMult){
     let size = sizeMult * 10;
@@ -24,11 +37,10 @@ function createOrb(sizeMult, colorMult){
         lifetime: Math.max(20 * Math.min(25/orbs.length, 1.5), 5)
     }
     orbs[orbs.length] = orb;
-    container.appendChild(element);
+    orbsContainer.appendChild(element);
 }
 
 // update loop
-let loop = setInterval(loopFunc, frameRate);
 function loopFunc(){
     for (let i = orbs.length-1; i >= 0; i--) {
         const orb = orbs[i];
@@ -45,18 +57,18 @@ function loopFunc(){
                 orb.element.classList.add("fadeOut");
             }
             if(orb.pos[0] > 100 + orb.size || orb.pos[0] < -orb.size || orb.pos[1] > 100 + orb.size || orb.pos[1] < -orb.size){
-                container.removeChild(orb.element);
+                orbsContainer.removeChild(orb.element);
                 orbs.splice(i, 1);
             }
         } else {
-            container.removeChild(orb.element);
+            orbsContainer.removeChild(orb.element);
             orbs.splice(i, 1);
         }
     }
 
     // limit the orbs
     if (orbs.length > maxOrbs){
-        container.removeChild(orbs[0].element);
+        orbsContainer.removeChild(orbs[0].element);
         orbs.shift();
     }
 
@@ -66,25 +78,24 @@ function loopFunc(){
     // }
 }
 
-function wallpaperAudioListener(audioArray) {
+function orbsAudioUpdate(audioArray) {
     let filteredAudioList = [];
     for (let i = 0; i < audioArray.length/2; i++) {
         filteredAudioList[i] = (audioArray[i] + audioArray[i + audioArray.length/2]) / 2;
     }
-    oldAudio[oldAudio.length] = filteredAudioList;
-    // console.log(oldAudio.length);
+    orbsOldAudio[orbsOldAudio.length] = filteredAudioList;
 
-    if(oldAudio.length > 5){
+    if(orbsOldAudio.length > 5){
         let audioList = []
         
         for(let i = 0; i < audioArray.length; i++){
             let value = 0;
-            // oldAudio.forEach(dataPoint => value += dataPoint);
-            for (let j = 0; j < oldAudio.length; j++){
-                value += oldAudio[j][i];
+            // orbsOldAudio.forEach(dataPoint => value += dataPoint);
+            for (let j = 0; j < orbsOldAudio.length; j++){
+                value += orbsOldAudio[j][i];
             }
 
-            audioList[i] = value / oldAudio.length;
+            audioList[i] = value / orbsOldAudio.length;
         }
         
         for (let i = 0; i < audioList.length; i++) {
@@ -95,10 +106,9 @@ function wallpaperAudioListener(audioArray) {
             
         }
 
-        oldAudio = [];
-        // console.log(oldAudio);
+        orbsOldAudio = [];
     }
 
 }
 // Register the audio listener provided by Wallpaper Engine.
-window.wallpaperRegisterAudioListener(wallpaperAudioListener);
+// window.wallpaperRegisterAudioListener(wallpaperAudioListener);
