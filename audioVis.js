@@ -1,17 +1,27 @@
+const audioVisualizers = {
+    Horizontal: 0,
+    Circular: 1,
+    Orbs: 2,
+}
+
+let selectedAudioVis = audioVisualizers.Horizontal;
+
+let bars = []
+let oldAudioArray = [];
+
+//to delete
 let amountOfBars = 128;
 // let amountOfBars = 20;
 // let amountOfCircularBars = 20
-const averageAmount = 2;
-let bars = []
-
+// const averageAmount = 2;
 let circularBar = false;
-let oldAudioArray = [];
 // let timedAudioArray = [];
+
 
 let AudioVisData = {
     rolingAverageAmount: 2, // need to be implemented.
 
-    horizontalBars: 128,
+    horizontalBars: 128, // needs to be implemented
 
     circularbars: 20,
     freqBands: 32,
@@ -27,23 +37,33 @@ function wallpaperAudioListener(audioArray) {
 
     // remember last audio's
     oldAudioArray.push(audioList);
-    if (oldAudioArray.length > averageAmount) {
+    if (oldAudioArray.length > AudioVisData.rolingAverageAmount) {
         oldAudioArray.shift();
     }
 
-    if (!circularBar){ // vertical bars visual
-        for (let i = 0; i < bars.length; i++) {
-            let heightValue = 0
-            oldAudioArray.forEach(oldAudio => {
-                heightValue += Math.min(oldAudio[i], 1);
-            });
-            heightValue /= oldAudioArray.length;
-            bars[i].style.height = `${heightValue * 100}%`;
-        }
-    } else { 
-        // circular visual
-        circularAudioVisualizer(audioList);
+    switch (selectedAudioVis) {
+        case audioVisualizers.Horizontal:
+            horizontalAudioVisualizer(oldAudioArray);
+            break;
+        case audioVisualizers.Circular:
+            circularAudioVisualizer(audioList);
+            break;
     }
+
+    // if (!circularBar){ // vertical bars visual
+    //     // horizontalAudioVisualizer();
+    //     for (let i = 0; i < bars.length; i++) {
+    //         let heightValue = 0
+    //         oldAudioArray.forEach(oldAudio => {
+    //             heightValue += Math.min(oldAudio[i], 1);
+    //         });
+    //         heightValue /= oldAudioArray.length;
+    //         bars[i].style.height = `${heightValue * 100}%`;
+    //     }
+    // } else { 
+    //     // circular visual
+    //     circularAudioVisualizer(audioList);
+    // }
 }
 
 /* ---------------- SETUP ---------------- */
@@ -53,27 +73,31 @@ function setup(){
     //setup the bars:
     let container = document.createElement('div');
     container.id = "container"
-    container.className = circularBar ? "circular-bar-container" : "container";
     let barsContainer = document.createElement('div');
     barsContainer.id = "barsContainer"
-    barsContainer.className = circularBar ? "circular-bar-container2" : "bars-container";
-
-    // amountOfBars = circularBar ? 20 : 128;
-
-    if (!circularBar) {
-        for (let i = 0; i < amountOfBars; i++) {
-            let bar = document.createElement('div');
-            bar.className = "bar";
-
-            bar.style.height = `${Math.round(Math.random() * 100)}%`
-
-            barsContainer.appendChild(bar);
-            bars[i] = bar;
-        }
-    } else {
-        setupCircularAudioVisualizer(barsContainer);
-    }
     
+    // amountOfBars = circularBar ? 20 : 128;
+    
+    switch (selectedAudioVis) {
+        case audioVisualizers.Horizontal:
+            // horizontalAudioVisualizer(oldAudioArray);
+                container.className = "container";
+                barsContainer.className = "bars-container";
+                for (let i = 0; i < amountOfBars; i++) {
+                    let bar = document.createElement('div');
+                    bar.className = "bar";
+            
+                    bar.style.height = `${Math.round(Math.random() * 100)}%`
+            
+                    barsContainer.appendChild(bar);
+                    bars[i] = bar;
+                }
+            break;
+        case audioVisualizers.Circular:
+            setupCircularAudioVisualizer(container, barsContainer);
+            break;
+    }
+
     container.appendChild(barsContainer)
     document.body.appendChild(container);
 
@@ -133,13 +157,13 @@ let audiovisualizerStyle = {
     circularBarColors: [[255, 0, 0], [100, 0, 0]],
     circularaudiovisualizerOpacity: 100,
 }
-setup();
 
 // Register the propertyListener
 window.wallpaperPropertyListener = {
     applyUserProperties: function (properties) {
         let prop = properties;
         dateTimeProperties(prop);
+        console.log(properties);
 
         if (properties.backgroundimg) { // the background image
             let imageElement = document.getElementById('backgroundImg');
@@ -168,6 +192,7 @@ window.wallpaperPropertyListener = {
         // circular audio visualizer
         circularAudioVisualizerProperties(prop);
 
+        console.log("hey");
         // ---------- Bars ----------
         if (properties.audiobarcolor) { // the color of the audio bars
             $('.bar').css("background-color", `rgb(${toCSSrgb(properties.audiobarcolor.value)})`);
@@ -211,6 +236,8 @@ window.wallpaperPropertyListener = {
         }
     },
 };
+
+setup();
 
 function changeShadow(on) {
     if (on) $('.bar').css("box-shadow", `0px 0px 6px ${audiovisualizerStyle.shadowSpread}px rgb(${audiovisualizerStyle.shadowColor})`);

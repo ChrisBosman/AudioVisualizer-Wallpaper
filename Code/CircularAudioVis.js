@@ -1,6 +1,9 @@
 let timedAudioArray = [];
 
-function setupCircularAudioVisualizer(barsContainer){
+function setupCircularAudioVisualizer(container, barsContainer){
+    container.className = "circular-bar-container";
+    barsContainer.className = "circular-bar-container2";
+
     for (let i = 0; i < AudioVisData.circularbars; i++) {
         for (j = AudioVisData.freqBands-1; j >= 0; j--) {
             let bar = document.createElement('div');
@@ -103,6 +106,7 @@ function circularAudioVisualizerProperties(properties){
 }
 
 function updateCircularAudioVisColors(){
+    if(selectedAudioVis !== audioVisualizers.Circular) return;
     if(audiovisualizerStyle.circularBarRainbow){
         for (let i = 0; i < AudioVisData.circularbars; i++) {
             for (j = AudioVisData.freqBands-1; j >= 0; j--) {
