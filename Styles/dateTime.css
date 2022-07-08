@@ -19,6 +19,8 @@
     width: 65%;
     
     position: absolute;
+
+    z-index: 5;
 }
 
 #day{

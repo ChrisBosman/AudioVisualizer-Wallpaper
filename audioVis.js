@@ -40,12 +40,16 @@ function wallpaperAudioListener(audioArray) {
         case audioVisualizers.Circular:
             circularAudioVisualizer(audioList);
             break;
+        case audioVisualizers.Orbs:
+            orbsAudioUpdate(audioArray);
+            break;
     }
 }
 
 /* ---------------- SETUP ---------------- */
 function setup(){
     //delete the old container
+    stopLoopOrbs();
     $('#container').remove();
     //setup the bars:
     let container = document.createElement('div');
@@ -59,6 +63,9 @@ function setup(){
             break;
         case audioVisualizers.Circular:
             setupCircularAudioVisualizer(container, barsContainer);
+            break;
+        case audioVisualizers.Orbs:
+            setupOrbs(container);
             break;
     }
 
