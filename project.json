@@ -28,16 +28,27 @@
 			},
 			"TextLine_Date" : 
 			{
-				"index" : 21,
-				"order" : 121,
+				"index" : 23,
+				"order" : 123,
 				"text" : "<hr><h4>● DateTime widgetㅤㅤㅤㅤㅤㅤㅤ</h4>",
 				"type" : "text"
+			},
+			"amountofbars" : 
+			{
+				"fraction" : false,
+				"index" : 16,
+				"max" : 128,
+				"min" : 1,
+				"order" : 116,
+				"text" : "Amount of bars",
+				"type" : "slider",
+				"value" : 128
 			},
 			"audiobarcolor" : 
 			{
 				"condition" : "audiovisualizertype.value == 0",
-				"index" : 15,
-				"order" : 115,
+				"index" : 17,
+				"order" : 117,
 				"text" : "Audio bar color",
 				"type" : "color",
 				"value" : "1 1 1"
@@ -124,30 +135,42 @@
 			{
 				"condition" : "audiovisualizertype.value == 0",
 				"fraction" : true,
-				"index" : 16,
+				"index" : 18,
 				"max" : 8,
 				"min" : 0,
-				"order" : 116,
+				"order" : 118,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Bar gap",
 				"type" : "slider",
 				"value" : 7.5
 			},
-			"circularaudiovisualizercolor1" : 
+			"circularamountofbars" : 
 			{
 				"condition" : "audiovisualizertype.value == 1",
-				"index" : 12,
-				"order" : 112,
+				"fraction" : false,
+				"index" : 9,
+				"max" : 64,
+				"min" : 1,
+				"order" : 109,
+				"text" : "Circular Amount of bars",
+				"type" : "slider",
+				"value" : 20
+			},
+			"circularaudiovisualizercolor1" : 
+			{
+				"condition" : "audiovisualizertype.value == 1 && !circularaudiovisualizerrainbow.value",
+				"index" : 13,
+				"order" : 113,
 				"text" : "Circular audiovisualizer color 1",
 				"type" : "color",
 				"value" : "0.34509803921568627 0.7529411764705882 1"
 			},
 			"circularaudiovisualizercolor2" : 
 			{
-				"condition" : "audiovisualizertype.value == 1",
-				"index" : 13,
-				"order" : 113,
+				"condition" : "audiovisualizertype.value == 1 && !circularaudiovisualizerrainbow.value",
+				"index" : 14,
+				"order" : 114,
 				"text" : "Circular audiovisualizer color 2",
 				"type" : "color",
 				"value" : "0.8666666666666667 0.9921568627450981 0.9882352941176471"
@@ -156,10 +179,10 @@
 			{
 				"condition" : "audiovisualizertype.value == 1",
 				"fraction" : false,
-				"index" : 14,
+				"index" : 15,
 				"max" : 100,
 				"min" : 0,
-				"order" : 114,
+				"order" : 115,
 				"text" : "Circular audiovisualizer opacity",
 				"type" : "slider",
 				"value" : 50
@@ -167,8 +190,8 @@
 			"circularaudiovisualizerrainbow" : 
 			{
 				"condition" : "audiovisualizertype.value == 1",
-				"index" : 10,
-				"order" : 110,
+				"index" : 11,
+				"order" : 111,
 				"text" : "Circular audiovisualizer rainbow",
 				"type" : "bool",
 				"value" : false
@@ -177,10 +200,10 @@
 			{
 				"condition" : "audiovisualizertype.value == 1",
 				"fraction" : false,
-				"index" : 9,
+				"index" : 10,
 				"max" : 64,
 				"min" : 0,
-				"order" : 109,
+				"order" : 110,
 				"text" : "Circular audiovisualizer frequency bands",
 				"type" : "slider",
 				"value" : 32
@@ -188,16 +211,16 @@
 			"curved" : 
 			{
 				"condition" : "audiovisualizertype.value == 0",
-				"index" : 17,
-				"order" : 117,
+				"index" : 19,
+				"order" : 119,
 				"text" : "Curved bars",
 				"type" : "bool",
 				"value" : false
 			},
 			"date" : 
 			{
-				"index" : 22,
-				"order" : 122,
+				"index" : 24,
+				"order" : 124,
 				"text" : "Date",
 				"type" : "bool",
 				"value" : true
@@ -206,10 +229,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 23,
+				"index" : 25,
 				"max" : 50,
 				"min" : -50,
-				"order" : 123,
+				"order" : 125,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date offset X",
@@ -220,10 +243,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 24,
+				"index" : 26,
 				"max" : 50,
 				"min" : -50,
-				"order" : 124,
+				"order" : 126,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date offset Y",
@@ -234,10 +257,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 25,
+				"index" : 27,
 				"max" : 100,
 				"min" : 0,
-				"order" : 125,
+				"order" : 127,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date size",
@@ -254,8 +277,8 @@
 			"shadow" : 
 			{
 				"condition" : "audiovisualizertype.value == 0",
-				"index" : 18,
-				"order" : 118,
+				"index" : 20,
+				"order" : 120,
 				"text" : "Shadow",
 				"type" : "bool",
 				"value" : true
@@ -263,8 +286,8 @@
 			"shadowcolor" : 
 			{
 				"condition" : "shadow.value  && audiovisualizertype.value == 0",
-				"index" : 19,
-				"order" : 119,
+				"index" : 21,
+				"order" : 121,
 				"text" : "Shadow color",
 				"type" : "color",
 				"value" : "0.17647058823529413 0.8588235294117647 1"
@@ -273,10 +296,10 @@
 			{
 				"condition" : "shadow.value  && audiovisualizertype.value == 0",
 				"fraction" : true,
-				"index" : 20,
+				"index" : 22,
 				"max" : 5,
 				"min" : 0,
-				"order" : 120,
+				"order" : 122,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Shadow spread",
@@ -286,8 +309,8 @@
 			"subText_cirAudioVis_color" : 
 			{
 				"condition" : "false && audiovisualizertype.value == 1",
-				"index" : 11,
-				"order" : 111,
+				"index" : 12,
+				"order" : 112,
 				"text" : "<img src='https://i.ibb.co/sWVKp5n/color-Divider.png' width='80' height='16'/>",
 				"type" : "text"
 			},
@@ -305,7 +328,7 @@
 	},
 	"preview" : "preview.gif",
 	"tags" : [ "Music" ],
-	"title" : "super duper awsome Audio visualizer!!",
+	"title" : "super duper awsome Audio visualizer!! TEST VERSION",
 	"type" : "web",
 	"version" : 0,
 	"visibility" : "unlisted"

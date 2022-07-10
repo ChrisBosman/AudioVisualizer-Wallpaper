@@ -6,7 +6,7 @@ function setupHorizontalAudioVisualizer(container, barsContainer){
         let bar = document.createElement('div');
         bar.className = "bar";
 
-        bar.style.height = `${Math.round(Math.random() * 100)}%`
+        bar.style.height = `0%`; // ${Math.round(Math.random() * 100)}%`
 
         barsContainer.appendChild(bar);
         bars[i] = bar;
@@ -14,18 +14,46 @@ function setupHorizontalAudioVisualizer(container, barsContainer){
 }
 
 function horizontalAudioVisualizer(oldAudioArray){
+    let audioArray;
+    if (AudioVisData.horizontalBars < 128) {
+        let newAudioArray = [];
+        for (let j = 0; j < oldAudioArray.length; j++) {
+            let newTimeAudioArray = []
+            const audioArray = oldAudioArray[j];
+            for (let i = 0; i < AudioVisData.horizontalBars; i++){
+                let value = 0;
+                let startIndex = Math.round(i * audioArray.length / AudioVisData.horizontalBars);
+                let amount = (startIndex < i * audioArray.length / AudioVisData.horizontalBars ? Math.floor(audioArray.length / AudioVisData.horizontalBars) : Math.ceil(audioArray.length / AudioVisData.horizontalBars))
+                for (let index = 0; index < amount; index++) {
+                    if (index + startIndex < audioArray.length-1) //the last one is somethimes undifined;
+                        value += audioArray[index + startIndex];
+                }
+                newTimeAudioArray[i] = value / amount;
+            }
+            newAudioArray[j] = newTimeAudioArray;
+        }
+        audioArray = newAudioArray;
+    } else {
+        audioArray = oldAudioArray;
+    }
+
+
     for (let i = 0; i < bars.length; i++) {
         let heightValue = 0
-        oldAudioArray.forEach(oldAudio => {
+        audioArray.forEach(oldAudio => {
             heightValue += Math.min(oldAudio[i], 1);
         });
-        heightValue /= oldAudioArray.length;
+        heightValue /= audioArray.length;
         bars[i].style.height = `${heightValue * 100}%`;
     }
 }
 
 function horizontalAudioVisualizerProperties(properties){
     // ---------- Bars ----------
+    if (properties.amountofbars){
+        AudioVisData.horizontalBars = properties.amountofbars.value;
+        setup();
+    }
     if (properties.audiobarcolor) { // the color of the audio bars
         $('.bar').css("background-color", `rgb(${toCSSrgb(properties.audiobarcolor.value)})`);
         audiovisualizerStyle.color =`rgb(${toCSSrgb(properties.audiobarcolor.value)})`

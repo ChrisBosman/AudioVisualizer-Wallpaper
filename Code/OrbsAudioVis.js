@@ -12,9 +12,7 @@ function setupOrbs(container){
     orbsOldAudio = [];
 }
 function stopLoopOrbs(){
-    clearInterval(loop);
-    console.log("stopped");
-    
+    clearInterval(loop);  
 }
 
 function createOrb(sizeMult, colorMult){
