@@ -87,6 +87,10 @@ function circularAudioVisualizerProperties(properties){
         AudioVisData.freqBands = properties.circularvisfreqbands.value;
         setup();
     }
+    if (properties.circularamountofbars){
+        AudioVisData.circularbars = properties.circularamountofbars.value;
+        setup();
+    }
     if (properties.circularaudiovisualizerrainbow){
         audiovisualizerStyle.circularBarRainbow = properties.circularaudiovisualizerrainbow.value;
         updateCircularAudioVisColors();
