@@ -11,9 +11,9 @@ let oldAudioArray = [];
 
 
 let AudioVisData = {
-    rolingAverageAmount: 2, // need to be implemented.
+    rolingAverageAmount: 2,
 
-    horizontalBars: 128, // needs to be implemented
+    horizontalBars: 128,
 
     circularbars: 20,
     freqBands: 32,
