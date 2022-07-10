@@ -1,4 +1,5 @@
 {
+	"contentrating" : "Everyone",
 	"file" : "background.html",
 	"general" : 
 	{
@@ -303,7 +304,9 @@
 		"supportsaudioprocessing" : true
 	},
 	"preview" : "preview.gif",
-	"title" : "AudioVisualizer background",
+	"tags" : [ "Music" ],
+	"title" : "super duper awsome Audio visualizer!!",
 	"type" : "web",
-	"version" : 0
+	"version" : 0,
+	"visibility" : "unlisted"
 }
