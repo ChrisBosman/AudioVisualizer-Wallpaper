@@ -35,12 +35,13 @@
 			},
 			"amountofbars" : 
 			{
+				"condition" : "audiovisualizertype.value == 0",
 				"fraction" : false,
 				"index" : 16,
 				"max" : 128,
 				"min" : 1,
 				"order" : 116,
-				"text" : "Amount of bars",
+				"text" : "Horizontal number of bars",
 				"type" : "slider",
 				"value" : 128
 			},
@@ -153,7 +154,7 @@
 				"max" : 64,
 				"min" : 1,
 				"order" : 109,
-				"text" : "Circular Amount of bars",
+				"text" : "Circular Number of bars bins",
 				"type" : "slider",
 				"value" : 20
 			},
