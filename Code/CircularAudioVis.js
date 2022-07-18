@@ -47,9 +47,9 @@ function circularAudioVisualizer(audioList){//, bars, oldAudioArray, AudioVisDat
     }
 
     // circular visual ---------    
-    // remember last audio's, but then for other purpose
+    // remember last audio's
     timedAudioArray.push(audioList);
-    if (timedAudioArray.length > AudioVisData.circularbars) {
+    if (timedAudioArray.length > AudioVisData.circularbars * AudioVisData.timeMult) {
         timedAudioArray.shift();
     }
 
@@ -65,9 +65,9 @@ function circularAudioVisualizer(audioList){//, bars, oldAudioArray, AudioVisDat
             heightValue *= (parseFloat(audiovisualizerStyle.width.slice(0, -1)) - 15 ) / 100;
         }
         for(let j = 0; j < AudioVisData.circularbars; j++){
-            if (AudioVisData.timedAudioVis && timedAudioArray.length > j){
+            if (AudioVisData.timedAudioVis && timedAudioArray.length > j * AudioVisData.timeMult){
                 heightValue = 0;
-                heightValue = timedAudioArray[j][i];
+                heightValue = timedAudioArray[Math.round(j * AudioVisData.timeMult)][i];
                 heightValue = Math.sqrt(heightValue);
                 // heightValue /= 2;
                 heightValue *= (parseFloat(audiovisualizerStyle.width.slice(0, -1)) - 15 ) / 100;
@@ -90,6 +90,9 @@ function circularAudioVisualizerProperties(properties){
     if (properties.circularamountofbars){
         AudioVisData.circularbars = properties.circularamountofbars.value;
         setup();
+    }
+    if (properties.timemult){
+        AudioVisData.timeMult = properties.timemult.value;
     }
     if (properties.circularaudiovisualizerrainbow){
         audiovisualizerStyle.circularBarRainbow = properties.circularaudiovisualizerrainbow.value;

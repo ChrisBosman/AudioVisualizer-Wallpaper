@@ -40,7 +40,7 @@ html, body {
     display: flex;
     margin: auto;
 
-    /* CHANGE THIS TO CHANGE THE SIZE OF THE BARS*/
+    /* Change this to change the size of the bars */
     height: 40%;
     width: 80%;
     gap: 2px;
@@ -77,4 +77,15 @@ html, body {
     height: 2px;
     background-color: red;
     z-index: -1;
+}
+
+/* ------------ STAR (Chris') Audiovisualizer ------------ */
+
+.starVisualCanvas{
+    height: 100vh;
+    width: 100vw;
+    opacity: 0;
+    position: absolute;
+    transition: opacity 2s, left 250ms, top 250ms;
+    transition-delay: 250ms opacity;
 }
