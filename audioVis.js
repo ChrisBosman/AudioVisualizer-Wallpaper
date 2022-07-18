@@ -18,6 +18,7 @@ let AudioVisData = {
     circularbars: 20,
     freqBands: 32,
     timedAudioVis: true,
+    timeMult: 1,
 }
 
 function wallpaperAudioListener(audioArray) {

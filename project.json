@@ -28,8 +28,8 @@
 			},
 			"TextLine_Date" : 
 			{
-				"index" : 23,
-				"order" : 123,
+				"index" : 24,
+				"order" : 124,
 				"text" : "<hr><h4>● DateTime widgetㅤㅤㅤㅤㅤㅤㅤ</h4>",
 				"type" : "text"
 			},
@@ -37,10 +37,10 @@
 			{
 				"condition" : "audiovisualizertype.value == 0",
 				"fraction" : false,
-				"index" : 16,
+				"index" : 17,
 				"max" : 128,
 				"min" : 1,
-				"order" : 116,
+				"order" : 117,
 				"text" : "Horizontal number of bars",
 				"type" : "slider",
 				"value" : 128
@@ -48,8 +48,8 @@
 			"audiobarcolor" : 
 			{
 				"condition" : "audiovisualizertype.value == 0",
-				"index" : 17,
-				"order" : 117,
+				"index" : 18,
+				"order" : 118,
 				"text" : "Audio bar color",
 				"type" : "color",
 				"value" : "1 1 1"
@@ -136,10 +136,10 @@
 			{
 				"condition" : "audiovisualizertype.value == 0",
 				"fraction" : true,
-				"index" : 18,
+				"index" : 19,
 				"max" : 8,
 				"min" : 0,
-				"order" : 118,
+				"order" : 119,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Bar gap",
@@ -154,15 +154,15 @@
 				"max" : 64,
 				"min" : 1,
 				"order" : 109,
-				"text" : "Circular Number of bars bins",
+				"text" : "<div title='with this setting you can change the amount of audio bins the visualizer has. A bin consists of multiple frequency lines, this amount can also be changed by the frequency bands setting'>Circular Number of bars bins <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
 				"type" : "slider",
 				"value" : 20
 			},
 			"circularaudiovisualizercolor1" : 
 			{
 				"condition" : "audiovisualizertype.value == 1 && !circularaudiovisualizerrainbow.value",
-				"index" : 13,
-				"order" : 113,
+				"index" : 14,
+				"order" : 114,
 				"text" : "Circular audiovisualizer color 1",
 				"type" : "color",
 				"value" : "0.34509803921568627 0.7529411764705882 1"
@@ -170,8 +170,8 @@
 			"circularaudiovisualizercolor2" : 
 			{
 				"condition" : "audiovisualizertype.value == 1 && !circularaudiovisualizerrainbow.value",
-				"index" : 14,
-				"order" : 114,
+				"index" : 15,
+				"order" : 115,
 				"text" : "Circular audiovisualizer color 2",
 				"type" : "color",
 				"value" : "0.8666666666666667 0.9921568627450981 0.9882352941176471"
@@ -180,10 +180,10 @@
 			{
 				"condition" : "audiovisualizertype.value == 1",
 				"fraction" : false,
-				"index" : 15,
+				"index" : 16,
 				"max" : 100,
 				"min" : 0,
-				"order" : 115,
+				"order" : 116,
 				"text" : "Circular audiovisualizer opacity",
 				"type" : "slider",
 				"value" : 50
@@ -191,8 +191,8 @@
 			"circularaudiovisualizerrainbow" : 
 			{
 				"condition" : "audiovisualizertype.value == 1",
-				"index" : 11,
-				"order" : 111,
+				"index" : 13,
+				"order" : 113,
 				"text" : "Circular audiovisualizer rainbow",
 				"type" : "bool",
 				"value" : false
@@ -205,23 +205,23 @@
 				"max" : 64,
 				"min" : 0,
 				"order" : 110,
-				"text" : "Circular audiovisualizer frequency bands",
+				"text" : "<div title='The amount of lines in used in a bin to visualize the audio, a higher value means more precise visualization but also more lines.'>Circular audiovisualizer frequency bands <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
 				"type" : "slider",
 				"value" : 32
 			},
 			"curved" : 
 			{
 				"condition" : "audiovisualizertype.value == 0",
-				"index" : 19,
-				"order" : 119,
+				"index" : 20,
+				"order" : 120,
 				"text" : "Curved bars",
 				"type" : "bool",
 				"value" : false
 			},
 			"date" : 
 			{
-				"index" : 24,
-				"order" : 124,
+				"index" : 25,
+				"order" : 125,
 				"text" : "Date",
 				"type" : "bool",
 				"value" : true
@@ -230,10 +230,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 25,
+				"index" : 26,
 				"max" : 50,
 				"min" : -50,
-				"order" : 125,
+				"order" : 126,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date offset X",
@@ -244,10 +244,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 26,
+				"index" : 27,
 				"max" : 50,
 				"min" : -50,
-				"order" : 126,
+				"order" : 127,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date offset Y",
@@ -258,10 +258,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 27,
+				"index" : 28,
 				"max" : 100,
 				"min" : 0,
-				"order" : 127,
+				"order" : 128,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date size",
@@ -278,8 +278,8 @@
 			"shadow" : 
 			{
 				"condition" : "audiovisualizertype.value == 0",
-				"index" : 20,
-				"order" : 120,
+				"index" : 21,
+				"order" : 121,
 				"text" : "Shadow",
 				"type" : "bool",
 				"value" : true
@@ -287,8 +287,8 @@
 			"shadowcolor" : 
 			{
 				"condition" : "shadow.value  && audiovisualizertype.value == 0",
-				"index" : 21,
-				"order" : 121,
+				"index" : 22,
+				"order" : 122,
 				"text" : "Shadow color",
 				"type" : "color",
 				"value" : "0.17647058823529413 0.8588235294117647 1"
@@ -297,10 +297,10 @@
 			{
 				"condition" : "shadow.value  && audiovisualizertype.value == 0",
 				"fraction" : true,
-				"index" : 22,
+				"index" : 23,
 				"max" : 5,
 				"min" : 0,
-				"order" : 122,
+				"order" : 123,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Shadow spread",
@@ -320,9 +320,23 @@
 				"condition" : "audiovisualizertype.value == 1",
 				"index" : 8,
 				"order" : 108,
-				"text" : "Time based circular audiovisualizer",
+				"text" : "<div title='When enabled changes in sound will propagate like a wave trough the audio bins'>Time based circular audiovisualizer <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
 				"type" : "bool",
 				"value" : true
+			},
+			"timemult" : 
+			{
+				"condition" : "audiovisualizertype.value == 1",
+				"fraction" : true,
+				"index" : 11,
+				"max" : 3,
+				"min" : 1,
+				"order" : 111,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Time duration multiplier",
+				"type" : "slider",
+				"value" : 1
 			}
 		},
 		"supportsaudioprocessing" : true
