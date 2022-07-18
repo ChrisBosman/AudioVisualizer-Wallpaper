@@ -103,6 +103,10 @@
 					{
 						"label" : "Orbs",
 						"value" : "2"
+					},
+					{
+						"label" : "Star (Chris')",
+						"value" : "3"
 					}
 				],
 				"order" : 104,

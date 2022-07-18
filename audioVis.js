@@ -3,6 +3,7 @@ let audioVisualizers = {
     Horizontal: 0,
     Circular: 1,
     Orbs: 2,
+    Star: 3,
 }
 let selectedAudioVis = audioVisualizers.Horizontal;
 
@@ -44,6 +45,9 @@ function wallpaperAudioListener(audioArray) {
         case audioVisualizers.Orbs:
             orbsAudioUpdate(audioArray);
             break;
+        case audioVisualizers.Star:
+            starAudioVisAudioListener(audioArray);
+            break;
     }
 }
 
@@ -51,7 +55,9 @@ function wallpaperAudioListener(audioArray) {
 function setup(){
     //delete the old container
     stopLoopOrbs();
+    terminateStarAudioVis();
     $('#container').remove();
+    
     //setup the bars:
     let container = document.createElement('div');
     container.id = "container"
@@ -67,6 +73,9 @@ function setup(){
             break;
         case audioVisualizers.Orbs:
             setupOrbs(container);
+            break;
+        case audioVisualizers.Star:
+            setupStarAudioVis();
             break;
     }
 
@@ -90,6 +99,9 @@ function setup(){
         $('.bar').css("border", `solid rgb(${audiovisualizerStyle.borderColor}) ${audiovisualizerStyle.borderSize}px`);
     if (audiovisualizerStyle.shadowActive)
         $('.bar').css("box-shadow", `0px 0px 6px ${audiovisualizerStyle.shadowSpread}px rgb(${audiovisualizerStyle.shadowColor})`);
+
+    // date time widget
+    $('.timeCenterContainer').css("opacity", "100");
 }
 
 // Register the audio listener provided by Wallpaper Engine.
@@ -137,7 +149,9 @@ window.wallpaperPropertyListener = {
             else if (properties.audiovisualizertype.value == 1)                
                 selectedAudioVis = audioVisualizers.Circular;
             else if (properties.audiovisualizertype.value == 2)
-                selectedAudioVis = audioVisualizers.Orbs;   
+                selectedAudioVis = audioVisualizers.Orbs;
+            else if (properties.audiovisualizertype.value == 3)
+                selectedAudioVis = audioVisualizers.Star;
             setup();
         }
         if (properties.audiovisualizer) {
