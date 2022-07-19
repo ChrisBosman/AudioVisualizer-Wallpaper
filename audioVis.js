@@ -139,6 +139,7 @@ window.wallpaperPropertyListener = {
         if (properties.backgroundimg) { // the background image
             let imageElement = document.getElementById('backgroundImg');
             imageElement.src = 'file:///' + properties.backgroundimg.value;
+            imageElement.style.opacity = 100;
         }
         // ------------------------------ AudioVis ------------------------------\\
         if (properties.audiovisualizertype){
