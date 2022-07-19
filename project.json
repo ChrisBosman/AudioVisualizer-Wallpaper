@@ -28,8 +28,8 @@
 			},
 			"TextLine_Date" : 
 			{
-				"index" : 24,
-				"order" : 124,
+				"index" : 35,
+				"order" : 135,
 				"text" : "<hr><h4>● DateTime widgetㅤㅤㅤㅤㅤㅤㅤ</h4>",
 				"type" : "text"
 			},
@@ -56,7 +56,7 @@
 			},
 			"audiovisualizeroffsetx" : 
 			{
-				"condition" : "audiovisualizertype.value >= 0 && audiovisualizertype.value < 2",
+				"condition" : "audiovisualizertype.value >= 0 && audiovisualizertype.value <= 2",
 				"fraction" : true,
 				"index" : 6,
 				"max" : 50,
@@ -70,7 +70,7 @@
 			},
 			"audiovisualizeroffsety" : 
 			{
-				"condition" : "audiovisualizertype.value >= 0 && audiovisualizertype.value < 2",
+				"condition" : "audiovisualizertype.value >= 0 && audiovisualizertype.value <= 2",
 				"fraction" : true,
 				"index" : 7,
 				"max" : 50,
@@ -101,11 +101,11 @@
 						"value" : "1"
 					},
 					{
-						"label" : "Orbs",
+						"label" : "Star (Chris')",
 						"value" : "2"
 					},
 					{
-						"label" : "Star (Chris')",
+						"label" : "Orbs",
 						"value" : "3"
 					}
 				],
@@ -224,8 +224,8 @@
 			},
 			"date" : 
 			{
-				"index" : 25,
-				"order" : 125,
+				"index" : 36,
+				"order" : 136,
 				"text" : "Date",
 				"type" : "bool",
 				"value" : true
@@ -234,10 +234,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 26,
+				"index" : 37,
 				"max" : 50,
 				"min" : -50,
-				"order" : 126,
+				"order" : 137,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date offset X",
@@ -248,10 +248,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 27,
+				"index" : 38,
 				"max" : 50,
 				"min" : -50,
-				"order" : 127,
+				"order" : 138,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date offset Y",
@@ -262,10 +262,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 28,
+				"index" : 39,
 				"max" : 100,
 				"min" : 0,
-				"order" : 128,
+				"order" : 139,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date size",
@@ -311,6 +311,58 @@
 				"type" : "slider",
 				"value" : 1
 			},
+			"staraudiopresets" : 
+			{
+				"condition" : "audiovisualizertype.value == 2",
+				"index" : 24,
+				"options" : 
+				[
+					{
+						"label" : "Custom",
+						"value" : "0"
+					},
+					{
+						"label" : "Default",
+						"value" : "Default"
+					},
+					{
+						"label" : "Full",
+						"value" : "Full"
+					},
+					{
+						"label" : "Star",
+						"value" : "Star"
+					},
+					{
+						"label" : "Star 2",
+						"value" : "Star2"
+					},
+					{
+						"label" : "Relaxed",
+						"value" : "Relaxed"
+					},
+					{
+						"label" : "Relaxed 2",
+						"value" : "Relaxed2"
+					},
+					{
+						"label" : "Comic Explosion",
+						"value" : "ComicExplosion"
+					}
+				],
+				"order" : 124,
+				"text" : "presets",
+				"type" : "combo",
+				"value" : "Default"
+			},
+			"starvisCustomTxt" : 
+			{
+				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
+				"index" : 25,
+				"order" : 125,
+				"text" : "<b><ins>Advance settings</ins></b>ㅤ<img src='https://i.ibb.co/YfcqsTw/line.png' width='50%' height='2'/>",
+				"type" : "text"
+			},
 			"subText_cirAudioVis_color" : 
 			{
 				"condition" : "false && audiovisualizertype.value == 1",
@@ -318,6 +370,123 @@
 				"order" : 112,
 				"text" : "<img src='https://i.ibb.co/sWVKp5n/color-Divider.png' width='80' height='16'/>",
 				"type" : "text"
+			},
+			"svfps" : 
+			{
+				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
+				"fraction" : false,
+				"index" : 28,
+				"max" : 60,
+				"min" : 0,
+				"order" : 128,
+				"text" : "fps",
+				"type" : "slider",
+				"value" : 0
+			},
+			"svinnerradius" : 
+			{
+				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
+				"fraction" : false,
+				"index" : 30,
+				"max" : 200,
+				"min" : 0,
+				"order" : 130,
+				"text" : "Inner radius",
+				"type" : "slider",
+				"value" : 20
+			},
+			"svlinewidth" : 
+			{
+				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
+				"fraction" : true,
+				"index" : 34,
+				"max" : 50,
+				"min" : 0,
+				"order" : 134,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Line width",
+				"type" : "slider",
+				"value" : 1
+			},
+			"svmagintude" : 
+			{
+				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
+				"fraction" : false,
+				"index" : 31,
+				"max" : 600,
+				"min" : 50,
+				"order" : 131,
+				"text" : "Magnitude",
+				"type" : "slider",
+				"value" : 180
+			},
+			"svplottimedimension" : 
+			{
+				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
+				"index" : 33,
+				"order" : 133,
+				"text" : "Plot time dimension",
+				"type" : "bool",
+				"value" : true
+			},
+			"svpoints" : 
+			{
+				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
+				"fraction" : false,
+				"index" : 27,
+				"max" : 75,
+				"min" : 1,
+				"order" : 127,
+				"text" : "points",
+				"type" : "slider",
+				"value" : 19
+			},
+			"svpolygramk" : 
+			{
+				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
+				"fraction" : true,
+				"index" : 32,
+				"max" : 10,
+				"min" : 0,
+				"order" : 132,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Polygram k",
+				"type" : "slider",
+				"value" : 1
+			},
+			"svrunningaveragefiltersize" : 
+			{
+				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
+				"fraction" : false,
+				"index" : 29,
+				"max" : 25,
+				"min" : 0,
+				"order" : 129,
+				"text" : "Running average filter size",
+				"type" : "slider",
+				"value" : 9
+			},
+			"svshapekind" : 
+			{
+				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
+				"index" : 26,
+				"options" : 
+				[
+					{
+						"label" : "Chaotic",
+						"value" : "0"
+					},
+					{
+						"label" : "Polygram",
+						"value" : "1"
+					}
+				],
+				"order" : 126,
+				"text" : "ShapeKind",
+				"type" : "combo",
+				"value" : "0"
 			},
 			"timebasedcircularaudiovisualizer" : 
 			{
