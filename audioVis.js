@@ -2,8 +2,8 @@ let audioVisualizers = {
     None: -1,
     Horizontal: 0,
     Circular: 1,
-    Orbs: 2,
-    Star: 3,
+    Star: 2,
+    Orbs: 3,
 }
 let selectedAudioVis = audioVisualizers.Horizontal;
 
@@ -139,6 +139,7 @@ window.wallpaperPropertyListener = {
         if (properties.backgroundimg) { // the background image
             let imageElement = document.getElementById('backgroundImg');
             imageElement.src = 'file:///' + properties.backgroundimg.value;
+            imageElement.style.opacity = 100;
         }
         // ------------------------------ AudioVis ------------------------------\\
         if (properties.audiovisualizertype){
@@ -149,9 +150,9 @@ window.wallpaperPropertyListener = {
             else if (properties.audiovisualizertype.value == 1)                
                 selectedAudioVis = audioVisualizers.Circular;
             else if (properties.audiovisualizertype.value == 2)
-                selectedAudioVis = audioVisualizers.Orbs;
-            else if (properties.audiovisualizertype.value == 3)
                 selectedAudioVis = audioVisualizers.Star;
+            else if (properties.audiovisualizertype.value == 3)
+                selectedAudioVis = audioVisualizers.Orbs;
             setup();
         }
         if (properties.audiovisualizer) {
@@ -171,7 +172,8 @@ window.wallpaperPropertyListener = {
         }
         // circular audio visualizer
         circularAudioVisualizerProperties(prop);
-        horizontalAudioVisualizerProperties(prop);       
+        horizontalAudioVisualizerProperties(prop);
+        starAudioVisProperties(prop);       
     },
 };
 

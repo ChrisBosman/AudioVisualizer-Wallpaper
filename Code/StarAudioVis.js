@@ -4,6 +4,7 @@
 // start it via :        setupStarAudioVis()
 // update the audio via: starAudioVisAudioListener(audioArray (unedited**)) 
 // terminate it via:     terminateStarAudioVis()
+// properties:           starAudioVisProperties(properties)
 
 // TODO
 // implement presets via Object.keys(obj). so it doesn't override properties it wouldn't have changed, like position
@@ -13,7 +14,7 @@ const ShapeKinds = {
     Polygram: 1,
 }
 const Presets = {
-    Default: {
+    "Default": {
         enabled: true,
     
         xOffset: 0.5,
@@ -30,7 +31,7 @@ const Presets = {
         plotTime : true,  // If the time axis should be ploted
         lineWidth : 1,
     },
-    Star: {
+    "Star": {
         enabled: true,
     
         xOffset: 0.5,
@@ -47,6 +48,110 @@ const Presets = {
         plotTime : true,  // If the time axis should be ploted
         lineWidth : 1,
     },
+    "Full": {
+        enabled: true,
+    
+        xOffset: 0.5,
+        yOffset: 0.65,
+    
+        shapeKind : ShapeKinds.Polygram,
+        points: 17,  // originaly shape
+        fps : 0,
+        runningaveragefiltersize: 5,
+    
+        innerRadius: 100,
+        magintude: 210,  // the maximum ofset in px org: 'max offset'
+        polygram_k : 8,
+        plotTime : true,  // If the time axis should be ploted
+        lineWidth : 2,
+    },
+    "Star2": {
+        enabled: true,
+    
+        xOffset: 0.5,
+        yOffset: 0.65,
+    
+        shapeKind : ShapeKinds.Polygram,
+        points: 8,  // originaly shape
+        fps : 0,
+        runningaveragefiltersize: 5,
+    
+        innerRadius: 36,
+        magintude: 300,  // the maximum ofset in px org: 'max offset'
+        polygram_k : 3,
+        plotTime : true,  // If the time axis should be ploted
+        lineWidth : 1.5,
+    },
+    "Relaxed": {
+        enabled: true,
+    
+        xOffset: 0.5,
+        yOffset: 0.65,
+    
+        shapeKind : ShapeKinds.Polygram,
+        points: 25,
+        fps : 0,
+        runningaveragefiltersize: 15,
+    
+        innerRadius: 70,
+        magintude: 210,
+        polygram_k : 8,
+        plotTime : true,
+        lineWidth : 1.5,
+    },
+    "Relaxed2": {
+        enabled: true,
+    
+        xOffset: 0.5,
+        yOffset: 0.65,
+    
+        shapeKind : ShapeKinds.Chaotic,
+        points: 59,
+        fps : 0,
+        runningaveragefiltersize: 15,
+    
+        innerRadius: 51,
+        magintude: 450,
+        polygram_k : 0,
+        plotTime : true,
+        lineWidth : 6,
+    },
+    "ComicExplosion": {
+        enabled: true,
+    
+        xOffset: 0.5,
+        yOffset: 0.65,
+    
+        shapeKind : ShapeKinds.Chaotic,
+        points: 24,
+        fps : 0,
+        runningaveragefiltersize: 11,
+    
+        innerRadius: 0,
+        magintude: 420,
+        polygram_k : 0,
+        plotTime : true,
+        lineWidth : 28.8,
+    },
+}
+
+let customModeEnabled = false;
+let starVisCustomSettings = {
+    enabled: true,
+    
+    xOffset: 0.5,
+    yOffset: 0.65,
+
+    shapeKind : ShapeKinds.Chaotic,
+    points: 19,  // originaly shape
+    fps : 0,
+    runningaveragefiltersize: 9,
+
+    innerRadius: 20,
+    magintude: 180,  // the maximum ofset in px org: 'max offset'
+    polygram_k : 1,
+    plotTime : true,  // If the time axis should be ploted
+    lineWidth : 1,
 }
 
 //The class for each of the frequencies
@@ -214,7 +319,6 @@ function starAudioVisAudioListener(audioArray){
     if (maxValue <= 0.00001 && !paused){
         paused = true;
         $('#starVisRenderCanvas').css('opacity', "0");
-        console.log(Math.max.apply(Math, audioArray) );
     } else if (maxValue >= 0.00001 && paused){
         paused = false;
         $('#starVisRenderCanvas').css('opacity', "100");
@@ -283,46 +387,103 @@ function updateSettings(){
 // TODO fix this
 // Set up the properties function
 function starAudioVisProperties(properties) {
-    if (properties.shape)
+    
+    //presets
+    if (properties.staraudiopresets){
+        if (properties.staraudiopresets.value == 0){ //custom
+            starAudioVisSettings = starVisCustomSettings;
+            customModeEnabled = true;
+        } else {
+            starAudioVisSettings = Presets[properties.staraudiopresets.value];
+            customModeEnabled = false;
+            // console.log(properties.staraudiopresets.value);
+            // console.log(Presets[properties.staraudiopresets.value]);
+            // console.log(starAudioVisSettings);
+            // console.log(Presets);
+        }
+        updateSettings();
+    }
+
+    // offsets
+    if (properties.audiovisualizeroffsetx) {
+        starAudioVisSettings.xOffset = properties.audiovisualizeroffsetx.value / 100.0 + 0.5;
+        starVisCustomSettings.xOffset = properties.audiovisualizeroffsetx.value / 100.0 + 0.5;
+        
         for(let i=0; i < balls.length; i++)
-            balls[i].changeMaxPoints(properties.shape.value);
-    if (properties.fps)
-        starAudioVisSettings.fps = properties.fps.value;
-    if (properties.innerradius)
+            balls[i].changeXOffset(properties.audiovisualizeroffsetx.value / 100.0 + 0.5);
+    }
+    if (properties.audiovisualizeroffsety) {
+        starAudioVisSettings.yOffset = properties.audiovisualizeroffsety.value / 100.0 + 0.5;
+        starVisCustomSettings.yOffset = properties.audiovisualizeroffsety.value / 100.0 + 0.5;
+
         for(let i=0; i < balls.length; i++)
-            balls[i].changeInnerRadius(properties.innerradius.value);
-    if (properties.maxoffset)
-        for(let i=0; i < balls.length; i++)
-            balls[i].changeMaxOffset(properties.maxoffset.value);
-    if (properties.kindofshape){
-        if (properties.kindofshape.value == 0) {
-            starAudioVisSettings.shapeKind = ShapeKinds.Chaotic
-        } else if (properties.kindofshape.value == 1) {
-            starAudioVisSettings.shapeKind = ShapeKinds.Polygram
+            balls[i].changeYOffset(properties.audiovisualizeroffsety.value / 100.0 + 0.5);
+    }
+
+    // advance settings
+    if (properties.svshapekind){
+        if (properties.svshapekind.value == 0) {
+            if (customModeEnabled)
+                starAudioVisSettings.shapeKind = ShapeKinds.Chaotic;
+            starVisCustomSettings.shapeKind = ShapeKinds.Chaotic;
+        } else if (properties.svshapekind.value == 1) {
+            if (customModeEnabled)
+                starAudioVisSettings.shapeKind = ShapeKinds.Polygram;
+            starVisCustomSettings.shapeKind = ShapeKinds.Polygram;
         }
     }
-    if (properties.runningaveragefiltersize)
-        for(let i=0; i < balls.length; i++)
-            balls[i].changeRunningAverageFilter(properties.runningaveragefiltersize.value);
-    if (properties.backgroundimage){
-        document.body.style.backgroundImage = "url('file:///" + properties.backgroundimage.value + "')";
+    if (properties.svpoints){
+        if (customModeEnabled){
+            starAudioVisSettings.points = properties.svpoints.value;
+            for(let i=0; i < balls.length; i++)
+                balls[i].changeMaxPoints(properties.svpoints.value);
+        }
+        starVisCustomSettings.points = properties.svpoints.value;
+        
     }
-    if (properties.polygram_k)
-        starAudioVisSettings.polygram_k = properties.polygram_k.value;
-    if (properties.xOffset)
-        for(let i=0; i < balls.length; i++)
-            balls[i].changeXOffset(properties.xOffset.value);
-    if (properties.yOffset)
-        for(let i=0; i < balls.length; i++)
-            balls[i].changeYOffset(properties.yOffset.value);
-    if (properties.plottime)
-        starAudioVisSettings.plotTime = properties.plottime.value;
-    if (properties.linewidth){
-        // canvas = document.getElementById("starVisRenderCanvas");
-        // context = canvas.context;
-        // context.lineWidth = properties.linewidth.value;
-        starAudioVisSettings.lineWidth = properties.linewidth.value;
+    if (properties.vsfps){
+        if (customModeEnabled)
+            starAudioVisSettings.fps = properties.vsfps.value;
+        starVisCustomSettings.fps = properties.vsfps.value;
     }
-};
-
-// draw();
+    if (properties.svrunningaveragefiltersize){
+        if (customModeEnabled){
+            starAudioVisSettings.runningaveragefiltersize = properties.svrunningaveragefiltersize.value;
+            for(let i=0; i < balls.length; i++)
+                balls[i].changeRunningAverageFilter(properties.svrunningaveragefiltersize.value);
+        }
+        starVisCustomSettings.runningaveragefiltersize = properties.svrunningaveragefiltersize.value;
+    }
+    if (properties.svinnerradius){
+        if (customModeEnabled){
+            starAudioVisSettings.innerRadius = properties.svinnerradius.value;
+        
+            for(let i=0; i < balls.length; i++)
+                balls[i].changeInnerRadius(properties.svinnerradius.value);
+        }
+        starVisCustomSettings.innerRadius = properties.svinnerradius.value;
+    }
+    if (properties.svmagintude){
+        if (customModeEnabled){
+            starAudioVisSettings.magintude = properties.svmagintude.value;
+            for(let i=0; i < balls.length; i++)
+                balls[i].changeMaxOffset(properties.svmagintude.value);
+        }
+        starVisCustomSettings.magintude = properties.svmagintude.value;
+    }
+    if (properties.svpolygramk){
+        if (customModeEnabled)
+            starAudioVisSettings.polygram_k = properties.svpolygramk.value;
+        starVisCustomSettings.polygram_k = properties.svpolygramk.value;
+    }
+    if (properties.svplottimedimension){
+        if (customModeEnabled)
+            starAudioVisSettings.plotTime = properties.svplottimedimension.value;
+        starVisCustomSettings.plotTime = properties.svplottimedimension.value;
+    }
+    if (properties.svlinewidth){
+        if (customModeEnabled)
+            starAudioVisSettings.lineWidth = properties.svlinewidth.value;
+        starVisCustomSettings.lineWidth = properties.svlinewidth.value;
+    }
+}
