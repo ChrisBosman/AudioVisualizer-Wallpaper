@@ -353,7 +353,7 @@
 				"order" : 124,
 				"text" : "presets",
 				"type" : "combo",
-				"value" : "Default"
+				"value" : "Relaxed"
 			},
 			"starvisCustomTxt" : 
 			{
@@ -379,7 +379,7 @@
 				"max" : 60,
 				"min" : 0,
 				"order" : 128,
-				"text" : "fps",
+				"text" : "<div title='This setting offers a way to limit the fps of the visualizer. When left at 0 it runs each animation cycle of the background (which is determind by your standart pc settings, probably 60 or 30fps).'>fps <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
 				"type" : "slider",
 				"value" : 0
 			},
@@ -417,7 +417,7 @@
 				"max" : 600,
 				"min" : 50,
 				"order" : 131,
-				"text" : "Magnitude",
+				"text" : "<div title='How much the audio signal is amplified. It also gives the maximum offset in pixels, from the inner radius.'>Magnitude <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
 				"type" : "slider",
 				"value" : 180
 			},
@@ -426,7 +426,7 @@
 				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
 				"index" : 33,
 				"order" : 133,
-				"text" : "Plot time dimension",
+				"text" : "<div title='If time should also be used in the visualization, just like the time based audiovisualizer part of the circular audiovisualizer.'>Plot time dimension <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
 				"type" : "bool",
 				"value" : true
 			},
@@ -452,7 +452,7 @@
 				"order" : 132,
 				"precision" : 2,
 				"step" : 0.1,
-				"text" : "Polygram k",
+				"text" : "<div title='Only works when the shape kind has been set to Polygram.'>Polygram k <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
 				"type" : "slider",
 				"value" : 1
 			},
@@ -464,7 +464,7 @@
 				"max" : 25,
 				"min" : 0,
 				"order" : 129,
-				"text" : "Running average filter size",
+				"text" : "<div title='This determins how far the average of each frequency goes. ie lower value more responsive but also more spikes. higher value smoother but also more delayed/less impact.'>Running average filter size <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
 				"type" : "slider",
 				"value" : 9
 			},
@@ -496,7 +496,7 @@
 				"text" : "<div title='When enabled changes in sound will propagate like a wave trough the audio bins'>Time based circular audiovisualizer <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
 				"type" : "bool",
 				"value" : true
-			},
+			}, 
 			"timemult" : 
 			{
 				"condition" : "audiovisualizertype.value == 1",
