@@ -6,6 +6,8 @@
     align-items: center;
     position: absolute;
     top: -25%;
+    opacity: 0;
+    transition: opacity 1500ms 500ms, left 250ms, top 250ms;
 }
 
 .dateTimeContainer{

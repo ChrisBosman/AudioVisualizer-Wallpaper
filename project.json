@@ -28,34 +28,35 @@
 			},
 			"TextLine_Date" : 
 			{
-				"index" : 23,
-				"order" : 123,
+				"index" : 35,
+				"order" : 135,
 				"text" : "<hr><h4>● DateTime widgetㅤㅤㅤㅤㅤㅤㅤ</h4>",
 				"type" : "text"
 			},
 			"amountofbars" : 
 			{
+				"condition" : "audiovisualizertype.value == 0",
 				"fraction" : false,
-				"index" : 16,
+				"index" : 17,
 				"max" : 128,
 				"min" : 1,
-				"order" : 116,
-				"text" : "Amount of bars",
+				"order" : 117,
+				"text" : "Horizontal number of bars",
 				"type" : "slider",
 				"value" : 128
 			},
 			"audiobarcolor" : 
 			{
 				"condition" : "audiovisualizertype.value == 0",
-				"index" : 17,
-				"order" : 117,
+				"index" : 18,
+				"order" : 118,
 				"text" : "Audio bar color",
 				"type" : "color",
 				"value" : "1 1 1"
 			},
 			"audiovisualizeroffsetx" : 
 			{
-				"condition" : "audiovisualizertype.value >= 0 && audiovisualizertype.value < 2",
+				"condition" : "audiovisualizertype.value >= 0 && audiovisualizertype.value <= 2",
 				"fraction" : true,
 				"index" : 6,
 				"max" : 50,
@@ -69,7 +70,7 @@
 			},
 			"audiovisualizeroffsety" : 
 			{
-				"condition" : "audiovisualizertype.value >= 0 && audiovisualizertype.value < 2",
+				"condition" : "audiovisualizertype.value >= 0 && audiovisualizertype.value <= 2",
 				"fraction" : true,
 				"index" : 7,
 				"max" : 50,
@@ -100,8 +101,12 @@
 						"value" : "1"
 					},
 					{
-						"label" : "Orbs",
+						"label" : "Star (Chris')",
 						"value" : "2"
+					},
+					{
+						"label" : "Orbs",
+						"value" : "3"
 					}
 				],
 				"order" : 104,
@@ -135,10 +140,10 @@
 			{
 				"condition" : "audiovisualizertype.value == 0",
 				"fraction" : true,
-				"index" : 18,
+				"index" : 19,
 				"max" : 8,
 				"min" : 0,
-				"order" : 118,
+				"order" : 119,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Bar gap",
@@ -153,15 +158,15 @@
 				"max" : 64,
 				"min" : 1,
 				"order" : 109,
-				"text" : "Circular Amount of bars",
+				"text" : "<div title='with this setting you can change the amount of audio bins the visualizer has. A bin consists of multiple frequency lines, this amount can also be changed by the frequency bands setting'>Circular Number of bars bins <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
 				"type" : "slider",
 				"value" : 20
 			},
 			"circularaudiovisualizercolor1" : 
 			{
 				"condition" : "audiovisualizertype.value == 1 && !circularaudiovisualizerrainbow.value",
-				"index" : 13,
-				"order" : 113,
+				"index" : 14,
+				"order" : 114,
 				"text" : "Circular audiovisualizer color 1",
 				"type" : "color",
 				"value" : "0.34509803921568627 0.7529411764705882 1"
@@ -169,8 +174,8 @@
 			"circularaudiovisualizercolor2" : 
 			{
 				"condition" : "audiovisualizertype.value == 1 && !circularaudiovisualizerrainbow.value",
-				"index" : 14,
-				"order" : 114,
+				"index" : 15,
+				"order" : 115,
 				"text" : "Circular audiovisualizer color 2",
 				"type" : "color",
 				"value" : "0.8666666666666667 0.9921568627450981 0.9882352941176471"
@@ -179,10 +184,10 @@
 			{
 				"condition" : "audiovisualizertype.value == 1",
 				"fraction" : false,
-				"index" : 15,
+				"index" : 16,
 				"max" : 100,
 				"min" : 0,
-				"order" : 115,
+				"order" : 116,
 				"text" : "Circular audiovisualizer opacity",
 				"type" : "slider",
 				"value" : 50
@@ -190,8 +195,8 @@
 			"circularaudiovisualizerrainbow" : 
 			{
 				"condition" : "audiovisualizertype.value == 1",
-				"index" : 11,
-				"order" : 111,
+				"index" : 13,
+				"order" : 113,
 				"text" : "Circular audiovisualizer rainbow",
 				"type" : "bool",
 				"value" : false
@@ -204,23 +209,23 @@
 				"max" : 64,
 				"min" : 0,
 				"order" : 110,
-				"text" : "Circular audiovisualizer frequency bands",
+				"text" : "<div title='The amount of lines in used in a bin to visualize the audio, a higher value means more precise visualization but also more lines.'>Circular audiovisualizer frequency bands <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
 				"type" : "slider",
 				"value" : 32
 			},
 			"curved" : 
 			{
 				"condition" : "audiovisualizertype.value == 0",
-				"index" : 19,
-				"order" : 119,
+				"index" : 20,
+				"order" : 120,
 				"text" : "Curved bars",
 				"type" : "bool",
 				"value" : false
 			},
 			"date" : 
 			{
-				"index" : 24,
-				"order" : 124,
+				"index" : 36,
+				"order" : 136,
 				"text" : "Date",
 				"type" : "bool",
 				"value" : true
@@ -229,10 +234,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 25,
+				"index" : 37,
 				"max" : 50,
 				"min" : -50,
-				"order" : 125,
+				"order" : 137,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date offset X",
@@ -243,10 +248,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 26,
+				"index" : 38,
 				"max" : 50,
 				"min" : -50,
-				"order" : 126,
+				"order" : 138,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date offset Y",
@@ -257,10 +262,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 27,
+				"index" : 39,
 				"max" : 100,
 				"min" : 0,
-				"order" : 127,
+				"order" : 139,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date size",
@@ -277,8 +282,8 @@
 			"shadow" : 
 			{
 				"condition" : "audiovisualizertype.value == 0",
-				"index" : 20,
-				"order" : 120,
+				"index" : 21,
+				"order" : 121,
 				"text" : "Shadow",
 				"type" : "bool",
 				"value" : true
@@ -286,8 +291,8 @@
 			"shadowcolor" : 
 			{
 				"condition" : "shadow.value  && audiovisualizertype.value == 0",
-				"index" : 21,
-				"order" : 121,
+				"index" : 22,
+				"order" : 122,
 				"text" : "Shadow color",
 				"type" : "color",
 				"value" : "0.17647058823529413 0.8588235294117647 1"
@@ -296,15 +301,67 @@
 			{
 				"condition" : "shadow.value  && audiovisualizertype.value == 0",
 				"fraction" : true,
-				"index" : 22,
+				"index" : 23,
 				"max" : 5,
 				"min" : 0,
-				"order" : 122,
+				"order" : 123,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Shadow spread",
 				"type" : "slider",
 				"value" : 1
+			},
+			"staraudiopresets" : 
+			{
+				"condition" : "audiovisualizertype.value == 2",
+				"index" : 24,
+				"options" : 
+				[
+					{
+						"label" : "Custom",
+						"value" : "0"
+					},
+					{
+						"label" : "Default",
+						"value" : "Default"
+					},
+					{
+						"label" : "Full",
+						"value" : "Full"
+					},
+					{
+						"label" : "Star",
+						"value" : "Star"
+					},
+					{
+						"label" : "Star 2",
+						"value" : "Star2"
+					},
+					{
+						"label" : "Relaxed",
+						"value" : "Relaxed"
+					},
+					{
+						"label" : "Relaxed 2",
+						"value" : "Relaxed2"
+					},
+					{
+						"label" : "Comic Explosion",
+						"value" : "ComicExplosion"
+					}
+				],
+				"order" : 124,
+				"text" : "presets",
+				"type" : "combo",
+				"value" : "Relaxed"
+			},
+			"starvisCustomTxt" : 
+			{
+				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
+				"index" : 25,
+				"order" : 125,
+				"text" : "<b><ins>Advance settings</ins></b>ㅤ<img src='https://i.ibb.co/YfcqsTw/line.png' width='50%' height='2'/>",
+				"type" : "text"
 			},
 			"subText_cirAudioVis_color" : 
 			{
@@ -314,14 +371,145 @@
 				"text" : "<img src='https://i.ibb.co/sWVKp5n/color-Divider.png' width='80' height='16'/>",
 				"type" : "text"
 			},
+			"svfps" : 
+			{
+				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
+				"fraction" : false,
+				"index" : 28,
+				"max" : 60,
+				"min" : 0,
+				"order" : 128,
+				"text" : "<div title='This setting offers a way to limit the fps of the visualizer. When left at 0 it runs each animation cycle of the background (which is determind by your standart pc settings, probably 60 or 30fps).'>fps <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
+				"type" : "slider",
+				"value" : 0
+			},
+			"svinnerradius" : 
+			{
+				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
+				"fraction" : false,
+				"index" : 30,
+				"max" : 200,
+				"min" : 0,
+				"order" : 130,
+				"text" : "Inner radius",
+				"type" : "slider",
+				"value" : 20
+			},
+			"svlinewidth" : 
+			{
+				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
+				"fraction" : true,
+				"index" : 34,
+				"max" : 50,
+				"min" : 0,
+				"order" : 134,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Line width",
+				"type" : "slider",
+				"value" : 1
+			},
+			"svmagintude" : 
+			{
+				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
+				"fraction" : false,
+				"index" : 31,
+				"max" : 600,
+				"min" : 50,
+				"order" : 131,
+				"text" : "<div title='How much the audio signal is amplified. It also gives the maximum offset in pixels, from the inner radius.'>Magnitude <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
+				"type" : "slider",
+				"value" : 180
+			},
+			"svplottimedimension" : 
+			{
+				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
+				"index" : 33,
+				"order" : 133,
+				"text" : "<div title='If time should also be used in the visualization, just like the time based audiovisualizer part of the circular audiovisualizer.'>Plot time dimension <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
+				"type" : "bool",
+				"value" : true
+			},
+			"svpoints" : 
+			{
+				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
+				"fraction" : false,
+				"index" : 27,
+				"max" : 75,
+				"min" : 1,
+				"order" : 127,
+				"text" : "points",
+				"type" : "slider",
+				"value" : 19
+			},
+			"svpolygramk" : 
+			{
+				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
+				"fraction" : true,
+				"index" : 32,
+				"max" : 10,
+				"min" : 0,
+				"order" : 132,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "<div title='Only works when the shape kind has been set to Polygram.'>Polygram k <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
+				"type" : "slider",
+				"value" : 1
+			},
+			"svrunningaveragefiltersize" : 
+			{
+				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
+				"fraction" : false,
+				"index" : 29,
+				"max" : 25,
+				"min" : 0,
+				"order" : 129,
+				"text" : "<div title='This determins how far the average of each frequency goes. ie lower value more responsive but also more spikes. higher value smoother but also more delayed/less impact.'>Running average filter size <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
+				"type" : "slider",
+				"value" : 9
+			},
+			"svshapekind" : 
+			{
+				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
+				"index" : 26,
+				"options" : 
+				[
+					{
+						"label" : "Chaotic",
+						"value" : "0"
+					},
+					{
+						"label" : "Polygram",
+						"value" : "1"
+					}
+				],
+				"order" : 126,
+				"text" : "ShapeKind",
+				"type" : "combo",
+				"value" : "0"
+			},
 			"timebasedcircularaudiovisualizer" : 
 			{
 				"condition" : "audiovisualizertype.value == 1",
 				"index" : 8,
 				"order" : 108,
-				"text" : "Time based circular audiovisualizer",
+				"text" : "<div title='When enabled changes in sound will propagate like a wave trough the audio bins'>Time based circular audiovisualizer <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
 				"type" : "bool",
 				"value" : true
+			}, 
+			"timemult" : 
+			{
+				"condition" : "audiovisualizertype.value == 1",
+				"fraction" : true,
+				"index" : 11,
+				"max" : 3,
+				"min" : 1,
+				"order" : 111,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Time duration multiplier",
+				"type" : "slider",
+				"value" : 1
 			}
 		},
 		"supportsaudioprocessing" : true

@@ -2,7 +2,8 @@ let audioVisualizers = {
     None: -1,
     Horizontal: 0,
     Circular: 1,
-    Orbs: 2,
+    Star: 2,
+    Orbs: 3,
 }
 let selectedAudioVis = audioVisualizers.Horizontal;
 
@@ -18,6 +19,7 @@ let AudioVisData = {
     circularbars: 20,
     freqBands: 32,
     timedAudioVis: true,
+    timeMult: 1,
 }
 
 function wallpaperAudioListener(audioArray) {
@@ -43,6 +45,9 @@ function wallpaperAudioListener(audioArray) {
         case audioVisualizers.Orbs:
             orbsAudioUpdate(audioArray);
             break;
+        case audioVisualizers.Star:
+            starAudioVisAudioListener(audioArray);
+            break;
     }
 }
 
@@ -50,7 +55,9 @@ function wallpaperAudioListener(audioArray) {
 function setup(){
     //delete the old container
     stopLoopOrbs();
+    terminateStarAudioVis();
     $('#container').remove();
+    
     //setup the bars:
     let container = document.createElement('div');
     container.id = "container"
@@ -66,6 +73,9 @@ function setup(){
             break;
         case audioVisualizers.Orbs:
             setupOrbs(container);
+            break;
+        case audioVisualizers.Star:
+            setupStarAudioVis();
             break;
     }
 
@@ -89,6 +99,9 @@ function setup(){
         $('.bar').css("border", `solid rgb(${audiovisualizerStyle.borderColor}) ${audiovisualizerStyle.borderSize}px`);
     if (audiovisualizerStyle.shadowActive)
         $('.bar').css("box-shadow", `0px 0px 6px ${audiovisualizerStyle.shadowSpread}px rgb(${audiovisualizerStyle.shadowColor})`);
+
+    // date time widget
+    $('.timeCenterContainer').css("opacity", "100");
 }
 
 // Register the audio listener provided by Wallpaper Engine.
@@ -126,6 +139,7 @@ window.wallpaperPropertyListener = {
         if (properties.backgroundimg) { // the background image
             let imageElement = document.getElementById('backgroundImg');
             imageElement.src = 'file:///' + properties.backgroundimg.value;
+            imageElement.style.opacity = 100;
         }
         // ------------------------------ AudioVis ------------------------------\\
         if (properties.audiovisualizertype){
@@ -136,7 +150,9 @@ window.wallpaperPropertyListener = {
             else if (properties.audiovisualizertype.value == 1)                
                 selectedAudioVis = audioVisualizers.Circular;
             else if (properties.audiovisualizertype.value == 2)
-                selectedAudioVis = audioVisualizers.Orbs;   
+                selectedAudioVis = audioVisualizers.Star;
+            else if (properties.audiovisualizertype.value == 3)
+                selectedAudioVis = audioVisualizers.Orbs;
             setup();
         }
         if (properties.audiovisualizer) {
@@ -156,7 +172,8 @@ window.wallpaperPropertyListener = {
         }
         // circular audio visualizer
         circularAudioVisualizerProperties(prop);
-        horizontalAudioVisualizerProperties(prop);       
+        horizontalAudioVisualizerProperties(prop);
+        starAudioVisProperties(prop);       
     },
 };
 
