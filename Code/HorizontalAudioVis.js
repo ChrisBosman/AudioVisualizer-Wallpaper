@@ -1,3 +1,4 @@
+let Hpaused = true;
 function setupHorizontalAudioVisualizer(container, barsContainer){
     container.className = "container";
     barsContainer.className = "bars-container";
@@ -11,10 +12,12 @@ function setupHorizontalAudioVisualizer(container, barsContainer){
         barsContainer.appendChild(bar);
         bars[i] = bar;
     }
+    // container.style.opacity = 100;
 }
 
 function horizontalAudioVisualizer(oldAudioArray){
     let audioArray;
+    // lower the amount of frequencys if there are less than 128 bars
     if (AudioVisData.horizontalBars < 128) {
         let newAudioArray = [];
         for (let j = 0; j < oldAudioArray.length; j++) {
@@ -37,7 +40,6 @@ function horizontalAudioVisualizer(oldAudioArray){
         audioArray = oldAudioArray;
     }
 
-
     for (let i = 0; i < bars.length; i++) {
         let heightValue = 0
         audioArray.forEach(oldAudio => {
@@ -45,6 +47,26 @@ function horizontalAudioVisualizer(oldAudioArray){
         });
         heightValue /= audioArray.length;
         bars[i].style.height = `${heightValue * 100}%`;
+
+        if (audiovisualizerStyle.magnitudeBasedColor && !isNaN(heightValue)){
+            let color = lerpColor(arrayToNums(audiovisualizerStyle.color.replace('rgb(', '').replace(')', '').split(',')), arrayToNums(audiovisualizerStyle.secondColor.split(',')), heightValue * audiovisualizerStyle.magnitudeBasedColorMultiplier);
+            bars[i].style.backgroundColor = `rgb(${color})`;
+        }
+    }
+
+    // test if there is music playing
+    let maxValue = 0;
+    audioArray.forEach(oldAudio => {
+        let value = Math.max.apply(Math, oldAudio);
+        maxValue += value
+    });
+    maxValue /= audioArray.length;
+    if (maxValue <= 0.00001 && !Hpaused){
+        Hpaused = true;
+        $('.container').css('opacity', "0");
+    } else if (maxValue >= 0.00001 && Hpaused){
+        Hpaused = false;
+        $('.container').css('opacity', "100");
     }
 }
 
@@ -54,9 +76,18 @@ function horizontalAudioVisualizerProperties(properties){
         AudioVisData.horizontalBars = properties.amountofbars.value;
         setup();
     }
+    if (properties.magnitudebasedcolor){
+        audiovisualizerStyle.magnitudeBasedColor = properties.magnitudebasedcolor.value;
+    }
     if (properties.audiobarcolor) { // the color of the audio bars
         $('.bar').css("background-color", `rgb(${toCSSrgb(properties.audiobarcolor.value)})`);
         audiovisualizerStyle.color =`rgb(${toCSSrgb(properties.audiobarcolor.value)})`
+    }
+    if (properties.secondaudiobarcolor){
+        audiovisualizerStyle.secondColor = `${toCSSrgb(properties.secondaudiobarcolor.value)}`;
+    }
+    if (properties.magnitudebasedcolormultiplier){
+        audiovisualizerStyle.magnitudeBasedColorMultiplier = properties.magnitudebasedcolormultiplier.value;
     }
     if (properties.bargap) {
         $('#barsContainer').css("gap", `${properties.bargap.value / 10}%`);
@@ -85,4 +116,11 @@ function horizontalAudioVisualizerProperties(properties){
 function changeShadow(on) {
     if (on) $('.bar').css("box-shadow", `0px 0px 6px ${audiovisualizerStyle.shadowSpread}px rgb(${audiovisualizerStyle.shadowColor})`);
     else $('.bar').css("box-shadow", `none`);
+}
+
+function arrayToNums(array) {
+    for (let i = 0; i < array.length; i++) {
+        array[i] = parseInt(array[i]);
+    }
+    return array;   
 }

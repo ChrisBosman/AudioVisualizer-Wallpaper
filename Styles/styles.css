@@ -31,12 +31,14 @@ html, body {
 
 /* --------------- Audiovisualizer --------------- */
 .container{
+    opacity: 0;
     display: flex;
     flex-direction: row;
     height: 100%;
     width: 100%;
     align-items: center;
     position: absolute;
+    transition: opacity 1500ms, left 250ms, top 250ms;
 }
 .bars-container{
     display: flex;
