@@ -355,8 +355,6 @@ function setupStarAudioVis() {
     $('#starVisRenderCanvas').css('opacity', "100");
     paused = false;
 
-    starAudioVisSettings = Presets.Star;
-
     for (let i = 0; i < N; i++){
         balls[i]  = new FreqBall(i*360.0/(N-1), starAudioVisSettings.points);
         // console.log(i*360.0/N);
