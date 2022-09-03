@@ -135,6 +135,8 @@ const Presets = {
     },
 }
 
+let idleAnimation = true;
+
 let customModeEnabled = false;
 let starVisCustomSettings = {
     enabled: true,
@@ -309,16 +311,22 @@ function starAudioVisAudioListener(audioArray){
     for (let i = 0; i < 64; i++){
         frequencies[i] = Math.min((audioArray[i] + audioArray[i+64])/2,1);  // Take the mean and limit the amplitude to 1
     }
+
+    const d = new Date();
+
     // Divide the data over the frequency balls
     for (let i = balls.length-1; i >= 0; i--){
-        balls[i].addData(mean(frequencies,Math.floor(i*64.0/balls.length),Math.floor((i+1)*64.0/balls.length)-1));
+        if (!paused)
+            balls[i].addData(mean(frequencies,Math.floor(i*64.0/balls.length),Math.floor((i+1)*64.0/balls.length)-1));
+        else
+            balls[i].addData(Math.abs(perlin.get(i * 100, d.getMilliseconds() / 2000 + i * 1000)) * 15000 / (40 * (i*300)));
     }
     
     // test if there is music playing
     let maxValue = Math.max.apply(Math, audioArray);
     if (maxValue <= 0.00001 && !paused){
         paused = true;
-        $('#starVisRenderCanvas').css('opacity', "0");
+        // $('#starVisRenderCanvas').css('opacity', "0");
     } else if (maxValue >= 0.00001 && paused){
         paused = false;
         $('#starVisRenderCanvas').css('opacity', "100");
