@@ -135,7 +135,7 @@ const Presets = {
     },
 }
 
-let idleAnimation = true;
+let idleAnimation = false;
 
 let customModeEnabled = false;
 let starVisCustomSettings = {
@@ -318,7 +318,7 @@ function starAudioVisAudioListener(audioArray){
     for (let i = balls.length-1; i >= 0; i--){
         if (!paused)
             balls[i].addData(mean(frequencies,Math.floor(i*64.0/balls.length),Math.floor((i+1)*64.0/balls.length)-1));
-        else
+        else if (idleAnimation)
             balls[i].addData(Math.abs(perlin.get(i * 100, d.getMilliseconds() / 2000 + i * 1000)) * 15000 / (40 * (i*300)));
     }
     
@@ -326,7 +326,8 @@ function starAudioVisAudioListener(audioArray){
     let maxValue = Math.max.apply(Math, audioArray);
     if (maxValue <= 0.00001 && !paused){
         paused = true;
-        // $('#starVisRenderCanvas').css('opacity', "0");
+        if (!idleAnimation)
+            $('#starVisRenderCanvas').css('opacity', "0");
     } else if (maxValue >= 0.00001 && paused){
         paused = false;
         $('#starVisRenderCanvas').css('opacity', "100");
@@ -424,6 +425,10 @@ function starAudioVisProperties(properties) {
 
         for(let i=0; i < balls.length; i++)
             balls[i].changeYOffset(properties.audiovisualizeroffsety.value / 100.0 + 0.5);
+    }
+
+    if (properties.svidleanimation){
+        idleAnimation = properties.svidleanimation.value;
     }
 
     // advance settings
