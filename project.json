@@ -28,8 +28,8 @@
 			},
 			"TextLine_Date" : 
 			{
-				"index" : 38,
-				"order" : 138,
+				"index" : 39,
+				"order" : 139,
 				"text" : "<hr><h4>● DateTime widgetㅤㅤㅤㅤㅤㅤㅤ</h4>",
 				"type" : "text"
 			},
@@ -224,8 +224,8 @@
 			},
 			"date" : 
 			{
-				"index" : 39,
-				"order" : 139,
+				"index" : 40,
+				"order" : 140,
 				"text" : "Date",
 				"type" : "bool",
 				"value" : true
@@ -234,10 +234,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 40,
+				"index" : 41,
 				"max" : 50,
 				"min" : -50,
-				"order" : 140,
+				"order" : 141,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date offset X",
@@ -248,10 +248,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 41,
+				"index" : 42,
 				"max" : 50,
 				"min" : -50,
-				"order" : 141,
+				"order" : 142,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date offset Y",
@@ -262,10 +262,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 42,
+				"index" : 43,
 				"max" : 100,
 				"min" : 0,
-				"order" : 142,
+				"order" : 143,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date size",
@@ -346,7 +346,7 @@
 			"staraudiopresets" : 
 			{
 				"condition" : "audiovisualizertype.value == 2",
-				"index" : 27,
+				"index" : 28,
 				"options" : 
 				[
 					{
@@ -382,7 +382,7 @@
 						"value" : "ComicExplosion"
 					}
 				],
-				"order" : 127,
+				"order" : 128,
 				"text" : "presets",
 				"type" : "combo",
 				"value" : "Relaxed"
@@ -390,8 +390,8 @@
 			"starvisCustomTxt" : 
 			{
 				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
-				"index" : 28,
-				"order" : 128,
+				"index" : 29,
+				"order" : 129,
 				"text" : "<b><ins>Advance settings</ins></b>ㅤ<img src='https://i.ibb.co/YfcqsTw/line.png' width='50%' height='2'/>",
 				"type" : "text"
 			},
@@ -407,22 +407,31 @@
 			{
 				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
 				"fraction" : false,
-				"index" : 31,
+				"index" : 32,
 				"max" : 60,
 				"min" : 0,
-				"order" : 131,
+				"order" : 132,
 				"text" : "<div title='This setting offers a way to limit the fps of the visualizer. When left at 0 it runs each animation cycle of the background (which is determind by your standart pc settings, probably 60 or 30fps).'>fps <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
 				"type" : "slider",
 				"value" : 0
+			},
+			"svidleanimation" : 
+			{
+				"condition" : "audiovisualizertype.value == 2",
+				"index" : 27,
+				"order" : 127,
+				"text" : "Idle animation",
+				"type" : "bool",
+				"value" : false
 			},
 			"svinnerradius" : 
 			{
 				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
 				"fraction" : false,
-				"index" : 33,
+				"index" : 34,
 				"max" : 200,
 				"min" : 0,
-				"order" : 133,
+				"order" : 134,
 				"text" : "Inner radius",
 				"type" : "slider",
 				"value" : 20
@@ -431,10 +440,10 @@
 			{
 				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
 				"fraction" : true,
-				"index" : 37,
+				"index" : 38,
 				"max" : 50,
 				"min" : 0,
-				"order" : 137,
+				"order" : 138,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Line width",
@@ -445,10 +454,10 @@
 			{
 				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
 				"fraction" : false,
-				"index" : 34,
+				"index" : 35,
 				"max" : 600,
 				"min" : 50,
-				"order" : 134,
+				"order" : 135,
 				"text" : "<div title='How much the audio signal is amplified. It also gives the maximum offset in pixels, from the inner radius.'>Magnitude <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
 				"type" : "slider",
 				"value" : 180
@@ -456,8 +465,8 @@
 			"svplottimedimension" : 
 			{
 				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
-				"index" : 36,
-				"order" : 136,
+				"index" : 37,
+				"order" : 137,
 				"text" : "<div title='If time should also be used in the visualization, just like the time based audiovisualizer part of the circular audiovisualizer.'>Plot time dimension <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
 				"type" : "bool",
 				"value" : true
@@ -466,10 +475,10 @@
 			{
 				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
 				"fraction" : false,
-				"index" : 30,
+				"index" : 31,
 				"max" : 75,
 				"min" : 1,
-				"order" : 130,
+				"order" : 131,
 				"text" : "points",
 				"type" : "slider",
 				"value" : 19
@@ -478,10 +487,10 @@
 			{
 				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
 				"fraction" : true,
-				"index" : 35,
+				"index" : 36,
 				"max" : 10,
 				"min" : 0,
-				"order" : 135,
+				"order" : 136,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "<div title='Only works when the shape kind has been set to Polygram.'>Polygram k <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
@@ -492,10 +501,10 @@
 			{
 				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
 				"fraction" : false,
-				"index" : 32,
+				"index" : 33,
 				"max" : 25,
 				"min" : 0,
-				"order" : 132,
+				"order" : 133,
 				"text" : "<div title='This determins how far the average of each frequency goes. ie lower value more responsive but also more spikes. higher value smoother but also more delayed/less impact.'>Running average filter size <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
 				"type" : "slider",
 				"value" : 9
@@ -503,7 +512,7 @@
 			"svshapekind" : 
 			{
 				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
-				"index" : 29,
+				"index" : 30,
 				"options" : 
 				[
 					{
@@ -515,7 +524,7 @@
 						"value" : "1"
 					}
 				],
-				"order" : 129,
+				"order" : 130,
 				"text" : "ShapeKind",
 				"type" : "combo",
 				"value" : "0"
