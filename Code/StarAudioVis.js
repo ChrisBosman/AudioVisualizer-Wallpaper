@@ -431,6 +431,8 @@ function starAudioVisProperties(properties) {
         idleAnimation = properties.svidleanimation.value;
         if (!idleAnimation)
             $('#starVisRenderCanvas').css('opacity', "0");
+        else
+            $('#starVisRenderCanvas').css('opacity', "100");
     }
 
     // advance settings

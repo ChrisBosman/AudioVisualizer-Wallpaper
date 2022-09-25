@@ -9,7 +9,14 @@
 			{
 				"index" : 0,
 				"order" : 100,
-				"text" : "Hey, deze wallpaper is gemaakt door Frank Bosman. <br>Als je <strong>feature requests</strong> of <strong>bug report</strong> hebt kan je een issue open op me github. Als je de source code wilt zien kan je daar natuurlijk ook terecht. als je mijn code ergens anders gebruikt geliefd wel te crediten. GITHUB: <a href='https://github.com/FrankBosman/AudioVisualizer-Wallpaper/'>https://github.com/FrankBosman/AudioVisualizer-Wallpaper/</a> ",
+				"text" : "Credits and info about <strong>feature request and bugs below</strong>.",
+				"type" : "text"
+			},
+			"endIntro" : 
+			{
+				"index" : 44,
+				"order" : 144,
+				"text" : "<hr>Hey, deze wallpaper is gemaakt door Frank Bosman. <br>Als je <strong>feature requests</strong> of <strong>bug report</strong> hebt kan je een issue open op me github. Als je de source code wilt zien kan je daar natuurlijk ook terecht. als je mijn code ergens anders gebruikt geliefd wel te crediten. GITHUB: <a href='https://github.com/FrankBosman/AudioVisualizer-Wallpaper/'>https://github.com/FrankBosman/AudioVisualizer-Wallpaper/</a>",
 				"type" : "text"
 			},
 			"TextLine_AudioVis" : 
@@ -101,7 +108,7 @@
 						"value" : "1"
 					},
 					{
-						"label" : "Star (Chris')",
+						"label" : "Star",
 						"value" : "2"
 					},
 					{
@@ -212,6 +219,13 @@
 				"text" : "<div title='The amount of lines in used in a bin to visualize the audio, a higher value means more precise visualization but also more lines.'>Circular audiovisualizer frequency bands <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
 				"type" : "slider",
 				"value" : 32
+			},
+			"creditstxt" : 
+			{
+				"index" : 45,
+				"order" : 145,
+				"text" : "<hr><h4>Creditsㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</h4><p>Star visualizer made by Chris</p>",
+				"type" : "text"
 			},
 			"curved" : 
 			{
