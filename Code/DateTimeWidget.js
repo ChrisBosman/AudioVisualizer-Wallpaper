@@ -26,23 +26,21 @@ function updateTime() {
 
 function dateTimeProperties(prop) {
     // ------------------------------ Date and Time ------------------------------\\
-    if (prop.date) {
-        // $('.timeCenterContainer').css('display', `${prop.date.value ? 'flex' : 'none'}`);
-
-        // $('.dateTimeContainer').css('display', `none`);
-        // $('.flipClock').css('display', `none`);
+    if (prop.date) {        
+        switch (prop.date.value) {
+            case '1':
+                $('.flipClock').removeClass('dateActive');
+                $('.dateTimeContainer').addClass('dateActive');
+                break;
+            case '2':
+                $('.dateTimeContainer').removeClass('dateActive');
+                $('.flipClock').addClass('dateActive');
+                break;
         
-        if (prop.date.value === '0'){
-            $('.dateTimeContainer').removeClass('dateActive');
-            $('.flipClock').removeClass('dateActive');
-        } else if (prop.date.value === '1'){
-            $('.flipClock').removeClass('dateActive');
-            $('.dateTimeContainer').addClass('dateActive');
-            // $('.dateTimeContainer').css('display', `flex`);
-        } else if (prop.date.value === '2'){
-            $('.dateTimeContainer').removeClass('dateActive');
-            $('.flipClock').addClass('dateActive');
-            // $('.flipClock').css('display', `flex`);
+            default:
+                $('.dateTimeContainer').removeClass('dateActive');
+                $('.flipClock').removeClass('dateActive');
+                break;
         }
 
     }
