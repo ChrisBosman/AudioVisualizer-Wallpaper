@@ -37,6 +37,8 @@ function updateTime() {
 
 function dateTimeProperties(prop) {
     // ------------------------------ Date and Time ------------------------------\\
+    
+    // display the right dateTime widget
     if (prop.date) {        
         switch (prop.date.value) {
             case '1':
@@ -58,6 +60,8 @@ function dateTimeProperties(prop) {
         }
 
     }
+
+    // movement and scaling:
     if (prop.dateoffsetx) {
         $('.timeCenterContainer').css('left', `${prop.dateoffsetx.value}%`);
     }
@@ -67,21 +71,27 @@ function dateTimeProperties(prop) {
     if (prop.datesize) {
         changeSizeDateTime(prop.datesize.value);
     }
+    
+    // extra features
     if (prop.dateshowseconds){
         $('.dateFlipperSeconds').css('display', `${prop.dateshowseconds.value ? 'flex' : 'none'}`);
     }
 }
 
-function changeSizeDateTime(newWidth) {
+/**
+ * Takes an new scaling factor and scalles all clocks to a new corresponding size
+ * @param {int} newScaleFactor An _int_ value from *0 to 100* representing the new size of all the dateTimes widgets
+ */
+function changeSizeDateTime(newScaleFactor) {
     // default date time
-    $('.dateTimeContainer').css('width', `${newWidth}%`);
-    $('.dateTimeContainer').css('height', `${newWidth / 65.0 * 20.0}vw`);
-    $('#day').css('font-size', `${newWidth / 65.0 * 14.0}vw`);
-    $('#time').css('font-size', `${newWidth / 65.0 * 7.0}vw`);
-    $('#date').css('font-size', `${newWidth / 65.0 * 3.0}vw`);
+    $('.dateTimeContainer').css('width', `${newScaleFactor}%`);
+    $('.dateTimeContainer').css('height', `${newScaleFactor / 65.0 * 20.0}vw`);
+    $('#day').css('font-size', `${newScaleFactor / 65.0 * 14.0}vw`);
+    $('#time').css('font-size', `${newScaleFactor / 65.0 * 7.0}vw`);
+    $('#date').css('font-size', `${newScaleFactor / 65.0 * 3.0}vw`);
 
     // flipper
-    $('.flipClock').css('transform', `scale(${(newWidth + 30) / 100})`);
+    $('.flipClock').css('transform', `scale(${(newScaleFactor + 30) / 100})`);
 }
 
 
