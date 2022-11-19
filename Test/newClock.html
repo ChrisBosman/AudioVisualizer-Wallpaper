@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New clock</title>
+
+    <style>
+        .analogClockContainer{
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            background-color: #282828;
+            border-radius: 50%;
+            /* width: 35rem;
+            height: 35rem; */
+            /* padding: 48px; */
+            width: calc(30rem + 3rem + 24px);
+            height: calc(30rem + 3rem + 24px);
+
+            box-shadow: 0 5px 15px 4px rgba(54, 53, 53, 0.8);
+            /* transform: scale(1); */
+        }
+        .analogClock{
+            /* width: 30rem;
+            height: 30rem; */
+            width: calc(100% - 3rem - 24px - 12px);
+            height: calc(100% - 3rem - 24px - 12px);
+            margin: 12px;
+            padding: 1.5rem;
+            border: 6px solid #282828;
+            border-radius: 50%;
+            box-shadow: -8px -8px 12px rgba(67, 67, 67, .4),
+                        inset 8px 8px 12px rgba(0, 0, 0, .3),
+                        inset -8px -8px 12px rgba(67, 67, 67, .4),
+                        8px 8px 12px rgba(0, 0, 0, .3);
+        }
+
+        .outerClock{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #282828;
+        }
+        .outerClock::before,
+        .outerClock .marking{
+            content: "";
+            position: absolute;
+            width: 4px;
+            height: 100%;
+            background-color: #bdbdcb;
+            z-index: 0;
+            left: 49%;
+        }
+        .outerClock::after{
+            transform: rotate(90deg);
+        }
+        .outerClock .marking{
+            width: 2px;
+        }
+        .outerClock .marking.marking1{
+            transform: rotate(30deg);
+        }
+        .outerClock .marking.marking2{
+            transform: rotate(60deg);
+        }
+        .outerClock .marking.marking3{
+            transform: rotate(120deg);
+        }
+        .outerClock .marking.marking4{
+            transform: rotate(150deg);
+        }
+        .outerClock .marking.marking5{
+            transform: rotate(90deg);
+            width: 4px;
+        }
+        .outerClock .marking.markingSeconds{
+            background-color: transparent;
+            z-index: 1;
+
+            transition: transform 990ms linear;
+        }
+
+        .outerClock .marking.markingSeconds::before{
+            content: "";
+            position: absolute;
+            width: 6px;
+            height: 32px;
+            top: -2px;
+            left: -2px;
+            background-color: whitesmoke;
+            /* box-shadow: 0 0 5px 0px white; */
+            z-index: 4;
+            box-shadow:
+                inset 0 0 12px #fff,
+                inset 5px 0 10px rgb(125, 218, 255),
+                inset -5px 0 10px rgb(148, 255, 255), 
+                inset 5px 0 20px rgb(125, 218, 255),
+                inset -5px 0 20px rgb(148, 255, 255),
+                0 0 12px #fff,
+                -2px 0 10px rgb(125, 218, 255),
+                2px 0 10px rgb(148, 255, 255); 
+        }
+
+        .innerClock{
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            width: 90%;
+            height: 90%;
+            background-color: #282828;
+            border-radius: 50%;
+            /* z-index: 1; */
+        }
+        .clockTimeContainer{
+            position: absolute;
+            top: calc(50% - 30pt);
+            left: 9.5%;
+            width: 80%;
+            display: flex;
+            justify-content: space-around;
+        }
+        .innerClock .clockTime{
+            /* position: absolute;
+            top: 32%;
+            left: 9.5%;
+            width: 80%; */
+            position: relative;
+            z-index: 2;
+            
+            color: white;
+            font-size: 60pt;
+            font-weight: 700;
+            text-align: center;
+            background-color: #3d3d3df8;
+            border-radius: 200px;
+            padding: 0 20px;
+
+            box-shadow: 0 2px 5px 0 black;
+
+            /* background-color: rebeccapurple; */
+
+        }
+        .clockTimeSmallContainer{
+            position: absolute;
+            top: 18%;
+            left: 0%;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+        .clockTimeSmall{            
+            color: white;
+            font-size: 40pt;
+            font-weight: 700;
+            text-align: center;
+            background-color: #3d3d3d;
+            /* background-color: rebeccapurple; */
+            border-radius: 80px;
+            padding: 5px 10px;
+            z-index: 3;
+            box-shadow: 0 2px 5px 0 black;
+        }
+
+        .hands{
+            background: #fff;
+            height: 40%;
+            left: calc(50% - 2px);
+            position: absolute;
+            top: calc(50% - 2px);
+            width: 4px;
+
+            -webkit-transform-origin: 50% 0%;
+            -moz-transform-origin: 50% 0%;
+            -o-transform-origin: 50% 0%;
+            -ms-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+
+            z-index: 2;
+            transition: transform 990ms linear;
+            border-radius: 2px;
+        }
+        .minutes{
+            left: calc(50% - 3px);
+            top: calc(50% - 3px);
+            height: 35%;
+            width: 6px;
+        }
+        .hours{
+            left: calc(50% - 4px);
+            top: calc(50% - 4px);
+            height: 25%;
+            width: 8px;
+        }
+        .noAnimation{
+            transition: transform 0s linear;
+        }
+
+
+        .hidden{
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="analogClockContainer" id="analogClockContainer">
+        <div class="analogClock">
+            <div class="outerClock">
+                <div class="marking marking1"></div>
+                <div class="marking marking2"></div>
+                <div class="marking marking3"></div>
+                <div class="marking marking4"></div>
+                <div class="marking marking5"></div>
+                <div class="marking markingSeconds" id="markingSeconds"></div>
+                <!-- <div class="handsCircle"></div> -->
+                <div class="hands seconds" id="secondenWijzer"></div>
+                <div class="hands minutes" id="minutenWijzer"></div>
+                <div class="hands hours" id="hoursWijzer"></div>
+                <div class="innerClock">
+                    <div class="clockTimeContainer" id="clockTimeContainer">
+                        <div class="clockTime" id="clockTime">16:01</div>
+                    </div>
+                </div>
+                <div class="clockTimeSmallContainer">
+                    <div class="clockTimeSmall" id="smallClockTime">17:09</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let clockWidth = document.getElementById('analogClockContainer').clientWidth;
+        document.getElementById('smallClockTime').style.fontSize = `${clockWidth/8}px`;
+
+        // document.getElementById('clockTime').style.fontSize = `${clockWidth/5}px`;
+        // document.getElementById('clockTimeContainer').style.top = `calc(50% - ${clockWidth/10}px)`;
+
+
+        const showHands = true;
+        const showTime = "big";
+
+        if (showHands){
+            document.getElementById('markingSeconds').classList.add('hidden');
+        } else {
+            document.getElementById('secondenWijzer').classList.add('hidden');
+            document.getElementById('minutenWijzer').classList.add('hidden');
+            document.getElementById('hoursWijzer').classList.add('hidden');
+        }
+        if (showTime === "big"){
+            document.getElementById('smallClockTime').classList.add('hidden');
+        } else if (showTime === "small"){
+            document.getElementById('clockTime').classList.add('hidden');
+        } else {
+            document.getElementById('smallClockTime').classList.add('hidden');
+            document.getElementById('clockTime').classList.add('hidden');
+        }
+
+        function currentTime(){
+            const clockTime = document.getElementById('clockTime');
+            const smallClockTime = document.getElementById('smallClockTime');
+            const markSecond = document.getElementById('markingSeconds');
+
+            let date = new Date();
+            let hh = date.getHours();
+            let mm = date.getMinutes();
+            let ss = date.getSeconds();
+
+            hh = hh < 10 ? `0${hh}` : hh;
+            mm = mm < 10 ? `0${mm}` : mm;
+            ss = ss < 10 ? `0${ss}` : ss;
+
+            const ssDegrees = (ss / 60) * 360;
+            const mmDegrees = (mm / 60) * 360;
+            const hhDegrees = (hh / 12) * 360;
+            
+            markSecond.style.transform = `rotate(${ssDegrees}deg)`;
+            
+            let secondenWijzer = document.getElementById('secondenWijzer')
+            if (ssDegrees - 180 == -180){
+                secondenWijzer.style.transform = `rotate(${180}deg)`;
+                setTimeout(() => {
+                    secondenWijzer.classList.add('noAnimation');
+                    secondenWijzer.style.transform = `rotate(${-180}deg)`;
+                    setTimeout(() => {
+                        secondenWijzer.classList.remove('noAnimation');
+                        console.log('hi2');
+                    }, 5);
+                    console.log('hi');
+                }, 970);
+            }
+            else secondenWijzer.style.transform = `rotate(${ssDegrees - 180}deg)`;
+
+            document.getElementById('minutenWijzer').style.transform = `rotate(${mmDegrees - 180}deg)`;
+            document.getElementById('hoursWijzer').style.transform = `rotate(${hhDegrees - 180}deg)`;
+
+
+            let time = `${hh}:${mm}`;
+            if (clockTime.innerText !== time) clockTime.innerText = time;
+            if (smallClockTime.innerText !== time) smallClockTime.innerText = time;
+        };
+        currentTime();
+        setInterval(currentTime, 1000);
+    </script>
+</body>
+</html>
