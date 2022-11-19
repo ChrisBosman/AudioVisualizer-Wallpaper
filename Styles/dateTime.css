@@ -23,6 +23,12 @@
     position: absolute;
 
     z-index: 5;
+
+    transition: opacity 250ms ease-in;
+    opacity: 0;
+}
+.dateTimeContainer.dateActive{
+    opacity: 1;
 }
 
 #day{
@@ -101,7 +107,11 @@
 
     transform: scale(0.6);
 
-    display: none;
+    transition: opacity 250ms ease-in;
+    opacity: 0;
+}
+.flipClock.dateActive{
+    opacity: 1;
 }
 .flipper{
     display: flex;
