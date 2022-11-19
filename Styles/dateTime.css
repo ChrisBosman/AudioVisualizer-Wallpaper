@@ -82,3 +82,120 @@
     right: 0; */
     margin: auto;
 }
+
+/* ---------- Digital flipper Clock ---------- */
+.flipClock{
+    --card-width: 100px;
+    --card-height: calc(var(--card-width) * 1.5); /* 150px; */
+    --card-color: darkslategrey;
+    /* darkOrange; */
+
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+
+    /* center horizontal */
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    transform: scale(0.6);
+
+    display: none;
+}
+.flipper{
+    display: flex;
+    flex-direction: column;
+    
+    color: white;
+    font-size: var(--card-height);
+
+    background-color: black;
+    border-radius: 10px;
+
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.6);
+}
+.flipperTop{
+    background-color: var(--card-color);
+    width: var(--card-width);
+    height: calc(var(--card-height)/2);
+
+    border-radius: 10px 10px 0 0 ;
+    border-bottom: 2px solid rgb(10, 40, 40);
+
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+
+    transform-origin: bottom;
+
+    z-index: 1;
+}
+.flipperTop > div{
+    /* transform: translateY(-19px); */
+    transform: translateY(calc(var(--card-height) / -7.89473));
+}
+.flipperBottom{
+    background-color: var(--card-color);
+    width: var(--card-width);
+    height: calc(var(--card-height)/2);
+
+    border-radius: 0 0 10px 10px;
+    border-top: 2px solid rgb(7, 30, 30);
+
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+
+    transform-origin: top;
+    transform: rotateX(-90deg);
+    
+    z-index: 1;
+
+    /* box-shadow: inset 0 16.5px 32px -10.5px #000000; */
+}
+.newFlipperTop{
+    position: fixed;
+    z-index: 0;
+}
+.newFlipperBottom{
+    position: fixed;
+    transform: rotateY(0) translateY(100%);
+    box-shadow: inset 0 0 0 0 #0000003a;
+
+}
+
+.flipperTop.flipping{
+    transform: rotateX(90deg);
+    transition: transform 500ms;
+    z-index: 0;
+}
+.flipperBottom.flipping{
+    transition: transform 500ms ease-out, box-shadow 250ms;
+    transform: rotateX(0);
+
+    box-shadow: inset 0 0 0 0 #000000;
+}
+.newFlipperBottom.flipping{
+    -webkit-box-shadow: inset 0 16.5px 32px -10.5px #000000;
+    -moz-box-shadow: inset 0 16.5px 32px -10.5px #000000;
+    box-shadow: inset 0 16.5px 32px -10.5px #000000a4;
+
+    transition: box-shadow 500ms;
+    transform: rotateY(0) translateY(100%);
+}
+
+.flipperDiv{
+    display: flex;
+    align-items: center;
+    color: var(--card-color);
+    font-size: var(--card-height);
+    flex-direction: column;
+    justify-content: flex-end;
+    align-self: center;
+
+    height: var(--card-height);
+}
