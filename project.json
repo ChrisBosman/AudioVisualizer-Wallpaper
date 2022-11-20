@@ -12,13 +12,6 @@
 				"text" : "Credits and info about <strong>feature request and bugs below</strong>.",
 				"type" : "text"
 			},
-			"endIntro" : 
-			{
-				"index" : 44,
-				"order" : 144,
-				"text" : "<hr>Hey, deze wallpaper is gemaakt door Frank Bosman. <br>Als je <strong>feature requests</strong> of <strong>bug report</strong> hebt kan je een issue open op me github. Als je de source code wilt zien kan je daar natuurlijk ook terecht. als je mijn code ergens anders gebruikt geliefd wel te crediten. GITHUB: <a href='https://github.com/FrankBosman/AudioVisualizer-Wallpaper/'>https://github.com/FrankBosman/AudioVisualizer-Wallpaper/</a>",
-				"type" : "text"
-			},
 			"TextLine_AudioVis" : 
 			{
 				"index" : 3,
@@ -222,8 +215,8 @@
 			},
 			"creditstxt" : 
 			{
-				"index" : 45,
-				"order" : 145,
+				"index" : 49,
+				"order" : 149,
 				"text" : "<hr><h4>Creditsㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</h4><p>Star visualizer made by Chris</p>",
 				"type" : "text"
 			},
@@ -239,19 +232,48 @@
 			"date" : 
 			{
 				"index" : 40,
+				"options" : 
+				[
+					{
+						"label" : "None",
+						"value" : "0"
+					},
+					{
+						"label" : "Date Time",
+						"value" : "1"
+					},
+					{
+						"label" : "Flipper",
+						"value" : "2"
+					}
+				],
 				"order" : 140,
 				"text" : "Date",
-				"type" : "bool",
-				"value" : true
+				"type" : "combo",
+				"value" : "0"
+			},
+			"datedatescale" : 
+			{
+				"condition" : "date.value == 2 && dateshowdate.value",
+				"fraction" : true,
+				"index" : 44,
+				"max" : 100,
+				"min" : 0,
+				"order" : 144,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Date scale",
+				"type" : "slider",
+				"value" : 50
 			},
 			"dateoffsetx" : 
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 41,
+				"index" : 45,
 				"max" : 50,
 				"min" : -50,
-				"order" : 141,
+				"order" : 145,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date offset X",
@@ -262,29 +284,63 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 42,
+				"index" : 46,
 				"max" : 50,
 				"min" : -50,
-				"order" : 142,
+				"order" : 146,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date offset Y",
 				"type" : "slider",
 				"value" : -25
 			},
+			"dateshowdate" : 
+			{
+				"condition" : "date.value == 2",
+				"index" : 43,
+				"order" : 143,
+				"text" : "Show date",
+				"type" : "bool",
+				"value" : true
+			},
+			"dateshowseconds" : 
+			{
+				"condition" : "date.value == 2 && dateshowtime.value",
+				"index" : 42,
+				"order" : 142,
+				"text" : "Show seconds",
+				"type" : "bool",
+				"value" : true
+			},
+			"dateshowtime" : 
+			{
+				"condition" : "date.value == 2",
+				"index" : 41,
+				"order" : 141,
+				"text" : "Show time",
+				"type" : "bool",
+				"value" : true
+			},
 			"datesize" : 
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 43,
+				"index" : 47,
 				"max" : 100,
 				"min" : 0,
-				"order" : 143,
+				"order" : 147,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date size",
 				"type" : "slider",
 				"value" : 40
+			},
+			"endIntro" : 
+			{
+				"index" : 48,
+				"order" : 148,
+				"text" : "<hr>Hey, deze wallpaper is gemaakt door Frank Bosman. <br>Als je <strong>feature requests</strong> of <strong>bug report</strong> hebt kan je een issue open op me github. Als je de source code wilt zien kan je daar natuurlijk ook terecht. als je mijn code ergens anders gebruikt geliefd wel te crediten. GITHUB: <a href='https://github.com/FrankBosman/AudioVisualizer-Wallpaper/'>https://github.com/FrankBosman/AudioVisualizer-Wallpaper/</a>",
+				"type" : "text"
 			},
 			"magnitudebasedcolor" : 
 			{
