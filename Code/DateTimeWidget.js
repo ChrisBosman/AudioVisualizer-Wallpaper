@@ -95,9 +95,27 @@ function dateTimeProperties(prop) {
     }
     
     // extra features
-    if (prop.dateshowseconds){
+    if (prop.dateshowtime != null){
+        if (prop.dateshowtime.value){
+            $('.flipperClock').addClass('dateActive');
+        } else {
+            $('.flipperClock').removeClass('dateActive');
+        }
+    }
+    if (prop.dateshowseconds != null){
         $('.dateFlipperSeconds').css('display', `${prop.dateshowseconds.value ? 'flex' : 'none'}`);
         flipperClockStyle.showSeconds = prop.dateshowseconds.value;
+    }
+    if (prop.dateshowdate != null){
+        if (prop.dateshowdate.value){
+            $('.flipDate').addClass('dateActive');
+        } else {
+            $('.flipDate').removeClass('dateActive');
+        }
+        flipperClockStyle.showDate = prop.dateshowdate.value;
+    }
+    if (prop.datedatescale){
+        $('.flipDate').css('transform', `scale(${prop.datedatescale.value / 100})`);
     }
 }
 

@@ -119,6 +119,12 @@
 
     --card-width: 100px;
     --card-height: calc(var(--card-width) * 1.5); /* 150px; */
+
+    transition: opacity 250ms ease-in;
+    opacity: 0;
+}
+.flipperClock.dateActive{
+    opacity: 1;
 }
 .flipper{
     display: flex;
@@ -231,6 +237,12 @@
     gap: 10px;
     transform: scale(.5);
     margin-top: 20px;
+
+    opacity: 0;
+    transition: opacity 250ms ease-in;
+}
+.flipDate.dateActive{
+    opacity: 1;
 }
 .dateFlipperDay{
     --card-width: 300px;
