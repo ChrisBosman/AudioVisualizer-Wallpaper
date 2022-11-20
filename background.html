@@ -25,49 +25,79 @@
         <img src="" alt="" id="backgroundImg" class="background_img">
         <div class="timeCenterContainer">
           <div class="flipClock dateActive">
-            <div class="flipper" id="flipper1">
-                <div class="flipperTop newFlipperTop"><div>0</div></div>
-                <div class="flipperTop"><div>0</div></div>
-                <div class="flipperBottom newFlipperBottom"><div>0</div></div>
-                <div class="flipperBottom flipping"><div>0</div></div>
-            </div>
-            <div class="flipper" id="flipper2">
-                <div class="flipperTop newFlipperTop"><div>0</div></div>
-                <div class="flipperTop"><div>0</div></div>
-                <div class="flipperBottom newFlipperBottom"><div>0</div></div>
-                <div class="flipperBottom flipping"><div>0</div></div>
+            <div class="flipperClock">
+              <div class="flipper" id="flipper1">
+                  <div class="flipperTop newFlipperTop"><div>0</div></div>
+                  <div class="flipperTop"><div>0</div></div>
+                  <div class="flipperBottom newFlipperBottom"><div>0</div></div>
+                  <div class="flipperBottom flipping"><div>0</div></div>
+              </div>
+              <div class="flipper" id="flipper2">
+                  <div class="flipperTop newFlipperTop"><div>0</div></div>
+                  <div class="flipperTop"><div>0</div></div>
+                  <div class="flipperBottom newFlipperBottom"><div>0</div></div>
+                  <div class="flipperBottom flipping"><div>0</div></div>
+              </div>
+
+              <div class="flipperDiv">:</div>
+
+              <div class="flipper" id="flipper3">
+                  <div class="flipperTop newFlipperTop"><div>0</div></div>
+                  <div class="flipperTop"><div>0</div></div>
+                  <div class="flipperBottom newFlipperBottom"><div>0</div></div>
+                  <div class="flipperBottom flipping"><div>0</div></div>
+              </div>
+              <div class="flipper" id="flipper4">
+                  <div class="flipperTop newFlipperTop"><div>0</div></div>
+                  <div class="flipperTop"><div>0</div></div>
+                  <div class="flipperBottom newFlipperBottom"><div>0</div></div>
+                  <div class="flipperBottom flipping"><div>0</div></div>
+              </div>
+
+              <div class="flipperDiv dateFlipperSeconds">&#8196</div>
+
+              <div class="flipper dateFlipperSeconds" id="flipper5" style="--card-width: 80px; --card-height: calc(var(--card-width) * 1.5);">
+                  <div class="flipperTop newFlipperTop"><div>0</div></div>
+                  <div class="flipperTop"><div>0</div></div>
+                  <div class="flipperBottom newFlipperBottom"><div>0</div></div>
+                  <div class="flipperBottom flipping"><div>0</div></div>
+              </div>
+              <div class="flipper dateFlipperSeconds" id="flipper6" style="--card-width: 80px; --card-height: calc(var(--card-width) * 1.5);">
+                  <div class="flipperTop newFlipperTop"><div>0</div></div>
+                  <div class="flipperTop"><div>0</div></div>
+                  <div class="flipperBottom newFlipperBottom"><div>0</div></div>
+                  <div class="flipperBottom flipping"><div>0</div></div>
+              </div>
             </div>
 
-            <div class="flipperDiv">:</div>
-
-            <div class="flipper" id="flipper3">
+            <div class="flipDate">
+              <div class="flipper dateFlipperDay" id="flipper-Day">
+                <div class="flipperTop newFlipperTop"><div>Monday</div></div>
+                <div class="flipperTop"><div>Monday</div></div>
+                <div class="flipperBottom newFlipperBottom"><div>Monday</div></div>
+                <div class="flipperBottom flipping"><div>Monday</div></div>
+              </div>
+              <div class="flipper" id="flipper-DayNum1">
                 <div class="flipperTop newFlipperTop"><div>0</div></div>
                 <div class="flipperTop"><div>0</div></div>
                 <div class="flipperBottom newFlipperBottom"><div>0</div></div>
                 <div class="flipperBottom flipping"><div>0</div></div>
-            </div>
-            <div class="flipper" id="flipper4">
+              </div>
+              <div class="flipper" id="flipper-DayNum2">
                 <div class="flipperTop newFlipperTop"><div>0</div></div>
                 <div class="flipperTop"><div>0</div></div>
                 <div class="flipperBottom newFlipperBottom"><div>0</div></div>
                 <div class="flipperBottom flipping"><div>0</div></div>
-            </div>
-
-            <div class="flipperDiv">&#8196</div>
-
-            <div class="flipper dateFlipperSeconds" id="flipper5" style="--card-width: 80px; --card-height: calc(var(--card-width) * 1.5);">
-                <div class="flipperTop newFlipperTop"><div>0</div></div>
-                <div class="flipperTop"><div>0</div></div>
-                <div class="flipperBottom newFlipperBottom"><div>0</div></div>
-                <div class="flipperBottom flipping"><div>0</div></div>
-            </div>
-            <div class="flipper dateFlipperSeconds" id="flipper6" style="--card-width: 80px; --card-height: calc(var(--card-width) * 1.5);">
-                <div class="flipperTop newFlipperTop"><div>0</div></div>
-                <div class="flipperTop"><div>0</div></div>
-                <div class="flipperBottom newFlipperBottom"><div>0</div></div>
-                <div class="flipperBottom flipping"><div>0</div></div>
+              </div>
+              <div class="flipper dateFlipperMonth" id="flipper-Month">
+                <div class="flipperTop newFlipperTop"><div>Nov</div></div>
+                <div class="flipperTop"><div>Nov</div></div>
+                <div class="flipperBottom newFlipperBottom"><div>Nov</div></div>
+                <div class="flipperBottom flipping"><div>Nov</div></div>
+              </div>
             </div>
           </div>
+
           <div class="dateTimeContainer">
               <img class="divImage" src="./images/DateTimeBackground.svg" />
               <div id="day">Sun</div>

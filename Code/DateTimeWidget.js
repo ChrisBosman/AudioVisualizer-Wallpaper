@@ -2,6 +2,11 @@ let DateTimeStyle = {
     showFullDay: false,
 }
 let activeDateWidget = 1;
+let flipperClockStyle = {
+    showSeconds: true,
+    showDate: true,
+}
+
 
 
 // update time and date
@@ -23,15 +28,32 @@ function updateTime() {
         $('#date').text(`${cDay} ${cMonth} ${cYear}`);
         if (DateTimeStyle.showFullDay) $('#day').text(`${dt.format('dddd')}`);
         else $('#day').text(`${dt.format('dddd')}`.substring(0, 3));
-    } else if (activeDateWidget === 2){
-        const date = new Date()
-        const seconds = date.getSeconds().toString();
-        const minutes = date.getMinutes().toString();
-        const hours = date.getHours().toString();
+    } else if (activeDateWidget === 2){       
+        const minutes = currentDate.getMinutes().toString();
+        const hours = currentDate.getHours().toString();
         
-        updateFlipperSet('flipper5', 'flipper6', seconds);
         updateFlipperSet('flipper3', 'flipper4', minutes);
         updateFlipperSet('flipper1', 'flipper2', hours);
+
+        if (flipperClockStyle.showSeconds){
+            const seconds = currentDate.getSeconds().toString();
+            updateFlipperSet('flipper5', 'flipper6', seconds);
+        }
+
+        if (flipperClockStyle.showDate){
+            const cDay = currentDate.getDate();
+            const cMonth = currentDate.toLocaleString("en-US", { month: "short" });//.getMonth() + 1;
+            var dt = moment(currentDate, "YYYY-MM-DD HH:mm:ss");
+            const day = `${dt.format('dddd')}`;
+
+            if (day != getFlipperVal('flipper-Day'))
+                changeFlipperNum('flipper-Day', day);
+            
+            updateFlipperSet('flipper-DayNum1', 'flipper-DayNum2', `${cDay}`);
+
+            if (cMonth != getFlipperVal('flipper-Month'))
+                changeFlipperNum('flipper-Month', cMonth);
+        }
     }
 }
 
@@ -75,6 +97,7 @@ function dateTimeProperties(prop) {
     // extra features
     if (prop.dateshowseconds){
         $('.dateFlipperSeconds').css('display', `${prop.dateshowseconds.value ? 'flex' : 'none'}`);
+        flipperClockStyle.showSeconds = prop.dateshowseconds.value;
     }
 }
 
