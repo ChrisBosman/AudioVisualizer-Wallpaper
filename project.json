@@ -14,8 +14,8 @@
 			},
 			"TextLine_AudioVis" : 
 			{
-				"index" : 3,
-				"order" : 103,
+				"index" : 6,
+				"order" : 106,
 				"text" : "<hr><h4>● Audiovisualizerㅤㅤㅤㅤㅤㅤ</h4><small class=\"text-muted\">select and configure the audio visualizer here, you can change almost everything about it</small>",
 				"type" : "text"
 			},
@@ -28,8 +28,8 @@
 			},
 			"TextLine_Date" : 
 			{
-				"index" : 39,
-				"order" : 139,
+				"index" : 42,
+				"order" : 142,
 				"text" : "<hr><h4>● DateTime widgetㅤㅤㅤㅤㅤㅤㅤ</h4>",
 				"type" : "text"
 			},
@@ -37,10 +37,10 @@
 			{
 				"condition" : "audiovisualizertype.value == 0",
 				"fraction" : false,
-				"index" : 17,
+				"index" : 20,
 				"max" : 128,
 				"min" : 1,
-				"order" : 117,
+				"order" : 120,
 				"text" : "Horizontal number of bars",
 				"type" : "slider",
 				"value" : 128
@@ -48,8 +48,8 @@
 			"audiobarcolor" : 
 			{
 				"condition" : "audiovisualizertype.value == 0",
-				"index" : 19,
-				"order" : 119,
+				"index" : 22,
+				"order" : 122,
 				"text" : "Audio bar color",
 				"type" : "color",
 				"value" : "1 1 1"
@@ -58,10 +58,10 @@
 			{
 				"condition" : "audiovisualizertype.value >= 0 && audiovisualizertype.value <= 2",
 				"fraction" : true,
-				"index" : 6,
+				"index" : 9,
 				"max" : 50,
 				"min" : -50,
-				"order" : 106,
+				"order" : 109,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Audiovisualizer offset X",
@@ -72,10 +72,10 @@
 			{
 				"condition" : "audiovisualizertype.value >= 0 && audiovisualizertype.value <= 2",
 				"fraction" : true,
-				"index" : 7,
+				"index" : 10,
 				"max" : 50,
 				"min" : -50,
-				"order" : 107,
+				"order" : 110,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Audiovisualizer offset Y",
@@ -85,7 +85,7 @@
 			"audiovisualizertype" : 
 			{
 				"condition" : "",
-				"index" : 4,
+				"index" : 7,
 				"options" : 
 				[
 					{
@@ -109,7 +109,7 @@
 						"value" : "3"
 					}
 				],
-				"order" : 104,
+				"order" : 107,
 				"text" : "Audiovisualizer type",
 				"type" : "combo",
 				"value" : "0"
@@ -118,21 +118,70 @@
 			{
 				"condition" : "audiovisualizertype.value >= 0 && audiovisualizertype.value < 2",
 				"fraction" : true,
-				"index" : 5,
+				"index" : 8,
 				"max" : 100,
 				"min" : 0,
-				"order" : 105,
+				"order" : 108,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Audiovisualizer width",
 				"type" : "slider",
 				"value" : 50
 			},
+			"backgrounddirectory" : 
+			{
+				"condition" : "backgroundtype.value == 2",
+				"fileType" : "image",
+				"index" : 4,
+				"mode" : "ondemand",
+				"order" : 104,
+				"text" : "Background directory",
+				"type" : "directory",
+				"value" : ""
+			},
 			"backgroundimg" : 
 			{
+				"condition" : "backgroundtype.value == 1",
+				"index" : 3,
+				"order" : 103,
+				"text" : "Background image",
+				"type" : "file",
+				"value" : ""
+			},
+			"backgroundtype" : 
+			{
 				"index" : 2,
+				"options" : 
+				[
+					{
+						"label" : "Solid color",
+						"value" : "0"
+					},
+					{
+						"label" : "Image",
+						"value" : "1"
+					},
+					{
+						"label" : "Slide show",
+						"value" : "2"
+					},
+					{
+						"label" : "Video",
+						"value" : "3"
+					}
+				],
 				"order" : 102,
-				"text" : "Background Image",
+				"text" : "Background type",
+				"type" : "combo",
+				"value" : "1"
+			},
+			"backgroundvideo" : 
+			{
+				"condition" : "backgroundtype.value == 3",
+				"fileType" : "video",
+				"index" : 5,
+				"order" : 105,
+				"text" : "Background video",
 				"type" : "file",
 				"value" : ""
 			},
@@ -140,10 +189,10 @@
 			{
 				"condition" : "audiovisualizertype.value == 0",
 				"fraction" : true,
-				"index" : 22,
+				"index" : 25,
 				"max" : 8,
 				"min" : 0,
-				"order" : 122,
+				"order" : 125,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Bar gap",
@@ -154,10 +203,10 @@
 			{
 				"condition" : "audiovisualizertype.value == 1",
 				"fraction" : false,
-				"index" : 9,
+				"index" : 12,
 				"max" : 64,
 				"min" : 1,
-				"order" : 109,
+				"order" : 112,
 				"text" : "<div title='with this setting you can change the amount of audio bins the visualizer has. A bin consists of multiple frequency lines, this amount can also be changed by the frequency bands setting'>Circular Number of bars bins <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
 				"type" : "slider",
 				"value" : 20
@@ -165,8 +214,8 @@
 			"circularaudiovisualizercolor1" : 
 			{
 				"condition" : "audiovisualizertype.value == 1 && !circularaudiovisualizerrainbow.value",
-				"index" : 14,
-				"order" : 114,
+				"index" : 17,
+				"order" : 117,
 				"text" : "Circular audiovisualizer color 1",
 				"type" : "color",
 				"value" : "0.34509803921568627 0.7529411764705882 1"
@@ -174,8 +223,8 @@
 			"circularaudiovisualizercolor2" : 
 			{
 				"condition" : "audiovisualizertype.value == 1 && !circularaudiovisualizerrainbow.value",
-				"index" : 15,
-				"order" : 115,
+				"index" : 18,
+				"order" : 118,
 				"text" : "Circular audiovisualizer color 2",
 				"type" : "color",
 				"value" : "0.8666666666666667 0.9921568627450981 0.9882352941176471"
@@ -184,10 +233,10 @@
 			{
 				"condition" : "audiovisualizertype.value == 1",
 				"fraction" : false,
-				"index" : 16,
+				"index" : 19,
 				"max" : 100,
 				"min" : 0,
-				"order" : 116,
+				"order" : 119,
 				"text" : "Circular audiovisualizer opacity",
 				"type" : "slider",
 				"value" : 50
@@ -195,8 +244,8 @@
 			"circularaudiovisualizerrainbow" : 
 			{
 				"condition" : "audiovisualizertype.value == 1",
-				"index" : 13,
-				"order" : 113,
+				"index" : 16,
+				"order" : 116,
 				"text" : "Circular audiovisualizer rainbow",
 				"type" : "bool",
 				"value" : false
@@ -205,33 +254,33 @@
 			{
 				"condition" : "audiovisualizertype.value == 1",
 				"fraction" : false,
-				"index" : 10,
+				"index" : 13,
 				"max" : 64,
 				"min" : 0,
-				"order" : 110,
+				"order" : 113,
 				"text" : "<div title='The amount of lines in used in a bin to visualize the audio, a higher value means more precise visualization but also more lines.'>Circular audiovisualizer frequency bands <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
 				"type" : "slider",
 				"value" : 32
 			},
 			"creditstxt" : 
 			{
-				"index" : 49,
-				"order" : 149,
+				"index" : 52,
+				"order" : 152,
 				"text" : "<hr><h4>Creditsㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</h4><p>Star visualizer made by Chris</p>",
 				"type" : "text"
 			},
 			"curved" : 
 			{
 				"condition" : "audiovisualizertype.value == 0",
-				"index" : 23,
-				"order" : 123,
+				"index" : 26,
+				"order" : 126,
 				"text" : "Curved bars",
 				"type" : "bool",
 				"value" : false
 			},
 			"date" : 
 			{
-				"index" : 40,
+				"index" : 43,
 				"options" : 
 				[
 					{
@@ -247,7 +296,7 @@
 						"value" : "2"
 					}
 				],
-				"order" : 140,
+				"order" : 143,
 				"text" : "Date",
 				"type" : "combo",
 				"value" : "0"
@@ -256,10 +305,10 @@
 			{
 				"condition" : "date.value == 2 && dateshowdate.value",
 				"fraction" : true,
-				"index" : 44,
+				"index" : 47,
 				"max" : 100,
 				"min" : 0,
-				"order" : 144,
+				"order" : 147,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date scale",
@@ -270,10 +319,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 45,
+				"index" : 48,
 				"max" : 50,
 				"min" : -50,
-				"order" : 145,
+				"order" : 148,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date offset X",
@@ -284,10 +333,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 46,
+				"index" : 49,
 				"max" : 50,
 				"min" : -50,
-				"order" : 146,
+				"order" : 149,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date offset Y",
@@ -297,8 +346,8 @@
 			"dateshowdate" : 
 			{
 				"condition" : "date.value == 2",
-				"index" : 43,
-				"order" : 143,
+				"index" : 46,
+				"order" : 146,
 				"text" : "Show date",
 				"type" : "bool",
 				"value" : true
@@ -306,8 +355,8 @@
 			"dateshowseconds" : 
 			{
 				"condition" : "date.value == 2 && dateshowtime.value",
-				"index" : 42,
-				"order" : 142,
+				"index" : 45,
+				"order" : 145,
 				"text" : "Show seconds",
 				"type" : "bool",
 				"value" : true
@@ -315,8 +364,8 @@
 			"dateshowtime" : 
 			{
 				"condition" : "date.value == 2",
-				"index" : 41,
-				"order" : 141,
+				"index" : 44,
+				"order" : 144,
 				"text" : "Show time",
 				"type" : "bool",
 				"value" : true
@@ -325,10 +374,10 @@
 			{
 				"condition" : "date.value",
 				"fraction" : true,
-				"index" : 47,
+				"index" : 50,
 				"max" : 100,
 				"min" : 0,
-				"order" : 147,
+				"order" : 150,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Date size",
@@ -337,16 +386,16 @@
 			},
 			"endIntro" : 
 			{
-				"index" : 48,
-				"order" : 148,
+				"index" : 51,
+				"order" : 151,
 				"text" : "<hr>Hey, deze wallpaper is gemaakt door Frank Bosman. <br>Als je <strong>feature requests</strong> of <strong>bug report</strong> hebt kan je een issue open op me github. Als je de source code wilt zien kan je daar natuurlijk ook terecht. als je mijn code ergens anders gebruikt geliefd wel te crediten. GITHUB: <a href='https://github.com/FrankBosman/AudioVisualizer-Wallpaper/'>https://github.com/FrankBosman/AudioVisualizer-Wallpaper/</a>",
 				"type" : "text"
 			},
 			"magnitudebasedcolor" : 
 			{
 				"condition" : "audiovisualizertype.value == 0",
-				"index" : 18,
-				"order" : 118,
+				"index" : 21,
+				"order" : 121,
 				"text" : "Magnitude based color",
 				"type" : "bool",
 				"value" : true
@@ -355,10 +404,10 @@
 			{
 				"condition" : "audiovisualizertype.value == 0 && magnitudebasedcolor.value",
 				"fraction" : true,
-				"index" : 21,
+				"index" : 24,
 				"max" : 3,
 				"min" : 0.5,
-				"order" : 121,
+				"order" : 124,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Magnitude based color multiplier",
@@ -375,8 +424,8 @@
 			"secondaudiobarcolor" : 
 			{
 				"condition" : "audiovisualizertype.value == 0 && magnitudebasedcolor.value",
-				"index" : 20,
-				"order" : 120,
+				"index" : 23,
+				"order" : 123,
 				"text" : "Second audiobar color",
 				"type" : "color",
 				"value" : "0 0.9411764705882353 1"
@@ -384,8 +433,8 @@
 			"shadow" : 
 			{
 				"condition" : "audiovisualizertype.value == 0",
-				"index" : 24,
-				"order" : 124,
+				"index" : 27,
+				"order" : 127,
 				"text" : "Shadow",
 				"type" : "bool",
 				"value" : true
@@ -393,8 +442,8 @@
 			"shadowcolor" : 
 			{
 				"condition" : "shadow.value  && audiovisualizertype.value == 0",
-				"index" : 25,
-				"order" : 125,
+				"index" : 28,
+				"order" : 128,
 				"text" : "Shadow color",
 				"type" : "color",
 				"value" : "0.17647058823529413 0.8588235294117647 1"
@@ -403,10 +452,10 @@
 			{
 				"condition" : "shadow.value  && audiovisualizertype.value == 0",
 				"fraction" : true,
-				"index" : 26,
+				"index" : 29,
 				"max" : 5,
 				"min" : 0,
-				"order" : 126,
+				"order" : 129,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Shadow spread",
@@ -416,7 +465,7 @@
 			"staraudiopresets" : 
 			{
 				"condition" : "audiovisualizertype.value == 2",
-				"index" : 28,
+				"index" : 31,
 				"options" : 
 				[
 					{
@@ -452,7 +501,7 @@
 						"value" : "ComicExplosion"
 					}
 				],
-				"order" : 128,
+				"order" : 131,
 				"text" : "presets",
 				"type" : "combo",
 				"value" : "Relaxed"
@@ -460,16 +509,16 @@
 			"starvisCustomTxt" : 
 			{
 				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
-				"index" : 29,
-				"order" : 129,
+				"index" : 32,
+				"order" : 132,
 				"text" : "<b><ins>Advance settings</ins></b>ㅤ<img src='https://i.ibb.co/YfcqsTw/line.png' width='50%' height='2'/>",
 				"type" : "text"
 			},
 			"subText_cirAudioVis_color" : 
 			{
 				"condition" : "false && audiovisualizertype.value == 1",
-				"index" : 12,
-				"order" : 112,
+				"index" : 15,
+				"order" : 115,
 				"text" : "<img src='https://i.ibb.co/sWVKp5n/color-Divider.png' width='80' height='16'/>",
 				"type" : "text"
 			},
@@ -477,10 +526,10 @@
 			{
 				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
 				"fraction" : false,
-				"index" : 32,
+				"index" : 35,
 				"max" : 60,
 				"min" : 0,
-				"order" : 132,
+				"order" : 135,
 				"text" : "<div title='This setting offers a way to limit the fps of the visualizer. When left at 0 it runs each animation cycle of the background (which is determind by your standart pc settings, probably 60 or 30fps).'>fps <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
 				"type" : "slider",
 				"value" : 0
@@ -488,8 +537,8 @@
 			"svidleanimation" : 
 			{
 				"condition" : "audiovisualizertype.value == 2",
-				"index" : 27,
-				"order" : 127,
+				"index" : 30,
+				"order" : 130,
 				"text" : "Idle animation",
 				"type" : "bool",
 				"value" : false
@@ -498,10 +547,10 @@
 			{
 				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
 				"fraction" : false,
-				"index" : 34,
+				"index" : 37,
 				"max" : 200,
 				"min" : 0,
-				"order" : 134,
+				"order" : 137,
 				"text" : "Inner radius",
 				"type" : "slider",
 				"value" : 20
@@ -510,10 +559,10 @@
 			{
 				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
 				"fraction" : true,
-				"index" : 38,
+				"index" : 41,
 				"max" : 50,
 				"min" : 0,
-				"order" : 138,
+				"order" : 141,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Line width",
@@ -524,10 +573,10 @@
 			{
 				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
 				"fraction" : false,
-				"index" : 35,
+				"index" : 38,
 				"max" : 600,
 				"min" : 50,
-				"order" : 135,
+				"order" : 138,
 				"text" : "<div title='How much the audio signal is amplified. It also gives the maximum offset in pixels, from the inner radius.'>Magnitude <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
 				"type" : "slider",
 				"value" : 180
@@ -535,8 +584,8 @@
 			"svplottimedimension" : 
 			{
 				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
-				"index" : 37,
-				"order" : 137,
+				"index" : 40,
+				"order" : 140,
 				"text" : "<div title='If time should also be used in the visualization, just like the time based audiovisualizer part of the circular audiovisualizer.'>Plot time dimension <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
 				"type" : "bool",
 				"value" : true
@@ -545,10 +594,10 @@
 			{
 				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
 				"fraction" : false,
-				"index" : 31,
+				"index" : 34,
 				"max" : 75,
 				"min" : 1,
-				"order" : 131,
+				"order" : 134,
 				"text" : "points",
 				"type" : "slider",
 				"value" : 19
@@ -557,10 +606,10 @@
 			{
 				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
 				"fraction" : true,
-				"index" : 36,
+				"index" : 39,
 				"max" : 10,
 				"min" : 0,
-				"order" : 136,
+				"order" : 139,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "<div title='Only works when the shape kind has been set to Polygram.'>Polygram k <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
@@ -571,10 +620,10 @@
 			{
 				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
 				"fraction" : false,
-				"index" : 33,
+				"index" : 36,
 				"max" : 25,
 				"min" : 0,
-				"order" : 133,
+				"order" : 136,
 				"text" : "<div title='This determins how far the average of each frequency goes. ie lower value more responsive but also more spikes. higher value smoother but also more delayed/less impact.'>Running average filter size <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
 				"type" : "slider",
 				"value" : 9
@@ -582,7 +631,7 @@
 			"svshapekind" : 
 			{
 				"condition" : "audiovisualizertype.value == 2 && staraudiopresets.value == 0",
-				"index" : 30,
+				"index" : 33,
 				"options" : 
 				[
 					{
@@ -594,7 +643,7 @@
 						"value" : "1"
 					}
 				],
-				"order" : 130,
+				"order" : 133,
 				"text" : "ShapeKind",
 				"type" : "combo",
 				"value" : "0"
@@ -602,8 +651,8 @@
 			"timebasedcircularaudiovisualizer" : 
 			{
 				"condition" : "audiovisualizertype.value == 1",
-				"index" : 8,
-				"order" : 108,
+				"index" : 11,
+				"order" : 111,
 				"text" : "<div title='When enabled changes in sound will propagate like a wave trough the audio bins'>Time based circular audiovisualizer <img src='https://i.ibb.co/nwhVy6d/info.png' width='14' height='14'/></div>",
 				"type" : "bool",
 				"value" : true
@@ -612,10 +661,10 @@
 			{
 				"condition" : "audiovisualizertype.value == 1",
 				"fraction" : true,
-				"index" : 11,
+				"index" : 14,
 				"max" : 3,
 				"min" : 1,
-				"order" : 111,
+				"order" : 114,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Time duration multiplier",

@@ -27,6 +27,15 @@ html, body {
     position: absolute;
     z-index: -10;
     transition: opacity 500ms 500ms;
+
+    min-width: 100%;
+    min-height: 100%;
+}
+.background_img_transition{
+    transition: opacity 500ms;
+}
+.background_img.visible{
+    opacity: 1;
 }
 
 /* --------------- Audiovisualizer --------------- */

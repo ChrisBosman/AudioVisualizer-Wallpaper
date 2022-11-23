@@ -10,6 +10,12 @@ let selectedAudioVis = audioVisualizers.Horizontal;
 let bars = []
 let oldAudioArray = [];
 
+const backgroundTypes = {
+    solidColor: 0,
+    image: 1,
+    slideShow: 2,
+    video: 3,
+}
 
 let AudioVisData = {
     rolingAverageAmount: 2,
@@ -104,6 +110,30 @@ function setup(){
     $('.timeCenterContainer').css("opacity", "100");
 }
 
+/* ----------- Update background ----------- */
+function updateBackground(){
+    console.log(backgroundSyle.directory);
+    if (backgroundSyle.backgroundType === backgroundTypes.slideShow && backgroundSyle.directory != null){
+        window.wallpaperRequestRandomFileForProperty('backgrounddirectory', (propertyName, filePath) => {
+            changeBackgroundImage(filePath);
+        });
+    }
+}
+setInterval(updateBackground, 2000);
+
+function changeBackgroundImage(file){
+    const filePath = file.indexOf('file:///') >= 0 ? file : ('file:///' + file)
+    let newImageElement = document.getElementById('newBackgroundImg');
+    newImageElement.src = filePath;
+    newImageElement.classList.add('visible');
+
+    setTimeout(() => {
+        let imageElement = document.getElementById('backgroundImg');
+        imageElement.src = filePath;   
+        newImageElement.classList.remove('visible');
+    }, 1000);
+}
+
 // Register the audio listener provided by Wallpaper Engine.
 window.wallpaperRegisterAudioListener(wallpaperAudioListener);
 
@@ -129,6 +159,12 @@ let audiovisualizerStyle = {
     circularBarColors: [[255, 0, 0], [100, 0, 0]],
     circularaudiovisualizerOpacity: 100,
 }
+backgroundSyle = {
+    backgroundType: backgroundTypes.image,
+    imageSrc: "",
+    videoSrc: "",
+    directory: null,
+}
 
 // Register the propertyListener
 window.wallpaperPropertyListener = {
@@ -139,10 +175,51 @@ window.wallpaperPropertyListener = {
         dateTimeProperties(prop);
 
         // ---------------------------- Background -----------------------------\\
+        if (properties.backgroundtype){
+            let imageElement = document.getElementById('backgroundImg');
+            let videoElement = document.getElementById('backgroundVideo');
+            $('#backgroundImg.visible').removeClass('visible');
+            $('#backgroundVideo.visible').removeClass('visible');
+
+            switch (properties.backgroundtype.value) {
+                case '0':  // solid color
+                    backgroundSyle.backgroundType = backgroundTypes.solidColor;
+                    break;
+                case '1':  // image
+                    backgroundSyle.backgroundType = backgroundTypes.image;
+                    $('#backgroundImg').addClass('visible');
+
+                    if (backgroundSyle.imageSrc)
+                        changeBackgroundImage(backgroundSyle.imageSrc);
+                    break;
+                case '2':  // image slideshow
+                    backgroundSyle.backgroundType = backgroundTypes.slideShow;
+                    $('#backgroundImg').addClass('visible');
+                    break;
+                case '3':  // video
+                    backgroundSyle.backgroundType = backgroundTypes.video;
+                    $('#backgroundVideo').addClass('visible');
+                    break;
+            }
+        }
         if (properties.backgroundimg) { // the background image
             let imageElement = document.getElementById('backgroundImg');
             imageElement.src = 'file:///' + properties.backgroundimg.value;
-            imageElement.style.opacity = 100;
+            backgroundSyle.imageSrc = 'file:///' + properties.backgroundimg.value;
+
+            if (backgroundSyle.backgroundType === backgroundTypes.image)
+                imageElement.style.opacity = 100;
+        }
+        if (properties.backgrounddirectory){
+            backgroundSyle.directory = properties.backgrounddirectory.value;
+        }
+        if (properties.backgroundvideo) { 
+            let videoElement = document.getElementById('backgroundVideo');
+            videoElement.src = 'file:///' + properties.backgroundvideo.value;
+            backgroundSyle.videoSrc = 'file:///' + properties.backgroundimg.value;
+            
+            if (backgroundSyle.backgroundType === backgroundTypes.video)
+                videoElement.style.opacity = 100;
         }
         // ------------------------------ AudioVis ------------------------------\\
         if (properties.audiovisualizertype){
