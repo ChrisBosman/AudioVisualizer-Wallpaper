@@ -215,8 +215,8 @@
 			},
 			"creditstxt" : 
 			{
-				"index" : 49,
-				"order" : 149,
+				"index" : 65,
+				"order" : 165,
 				"text" : "<hr><h4>Creditsㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</h4><p>Star visualizer made by Chris</p>",
 				"type" : "text"
 			},
@@ -335,12 +335,110 @@
 				"type" : "slider",
 				"value" : 40
 			},
+			"enablefox" : 
+			{
+				"index" : 49,
+				"order" : 149,
+				"text" : "EnableFox",
+				"type" : "bool",
+				"value" : false
+			},
 			"endIntro" : 
 			{
-				"index" : 48,
-				"order" : 148,
-				"text" : "<hr>Hey, deze wallpaper is gemaakt door Frank Bosman. <br>Als je <strong>feature requests</strong> of <strong>bug report</strong> hebt kan je een issue open op me github. Als je de source code wilt zien kan je daar natuurlijk ook terecht. als je mijn code ergens anders gebruikt geliefd wel te crediten. GITHUB: <a href='https://github.com/FrankBosman/AudioVisualizer-Wallpaper/'>https://github.com/FrankBosman/AudioVisualizer-Wallpaper/</a>",
+				"index" : 64,
+				"order" : 164,
+				"text" : "<hr>Hey, deze wallpaper is gemaakt door Frank Bosman. <br>Als je <strong>feature requests</strong> of <strong>bug report</strong> hebt kan je een issue open op me github. Als je de source code wilt zien kan je daar natuurlijk ook terecht. Als je mijn code ergens anders gebruikt geliefd wel te crediten. GITHUB: <a href='https://github.com/FrankBosman/AudioVisualizer-Wallpaper/'>https://github.com/FrankBosman/AudioVisualizer-Wallpaper/</a>",
 				"type" : "text"
+			},
+			"foxx" : 
+			{
+				"condition" : "enablefox.value == true",
+				"fraction" : true,
+				"index" : 56,
+				"max" : 100,
+				"min" : -100,
+				"order" : 156,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Fox x",
+				"type" : "slider",
+				"value" : 0
+			},
+			"foxy" : 
+			{
+				"condition" : "enablefox.value == true",
+				"fraction" : true,
+				"index" : 57,
+				"max" : 100,
+				"min" : -100,
+				"order" : 157,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Fox y",
+				"type" : "slider",
+				"value" : 1
+			},
+			"foxz" : 
+			{
+				"condition" : "enablefox.value == true",
+				"fraction" : true,
+				"index" : 58,
+				"max" : 100,
+				"min" : -100,
+				"order" : 158,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Fox z",
+				"type" : "slider",
+				"value" : 0
+			},
+			"heightcanvas" : 
+			{
+				"condition" : "enablefox.value == true",
+				"fraction" : false,
+				"index" : 54,
+				"max" : 100,
+				"min" : 0,
+				"order" : 154,
+				"text" : "Height Canvas",
+				"type" : "slider",
+				"value" : 100
+			},
+			"lightx" : 
+			{
+				"condition" : "enablefox.value == true",
+				"fraction" : false,
+				"index" : 61,
+				"max" : 200,
+				"min" : -200,
+				"order" : 161,
+				"text" : "Light x",
+				"type" : "slider",
+				"value" : -10
+			},
+			"lighty" : 
+			{
+				"condition" : "enablefox.value == true",
+				"fraction" : false,
+				"index" : 62,
+				"max" : 200,
+				"min" : -200,
+				"order" : 162,
+				"text" : "Light y",
+				"type" : "slider",
+				"value" : 20
+			},
+			"lightz" : 
+			{
+				"condition" : "enablefox.value == true",
+				"fraction" : false,
+				"index" : 63,
+				"max" : 200,
+				"min" : -200,
+				"order" : 163,
+				"text" : "Light z",
+				"type" : "slider",
+				"value" : 15
 			},
 			"magnitudebasedcolor" : 
 			{
@@ -364,6 +462,30 @@
 				"text" : "Magnitude based color multiplier",
 				"type" : "slider",
 				"value" : 1.5
+			},
+			"posx" : 
+			{
+				"condition" : "enablefox.value == true",
+				"fraction" : false,
+				"index" : 51,
+				"max" : 100,
+				"min" : 40,
+				"order" : 151,
+				"text" : "Horizontal Position",
+				"type" : "slider",
+				"value" : 0
+			},
+			"posy" : 
+			{
+				"condition" : "enablefox.value == true",
+				"fraction" : false,
+				"index" : 52,
+				"max" : 100,
+				"min" : 0,
+				"order" : 152,
+				"text" : "Vertical Position",
+				"type" : "slider",
+				"value" : 0
 			},
 			"schemecolor" : 
 			{
@@ -599,6 +721,37 @@
 				"type" : "combo",
 				"value" : "0"
 			},
+			"textLine_canvas" : 
+			{
+				"condition" : "enablefox.value == true",
+				"index" : 50,
+				"order" : 150,
+				"text" : "<hr><h3>Canvas Settings</h3><small class=\"text-muted\"> The position and width settings of the canvas, use this to move the whole camera. You can enable the helpers so that the width is visable. </small>",
+				"type" : "text"
+			},
+			"textLine_enablefox" : 
+			{
+				"index" : 48,
+				"order" : 148,
+				"text" : "<hr><h3>Sleeping Fox</h3><small class=\"text-muted\"> Enable a small 3d animated fox  </small>",
+				"type" : "text"
+			},
+			"textLine_fox" : 
+			{
+				"condition" : "enablefox.value == true",
+				"index" : 55,
+				"order" : 155,
+				"text" : "<hr><h3>Fox Settings</h3><small class=\"text-muted\"> The position and wake-up settings of the fox, the fox wakes up at random and you can increase the wake uprate to increase the amount of times he wakes up (set to zero to keep sleeping)</small>",
+				"type" : "text"
+			},
+			"textLine_light" : 
+			{
+				"condition" : "enablefox.value == true",
+				"index" : 60,
+				"order" : 160,
+				"text" : "<hr><h3>Light Settings</h3><small class=\"text-muted\"> The position settings of the light, turn on the helpers to see the light point source</small>",
+				"type" : "text"
+			},
 			"timebasedcircularaudiovisualizer" : 
 			{
 				"condition" : "audiovisualizertype.value == 1",
@@ -621,6 +774,32 @@
 				"text" : "Time duration multiplier",
 				"type" : "slider",
 				"value" : 1
+			},
+			"wakeuprate" : 
+			{
+				"condition" : "enablefox.value == true",
+				"fraction" : true,
+				"index" : 59,
+				"max" : 1,
+				"min" : 0,
+				"order" : 159,
+				"precision" : 3,
+				"step" : 0.01,
+				"text" : "Wake up rate",
+				"type" : "slider",
+				"value" : 0.1
+			},
+			"widthcanvas" : 
+			{
+				"condition" : "enablefox.value == true",
+				"fraction" : false,
+				"index" : 53,
+				"max" : 100,
+				"min" : 0,
+				"order" : 153,
+				"text" : "Width Canvas",
+				"type" : "slider",
+				"value" : 100
 			}
 		},
 		"supportsaudioprocessing" : true

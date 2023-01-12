@@ -177,10 +177,23 @@ window.wallpaperPropertyListener = {
             $('#container').css('top', `${properties.audiovisualizeroffsety.value}%`);
             audiovisualizerStyle.y = `${properties.audiovisualizeroffsety.value}%`;
         }
-        // circular audio visualizer
+        // Audio visualizers
         circularAudioVisualizerProperties(prop);
         horizontalAudioVisualizerProperties(prop);
-        starAudioVisProperties(prop);       
+        starAudioVisProperties(prop);    
+        // Sleeping fox
+        if (properties.enablefox){  
+            switch (properties.enableFox.value) {
+                case true:
+                    enableFox();
+                    break;
+                case false:
+                    disposeScene();
+                    break;
+            }
+        }
+        if (scene.length > 0)
+            scene[0].propertyListener(prop);
     },
 };
 
