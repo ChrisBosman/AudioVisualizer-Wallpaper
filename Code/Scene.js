@@ -22,14 +22,14 @@ class Scene
         this.camera.position.setY(10); // Move the camera a bit up
 
         // Add some light
-        const pointLight = new THREE.PointLight(0xfff5b6)
-        pointLight.position.set(-10,20,45);
+        this.pointLight = new THREE.PointLight(0xfff5b6)
+        this.pointLight.position.set(-10,20,45);
 
         // const ambientLight = new THREE.AmbientLight(0xAAAAAA)
-        this.scene.add(pointLight);//,ambientLight);
+        this.scene.add(this.pointLight);//,ambientLight);
 
         // Some Helpers (debug)
-        this.lightHelper = new THREE.PointLightHelper(pointLight);
+        this.lightHelper = new THREE.PointLightHelper(this.pointLight);
         this.gridHelper = new THREE.GridHelper(200,50);
         
         // Add a background texture
@@ -103,11 +103,11 @@ class Scene
             }
         }
         if (properties.lightx)
-            pointLight.position.x = properties.lightx.value;
+            this.pointLight.position.x = properties.lightx.value;
         if (properties.lighty)
-            pointLight.position.y = properties.lighty.value;
+            this.pointLight.position.y = properties.lighty.value;
         if (properties.lightz)
-            pointLight.position.z = properties.lightz.value;
+            this.pointLight.position.z = properties.lightz.value;
         if (properties.foxx){
             if(this.fox.isDoneLoading())
                 this.fox.fox.position.x = properties.foxx.value;

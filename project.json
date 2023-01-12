@@ -215,8 +215,8 @@
 			},
 			"creditstxt" : 
 			{
-				"index" : 65,
-				"order" : 165,
+				"index" : 66,
+				"order" : 166,
 				"text" : "<hr><h4>Creditsㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</h4><p>Star visualizer made by Chris</p>",
 				"type" : "text"
 			},
@@ -343,10 +343,19 @@
 				"type" : "bool",
 				"value" : false
 			},
+			"enablehelpers" : 
+			{
+				"condition" : "enablefox.value == true",
+				"index" : 55,
+				"order" : 155,
+				"text" : "Enable Helpers",
+				"type" : "bool",
+				"value" : false
+			},
 			"endIntro" : 
 			{
-				"index" : 64,
-				"order" : 164,
+				"index" : 65,
+				"order" : 165,
 				"text" : "<hr>Hey, deze wallpaper is gemaakt door Frank Bosman. <br>Als je <strong>feature requests</strong> of <strong>bug report</strong> hebt kan je een issue open op me github. Als je de source code wilt zien kan je daar natuurlijk ook terecht. Als je mijn code ergens anders gebruikt geliefd wel te crediten. GITHUB: <a href='https://github.com/FrankBosman/AudioVisualizer-Wallpaper/'>https://github.com/FrankBosman/AudioVisualizer-Wallpaper/</a>",
 				"type" : "text"
 			},
@@ -354,24 +363,24 @@
 			{
 				"condition" : "enablefox.value == true",
 				"fraction" : true,
-				"index" : 56,
+				"index" : 57,
 				"max" : 100,
 				"min" : -100,
-				"order" : 156,
+				"order" : 157,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Fox x",
 				"type" : "slider",
-				"value" : 0
+				"value" : -10
 			},
 			"foxy" : 
 			{
 				"condition" : "enablefox.value == true",
 				"fraction" : true,
-				"index" : 57,
+				"index" : 58,
 				"max" : 100,
 				"min" : -100,
-				"order" : 157,
+				"order" : 158,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Fox y",
@@ -382,15 +391,15 @@
 			{
 				"condition" : "enablefox.value == true",
 				"fraction" : true,
-				"index" : 58,
+				"index" : 59,
 				"max" : 100,
 				"min" : -100,
-				"order" : 158,
+				"order" : 159,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Fox z",
 				"type" : "slider",
-				"value" : 0
+				"value" : 30
 			},
 			"heightcanvas" : 
 			{
@@ -402,16 +411,16 @@
 				"order" : 154,
 				"text" : "Height Canvas",
 				"type" : "slider",
-				"value" : 100
+				"value" : 20
 			},
 			"lightx" : 
 			{
 				"condition" : "enablefox.value == true",
 				"fraction" : false,
-				"index" : 61,
+				"index" : 62,
 				"max" : 200,
 				"min" : -200,
-				"order" : 161,
+				"order" : 162,
 				"text" : "Light x",
 				"type" : "slider",
 				"value" : -10
@@ -420,10 +429,10 @@
 			{
 				"condition" : "enablefox.value == true",
 				"fraction" : false,
-				"index" : 62,
+				"index" : 63,
 				"max" : 200,
 				"min" : -200,
-				"order" : 162,
+				"order" : 163,
 				"text" : "Light y",
 				"type" : "slider",
 				"value" : 20
@@ -432,13 +441,13 @@
 			{
 				"condition" : "enablefox.value == true",
 				"fraction" : false,
-				"index" : 63,
+				"index" : 64,
 				"max" : 200,
 				"min" : -200,
-				"order" : 163,
+				"order" : 164,
 				"text" : "Light z",
 				"type" : "slider",
-				"value" : 15
+				"value" : 45
 			},
 			"magnitudebasedcolor" : 
 			{
@@ -469,7 +478,7 @@
 				"fraction" : false,
 				"index" : 51,
 				"max" : 100,
-				"min" : 40,
+				"min" : -40,
 				"order" : 151,
 				"text" : "Horizontal Position",
 				"type" : "slider",
@@ -481,7 +490,7 @@
 				"fraction" : false,
 				"index" : 52,
 				"max" : 100,
-				"min" : 0,
+				"min" : -40,
 				"order" : 152,
 				"text" : "Vertical Position",
 				"type" : "slider",
@@ -739,16 +748,16 @@
 			"textLine_fox" : 
 			{
 				"condition" : "enablefox.value == true",
-				"index" : 55,
-				"order" : 155,
+				"index" : 56,
+				"order" : 156,
 				"text" : "<hr><h3>Fox Settings</h3><small class=\"text-muted\"> The position and wake-up settings of the fox, the fox wakes up at random and you can increase the wake uprate to increase the amount of times he wakes up (set to zero to keep sleeping)</small>",
 				"type" : "text"
 			},
 			"textLine_light" : 
 			{
 				"condition" : "enablefox.value == true",
-				"index" : 60,
-				"order" : 160,
+				"index" : 61,
+				"order" : 161,
 				"text" : "<hr><h3>Light Settings</h3><small class=\"text-muted\"> The position settings of the light, turn on the helpers to see the light point source</small>",
 				"type" : "text"
 			},
@@ -779,10 +788,10 @@
 			{
 				"condition" : "enablefox.value == true",
 				"fraction" : true,
-				"index" : 59,
+				"index" : 60,
 				"max" : 1,
 				"min" : 0,
-				"order" : 159,
+				"order" : 160,
 				"precision" : 3,
 				"step" : 0.01,
 				"text" : "Wake up rate",
@@ -799,7 +808,7 @@
 				"order" : 153,
 				"text" : "Width Canvas",
 				"type" : "slider",
-				"value" : 100
+				"value" : 20
 			}
 		},
 		"supportsaudioprocessing" : true

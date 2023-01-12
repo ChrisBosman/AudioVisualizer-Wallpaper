@@ -103,9 +103,6 @@ function setup(){
 
     // date time widget
     $('.timeCenterContainer').css("opacity", "100");
-
-    // Sleeping fox
-    enableFox();
 }
 
 // Register the audio listener provided by Wallpaper Engine.
@@ -138,7 +135,6 @@ let audiovisualizerStyle = {
 window.wallpaperPropertyListener = {
     applyUserProperties: function (properties) {
         let prop = properties;
-
         // ----------------------------- DateTime -----------------------------\\
         dateTimeProperties(prop);
 
@@ -183,7 +179,7 @@ window.wallpaperPropertyListener = {
         starAudioVisProperties(prop);    
         // Sleeping fox
         if (properties.enablefox){  
-            switch (properties.enableFox.value) {
+            switch (properties.enablefox.value) {
                 case true:
                     enableFox();
                     break;
@@ -238,6 +234,9 @@ function disposeScene(){
     if (scene.length > 0){
         scene[0].dispose()
         scene.pop();
+        const div = document.getElementById("drawcanvas");
+        div.removeChild(div.firstElementChild);
+
     }
 }
 
