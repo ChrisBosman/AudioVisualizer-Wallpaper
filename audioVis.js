@@ -10,6 +10,7 @@ let selectedAudioVis = audioVisualizers.Horizontal;
 let bars = []
 let oldAudioArray = [];
 
+let scene = [];  // For the Fox
 
 let AudioVisData = {
     rolingAverageAmount: 2,
@@ -102,6 +103,9 @@ function setup(){
 
     // date time widget
     $('.timeCenterContainer').css("opacity", "100");
+
+    // Sleeping fox
+    enableFox();
 }
 
 // Register the audio listener provided by Wallpaper Engine.
@@ -199,6 +203,36 @@ function toCSSrgb(variable) {
         return Math.ceil(c * 255);
     });
     return customColor;
+}
+
+// ------------------------------ { Sleeping Fox } ------------------------------\\
+
+function enableFox(){
+    if (scene.length > 0) return;
+
+    scene.push(new Scene());
+    sceneStart();
+}
+
+function sceneStart(){
+    if (scene[0].isDoneLoadingScene)
+        animate();
+    else
+        setTimeout(() => sceneStart(),0.1);
+}
+
+function disposeScene(){
+    if (scene.length > 0){
+        scene[0].dispose()
+        scene.pop();
+    }
+}
+
+function animate(){
+    if (scene.length == 0)
+        return;
+    requestAnimationFrame( animate );
+    scene[0].animate();
 }
 
 // function hover(element, enter, leave) {

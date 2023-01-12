@@ -93,3 +93,9 @@ html, body {
     transition: opacity 1500ms 500ms, left 250ms, top 250ms;
     transition-delay: 250ms opacity;
 }
+
+/* ------------- { Sleeping Fox } -------------*/
+
+#drawcanvas{
+    position: absolute;
+}

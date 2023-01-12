@@ -4,13 +4,16 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="Styles/styles.css">
     <link rel="stylesheet" href="Styles/dateTime.css">
-    <link rel="stylesheet" href="Styles/newAudioVis.css">
+    <!-- <link rel="stylesheet" href="Styles/newAudioVis.css"> -->
     <link rel="stylesheet" href="Styles/OrbsAudioVis.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src='http://joeiddon.github.io/perlin/perlin.js'></script> <!-- Perlin Noise -->
 
+    <!-- Three.js -->
+    <script src="Dependencies/three.min.js" defer></script>
+  	<script src="Dependencies/GLTFLoader.js" defer></script>
 
     <script src="./Code/HorizontalAudioVis.js"></script>
     <script src="./Code/CircularAudioVis.js"></script>
@@ -18,6 +21,9 @@
     <script src="./Code/StarAudioVis.js" defer></script>
 
     <script src="./Code/DateTimeWidget.js" defer></script>
+    
+    <script src="./Code/Fox.js" defer></script>
+    <script src="./Code/Scene.js" defer></script>
 
     <script src="audioVis.js" defer></script>
     </head>
@@ -110,5 +116,6 @@
       </div>
       <div class="element-container" id="element-container"></div>
       <canvas id="starVisRenderCanvas" class="starVisualCanvas"></canvas>
+      <div id="drawcanvas"></div>
     </body>
 </html>
